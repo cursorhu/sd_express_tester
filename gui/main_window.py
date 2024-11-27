@@ -10,6 +10,7 @@ from core.card_ops import CardOperations
 from core.test_suite import TestSuite
 from utils.logger import get_logger
 from utils.config import config
+from datetime import datetime
 
 logger = get_logger(__name__)
 
@@ -96,6 +97,12 @@ class MainWindow(QMainWindow):
             self._check_controller()
             self._check_card_status()
             
+            # 添加定时器,每秒检查一次卡状态
+            self.card_check_timer = QTimer()
+            self.card_check_timer.timeout.connect(self._check_card_status)
+            self.card_check_timer.start(1000)  # 每1000ms检查一次
+            logger.debug("已启动SD卡状态检查定时器")
+            
         except Exception as e:
             logger.error(f"核心组件初始化失败: {str(e)}", exc_info=True)
             self.controller_info.setText("控制器状态: 初始化失败")
@@ -123,7 +130,7 @@ class MainWindow(QMainWindow):
         
         # 卡信息（分两行显示）
         card_layout = QVBoxLayout()
-        self.card_name = QLabel("SD卡: 等待插入...")
+        self.card_name = QLabel("SD: 等待插入...")
         self.card_capability = QLabel("卡能力: 未知")
         card_layout.addWidget(self.card_name)
         card_layout.addWidget(self.card_capability)
@@ -243,7 +250,8 @@ class MainWindow(QMainWindow):
     
     def _check_card_status(self):
         try:
-            card_info = self.card_ops.check_card()
+            # 默认只做基本检测
+            card_info = self.card_ops.check_card(full_check=False)
             
             # 检查卡状态是否发生变化
             current_card_state = str(card_info) if card_info else "No Card"
@@ -253,35 +261,38 @@ class MainWindow(QMainWindow):
             # 如果卡状态发生变化
             if current_card_state != self._last_card_state:
                 logger.info(f"卡状态变化: {self._last_card_state} -> {current_card_state}")
-                # 重新检查控制器状态
+                
+                # 更新控制器信息
                 self._check_controller()
+                
+                # 更新UI显示
+                if card_info:
+                    self.card_name.setText(f"SD卡: {card_info.name}")
+                    self.card_name.setStyleSheet("color: green")
+                    
+                    capability_info = []
+                    if card_info.mode:
+                        capability_info.append(f"模式: {card_info.mode}")
+                    if card_info.capacity:
+                        capability_info.append(f"容量: {card_info.capacity/1024/1024/1024:.1f}GB")
+                    
+                    self.card_capability.setText("卡能力: " + ", ".join(capability_info))
+                    self.card_capability.setStyleSheet("color: green")
+                    self.test_btn.setEnabled(True)
+                    self.statusBar.showMessage("检测到SD卡插入")
+                else:
+                    self.card_name.setText("SD卡: 未检测到卡")
+                    self.card_name.setStyleSheet("color: red")
+                    self.card_capability.setText("卡能力: 未知")
+                    self.card_capability.setStyleSheet("color: red")
+                    self.test_btn.setEnabled(False)
+                    self.statusBar.showMessage("未检测到SD卡")
+                
                 self._last_card_state = current_card_state
             
-            if card_info:
-                # 显示卡名称
-                self.card_name.setText(f"SD卡: {card_info.name}")
-                self.card_name.setStyleSheet("color: green")
-                
-                # 显示卡能力
-                capability_info = []
-                if card_info.mode:
-                    capability_info.append(f"模式: {card_info.mode}")
-                if card_info.capacity:
-                    capability_info.append(f"容量: {card_info.capacity/1024/1024/1024:.1f}GB")
-                
-                self.card_capability.setText("卡能力: " + ", ".join(capability_info))
-                self.card_capability.setStyleSheet("color: green")
-                self.test_btn.setEnabled(True)
-            else:
-                self.card_name.setText("SD卡: 未检测到卡")
-                self.card_name.setStyleSheet("color: red")
-                self.card_capability.setText("卡能力: 未知")
-                self.card_capability.setStyleSheet("color: red")
-                self.test_btn.setEnabled(False)
-                
         except Exception as e:
             logger.error(f"SD卡状态检查失败: {str(e)}", exc_info=True)
-            self.card_name.setText("SD卡: 检查失败")
+            self.card_name.setText("SD卡: 检查失败") 
             self.card_name.setStyleSheet("color: red")
             self.card_capability.setText("卡能力: 检查失败")
             self.card_capability.setStyleSheet("color: red")
@@ -296,6 +307,13 @@ class MainWindow(QMainWindow):
             self.progress_bar.setVisible(True)
             self.progress_bar.setValue(0)
             self.result_text.clear()
+            
+            # 添加简单的测试开始标记
+            start_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            self.result_text.insertHtml(
+                f"=== 测试开始 ({start_time}) ===<br><br>"
+            )
+            
             self.statusBar.showMessage("正在执行测试...")
             
             # 获取循环测试配置
@@ -315,12 +333,16 @@ class MainWindow(QMainWindow):
             
             # 执行循环测试
             for i in range(loop_count if loop_enabled else 1):
+                if self.test_suite._stop_event.is_set():  # 检查停止标志
+                    logger.info("测试被用户停止，退出循环")
+                    break
+                
                 if loop_enabled:
                     self.result_text.append(f"\n=== 第 {i+1}/{loop_count} 次测试 ===\n")
                     self.statusBar.showMessage(f"正在执行第 {i+1}/{loop_count} 次测试...")
                 
                 results = self.test_suite.run_tests(test_config)
-                if not results:
+                if not results or self.test_suite._stop_event.is_set():  # 检查测试结果和停止标志
                     break
             
             logger.info("测试完成")
@@ -337,19 +359,116 @@ class MainWindow(QMainWindow):
         """停止测试"""
         logger.info("用户请求停止测试")
         self.test_suite._stop_event.set()  # 设置停止标志
-        self.result_text.append("\n测试已被用户停止")
+        
+        # 添加停止信息，但不添加汇总
+        self.result_text.insertHtml(
+            "<br><span style='color: red;'>测试已被用户停止</span><br>"
+        )
+        
         self.statusBar.showMessage("测试已停止")
         self._finish_test()
     
     def _finish_test(self):
         """完成测试（无论是正常完成还是被停止）"""
-        self.test_btn.setEnabled(True)
-        self.stop_btn.setEnabled(False)
-        self.progress_bar.setVisible(False)
-        # 滚动到底部
-        self.result_text.verticalScrollBar().setValue(
-            self.result_text.verticalScrollBar().maximum()
-        )
+        try:
+            # 添加测试结果汇总
+            summary_html = self._generate_test_summary()
+            
+            # 添加简单的测试结束标记
+            end_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            self.result_text.insertHtml(
+                f"<br>=== 测试结束 ({end_time}) ===<br>{summary_html}<br>"
+            )
+            
+            self.test_btn.setEnabled(True)
+            self.stop_btn.setEnabled(False)
+            self.progress_bar.setVisible(False)
+            
+            # 滚动到底部
+            self.result_text.verticalScrollBar().setValue(
+                self.result_text.verticalScrollBar().maximum()
+            )
+        except Exception as e:
+            logger.error(f"完成测试更新UI失败: {str(e)}", exc_info=True)
+    
+    def _generate_test_summary(self):
+        """生成测试结果汇总"""
+        try:
+            # 获取所有测试结果的文本
+            text = self.result_text.toPlainText()
+            
+            # 检查是否被用户终止
+            if "测试已被用户停止" in text:
+                return "<br><span style='color: orange; font-weight: bold;'>测试结果: 测试终止</span>"
+            
+            # 检查是否是循环测试
+            is_loop_test = "=== 第" in text
+            
+            if is_loop_test:
+                # 统计每轮测试的结果
+                rounds = text.split("=== 第")  # 分割每轮测试
+                total_rounds = 0  # 总轮数
+                passed_rounds = 0  # 通过的轮数
+                failed_rounds = 0  # 失败的轮数
+                
+                for round_text in rounds:
+                    if "测试项目" not in round_text:  # 跳过不包含测试结果的部分
+                        continue
+                        
+                    total_rounds += 1
+                    # 检查这一轮是否有失败的测试项
+                    has_failed = False
+                    test_items = 0  # 每轮的测试项数
+                    lines = round_text.split('\n')
+                    for line in lines:
+                        if "测试项目" in line:
+                            test_items += 1
+                            if ": 失败" in line:
+                                has_failed = True
+                    
+                    # 只有完成所有4个测试项才计入统计
+                    if test_items == 4:
+                        if has_failed:
+                            failed_rounds += 1
+                        else:
+                            passed_rounds += 1
+                    else:
+                        total_rounds -= 1  # 未完成的轮次不计入总数
+                
+                # 生成循环测试汇总信息
+                if total_rounds == 0:
+                    return "<br><span style='color: gray; font-weight: bold;'>测试结果: 无测试完成</span>"
+                elif failed_rounds > 0:
+                    return (f"<br><span style='color: red; font-weight: bold;'>"
+                           f"测试结果: 测试出错 (总计: {total_rounds}轮, 成功: {passed_rounds}轮, 失败: {failed_rounds}轮)"
+                           f"</span>")
+                else:
+                    return (f"<br><span style='color: green; font-weight: bold;'>"
+                           f"测试结果: 全部通过 (共 {total_rounds}轮)"
+                           f"</span>")
+            else:
+                # 单次测试的汇总
+                test_items = 0  # 测试项目总数
+                failed_items = 0  # 失败的测试项数
+                lines = text.split('\n')
+                for line in lines:
+                    if "测试项目" in line:
+                        test_items += 1
+                        if ": 失败" in line:
+                            failed_items += 1
+                
+                if test_items == 0:
+                    return "<br><span style='color: gray; font-weight: bold;'>测试结果: 无测试完成</span>"
+                elif failed_items > 0:
+                    return f"<br><span style='color: red; font-weight: bold;'>测试结果: 测试出错 (失败项: {failed_items}/{test_items})</span>"
+                elif test_items == 4:  # 确保所有4个测试项都通过
+                    return "<br><span style='color: green; font-weight: bold;'>测试结果: 测试通过</span>"
+                else:
+                    return "<br><span style='color: orange; font-weight: bold;'>测试结果: 测试未完成</span>"
+            
+        except Exception as e:
+            logger.error(f"生成测试汇总失败: {str(e)}", exc_info=True)
+            return "<br><span style='color: red; font-weight: bold;'>测试结果: 汇总失败</span>"
     
     def _update_progress(self, value):
         """更新进度条"""
@@ -362,11 +481,30 @@ class MainWindow(QMainWindow):
     def _show_test_result(self, result):
         """显示单个测试结果"""
         for test_name, test_result in result.items():
+            # 创建简单的HTML格式文本
             status = "通过" if test_result['passed'] else "失败"
-            self.result_text.append(f"{test_name}: {status}")
-            self.result_text.append(f"详情: {test_result['details']}\n")
+            status_color = "green" if test_result['passed'] else "red"
+            
+            # 处理详情文本，将换行符转换为HTML换行
+            details = test_result['details'].replace('\n', '<br>')
+            
+            # 使用简单的HTML格式
+            result_html = f"""
+            <div>
+                <span style='font-weight: bold;'>{test_name}: </span>
+                <span style='color: {status_color};'>{status}</span><br>
+                详情: {details}<br>
+            </div>
+            <br>
+            """
+            
+            # 将HTML文本添加到结果显示区
+            self.result_text.insertHtml(result_html)
+            
             # 更新状态栏
-            self.statusBar.showMessage(f"测试项目 {test_name}: {status}")
+            status_msg = f"测试项目 {test_name}: {status}"
+            self.statusBar.showMessage(status_msg)
+            
             # 滚动到底部
             self.result_text.verticalScrollBar().setValue(
                 self.result_text.verticalScrollBar().maximum()

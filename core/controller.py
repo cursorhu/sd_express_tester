@@ -124,7 +124,7 @@ class SDController:
                 else:  
                     logger.info("检测到SD Express NVMe控制器")
                     # 直接返回完整能力集
-                    return ["SD 7.0/8.0", "SD 4.0", "SD 3.0"]
+                    return ["SD Express"]
             
             logger.warning("未检测到支持的控制器")
             return None

@@ -4,6 +4,8 @@ import random
 from threading import Event
 from utils.logger import get_logger
 from core.controller import ControllerType
+import win32file
+import winerror
 
 logger = get_logger(__name__)
 
@@ -94,67 +96,57 @@ class TestSuite:
         os.makedirs(test_dir, exist_ok=True)
         
         try:
-            # 获取循环测试配置
-            loop_enabled = config.get('config', {}).get('test.loop.enabled', False)
-            loop_count = config.get('config', {}).get('test.loop.count', 1)
-            
-            # 执行循环测试
-            for loop in range(loop_count if loop_enabled else 1):
-                if loop_enabled:
-                    logger.info(f"开始第 {loop+1}/{loop_count} 次测试循环")
+            # 执行单轮测试
+            total_tests = len(self.test_cases)
+            for i, test_case in enumerate(self.test_cases):
+                if self._stop_event.is_set():
+                    logger.info("测试被手动停止")
+                    break
+                    
+                try:
+                    # 更新状态
                     if 'status_callback' in config:
-                        config['status_callback'](f"执行第 {loop+1}/{loop_count} 次测试循环")
-                
-                total_tests = len(self.test_cases)
-                for i, test_case in enumerate(self.test_cases):
-                    if self._stop_event.is_set():
-                        logger.info("测试被手动停止")
-                        break
-                        
-                    try:
-                        # 更新状态
-                        if 'status_callback' in config:
-                            config['status_callback'](f"正在执行测试: {test_case.name}")
-                        
-                        logger.info(f"执行测试用例: {test_case.name}")
-                        test_case.passed, test_case.details = test_case.func(config)
-                        
-                        # 更新进度
-                        if 'progress_callback' in config:
-                            progress = int((i + 1) * 100 / total_tests)
-                            config['progress_callback'](progress)
-                        
-                        # 记录结果并实时显示
-                        result = {
-                            test_case.name: {
-                                'passed': test_case.passed,
-                                'details': self._show_test_details(test_case.name, test_case.details)
-                            }
+                        config['status_callback'](f"正在执行测试: {test_case.name}")
+                    
+                    logger.info(f"执行测试用例: {test_case.name}")
+                    test_case.passed, test_case.details = test_case.func(config)
+                    
+                    # 更新进度
+                    if 'progress_callback' in config:
+                        progress = int((i + 1) * 100 / total_tests)
+                        config['progress_callback'](progress)
+                    
+                    # 记录结果并实时显示
+                    result = {
+                        test_case.name: {
+                            'passed': test_case.passed,
+                            'details': test_case.details
                         }
-                        results.update(result)
-                        
-                        # 调用结果回调
-                        if 'result_callback' in config:
-                            config['result_callback'](result)
-                        
-                        logger.info(f"测试用例 {test_case.name} 完成: {'通过' if test_case.passed else '失败'}")
-                        
-                        # 处理事件循环，避免界面卡死
-                        if 'event_loop' in config:
-                            config['event_loop'].processEvents()
-                        
-                    except Exception as e:
-                        logger.error(f"测试用例 {test_case.name} 执行出错: {str(e)}", exc_info=True)
-                        result = {
-                            test_case.name: {
-                                'passed': False,
-                                'details': f"测试异常: {str(e)}"
-                            }
+                    }
+                    results.update(result)
+                    
+                    # 调用结果回调
+                    if 'result_callback' in config:
+                        config['result_callback'](result)
+                    
+                    logger.info(f"测试用例 {test_case.name} 完成: {'通过' if test_case.passed else '失败'}")
+                    
+                    # 处理事件循环，避免界面卡死
+                    if 'event_loop' in config:
+                        config['event_loop'].processEvents()
+                    
+                except Exception as e:
+                    logger.error(f"测试用例 {test_case.name} 执行出错: {str(e)}", exc_info=True)
+                    result = {
+                        test_case.name: {
+                            'passed': False,
+                            'details': f"测试异常: {str(e)}"
                         }
-                        results.update(result)
-                        if 'result_callback' in config:
-                            config['result_callback'](result)
-                            
+                    }
+                    results.update(result)
+                    if 'result_callback' in config:
+                        config['result_callback'](result)
+                        
         finally:
             # 清理测试文件
             try:
@@ -175,7 +167,7 @@ class TestSuite:
     def _test_performance(self, config):
         """性能测试"""
         try:
-            # 从配置文件获取参数
+            # 从配置文件获参数
             total_size = config.get('test.performance.total_size', 128) * 1024 * 1024  # 转换为字节
             block_size = config.get('test.performance.block_size', 1) * 1024 * 1024
             iterations = config.get('test.performance.iterations', 3)
@@ -197,12 +189,16 @@ class TestSuite:
                 total_write_speed = 0
                 total_read_speed = 0
                 
-                logger.info(f"开始 {size/1024/1024}MB 性能测试")
+                msg = f"开始 {size/1024/1024}MB 性能测试"
+                logger.info(msg)
+                if 'status_callback' in config:
+                    config['status_callback'](msg)
+                
                 for i in range(iterations):
                     if self._stop_event.is_set():
                         return False, "测试被用户停止"
                         
-                    # 生成随机数据
+                    # 生成随机数
                     data = os.urandom(size)
                     
                     # 写速度测试
@@ -234,7 +230,10 @@ class TestSuite:
                             handle.Close()
                     
                     # 等待一段时间确保数据写入
-                    time.sleep(0.1)
+                    msg = "等待数据写入..."
+                    if 'status_callback' in config:
+                        config['status_callback'](msg)
+                    time.sleep(1)
                     
                     # 读速度测试
                     handle = None
@@ -244,18 +243,29 @@ class TestSuite:
                             win32file.GENERIC_READ,
                             0,  # 不共享
                             None,
-                            win32file.OPEN_EXISTING,
+                            win32file.OPEN_EXISTING,  # 使用OPEN_EXISTING而不是CREATE_ALWAYS
                             win32file.FILE_FLAG_NO_BUFFERING | 
-                            win32file.FILE_FLAG_SEQUENTIAL_SCAN,
+                            win32file.FILE_FLAG_SEQUENTIAL_SCAN |
+                            win32file.FILE_FLAG_OVERLAPPED,  # 启用异步I/O
                             None
                         )
                         
-                        start_time = time.time()
-                        bytes_read = 0
+                        # 创建一个OVERLAPPED结构
+                        overlapped = win32file.OVERLAPPED()
+                        overlapped.Offset = 0
+                        overlapped.OffsetHigh = 0
                         
+                        buffer = win32file.AllocateReadBuffer(block_size)
+                        bytes_read = 0
+                        start_time = time.time()
                         while bytes_read < size:
-                            # 直接写入到预分配的缓冲区，不保存数据
-                            win32file.ReadFile(handle, block_size)
+                            # 使用异步读取
+                            result, _ = win32file.ReadFile(handle, buffer, overlapped)
+                            if result == winerror.ERROR_IO_PENDING:
+                                # 等待异步操作完成
+                                win32file.GetOverlappedResult(handle, overlapped, True)
+                            
+                            overlapped.Offset += block_size  # 更新下一次读取的位置
                             bytes_read += block_size
                                 
                         read_time = time.time() - start_time
@@ -266,9 +276,10 @@ class TestSuite:
                         if handle:
                             handle.Close()
                     
-                    logger.debug(f"第 {i+1} 次测试: "
-                               f"读取={read_speed:.2f}MB/s, "
-                               f"写入={write_speed:.2f}MB/s")
+                    msg = f"第 {i+1} 次测试: 读取={read_speed:.2f}MB/s, 写入={write_speed:.2f}MB/s"
+                    logger.debug(msg)
+                    if 'status_callback' in config:
+                        config['status_callback'](msg)
                 
                 # 计算平均速度
                 avg_write_speed = total_write_speed / iterations

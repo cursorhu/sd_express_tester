@@ -39,6 +39,7 @@ class CardOperations:
     def __init__(self):
         self.controller = SDController()
         self.timeout = 30  # 默认超时时间
+        self._last_card_info = None  # 添加缓存
         
     def _get_device_path(self, drive_letter):
         """获取驱动器的设备路径"""
@@ -59,97 +60,44 @@ class CardOperations:
             logger.error(f"获取设备路径时出错: {str(e)}", exc_info=True)
             return None
     
-    def check_card(self):
-        """检查当前插入的SD卡状态"""
+    def check_card(self, full_check=False):
+        """
+        检查当前插入的SD卡状态
+        full_check: 是否执行完整检测(包括性能测试)
+        """
         try:
             # 检查所有可移动驱动器
             drives = self._get_removable_drives()
             for drive in drives:
-                card_info = self._analyze_drive(drive)
+                card_info = self._analyze_drive(drive, full_check)
                 if card_info:
-                    return card_info
+                    # 检查卡信息是否发生变化
+                    if self._is_card_changed(card_info):
+                        # 如果卡发生变化且需要完整检测
+                        if not full_check:
+                            # 执行完整检测以获取详细信息
+                            detailed_info = self._analyze_drive(drive, True)
+                            if detailed_info:
+                                self._last_card_info = detailed_info
+                                return detailed_info
+                        else:
+                            self._last_card_info = card_info
+                    return self._last_card_info
         except Exception as e:
             logger.error(f"卡检测错误: {str(e)}", exc_info=True)
         return None
     
-    def wait_for_card(self, timeout=30):
-        """等待并检测SD卡"""
-        logger.info(f"等待SD卡插入，超时时间: {timeout}秒")
-        try:
-            # 等待卡插入的逻辑
-            card_info = self._detect_card()
-            if card_info:
-                logger.info(f"检测到SD卡: {card_info}")
-                return card_info
-            logger.warning("等待超时，未检测到SD卡")
-            return None
-        except Exception as e:
-            logger.error(f"SD卡检测过程出错: {str(e)}", exc_info=True)
-            return None
+    def _is_card_changed(self, new_card_info):
+        """检查卡信息是否发生变化"""
+        if not self._last_card_info:
+            return True
+            
+        # 比较关键属性
+        return (new_card_info.device_path != self._last_card_info.device_path or
+                new_card_info.drive_letter != self._last_card_info.drive_letter or
+                new_card_info.name != self._last_card_info.name)
     
-    def _get_removable_drives(self):
-        """获取所有可能的SD卡驱动器（包括可移动驱动器和NVMe驱动器）"""
-        try:
-            drives = []
-            bitmask = win32api.GetLogicalDrives()
-            logger.debug(f"获取到驱动器位图: {bin(bitmask)}")
-            
-            # 使用WMI查询所有磁盘信息
-            wmi = win32com.client.GetObject("winmgmts:")
-            physical_disks = {disk.DeviceID: disk for disk in wmi.InstancesOf("Win32_DiskDrive")}
-            
-            for letter in range(26):
-                if bitmask & (1 << letter):
-                    drive_letter = f"{chr(65 + letter)}:\\"
-                    drive_type = win32file.GetDriveType(drive_letter)
-                    logger.debug(f"检查驱动器 {drive_letter}, 类型: {drive_type}")
-                    
-                    # 检查是否为可移动驱动器或NVMe驱动器
-                    is_removable = (drive_type == win32file.DRIVE_REMOVABLE)
-                    is_nvme = self._is_nvme_drive(drive_letter, physical_disks)
-                    
-                    if is_removable or is_nvme:
-                        logger.debug(f"找到潜在的SD卡驱动器: {drive_letter} "
-                                   f"({'可移动' if is_removable else 'NVMe'})")
-                        drives.append(drive_letter)
-            
-            logger.info(f"扫描完成,找到驱动器: {drives}")
-            return drives
-            
-        except Exception as e:
-            logger.error(f"获取驱动器时出错: {str(e)}", exc_info=True)
-            return []
-            
-    def _is_nvme_drive(self, drive_letter, physical_disks):
-        """检查驱动器是否为NVMe设备"""
-        try:
-            # 获取驱动器对应的物理磁盘信息
-            device_path = self._get_device_path(drive_letter)
-            if not device_path:
-                return False
-                
-            # 在物理磁盘列表中查找
-            for disk in physical_disks.values():
-                if disk.DeviceID == device_path:
-                    # 检查是否为NVMe设备
-                    is_nvme = ("NVM" in disk.Model or  # 检查型号
-                              "NVM" in disk.Caption or  # 检查标题
-                              "NVMe" in disk.PNPDeviceID)  # 检查PNP设备ID
-                    
-                    if is_nvme:
-                        logger.debug(f"检测到NVMe驱动器: {drive_letter}")
-                        logger.debug(f"设备信息: Model={disk.Model}, "
-                                   f"Caption={disk.Caption}, "
-                                   f"PNPDeviceID={disk.PNPDeviceID}")
-                    return is_nvme
-                    
-            return False
-            
-        except Exception as e:
-            logger.error(f"NVMe驱动器检查失败: {str(e)}", exc_info=True)
-            return False
-    
-    def _analyze_drive(self, drive_letter):
+    def _analyze_drive(self, drive_letter, full_check=False):
         """分析驱动器类型和模式"""
         try:
             device_path = self._get_device_path(drive_letter)
@@ -157,7 +105,7 @@ class CardOperations:
                 logger.warning(f"无法获取驱动器 {drive_letter} 的设备路径")
                 return None
                 
-            # 获取WMI信息以进行详细分析
+            # 获取WMI信息以进行基本分析
             wmi = win32com.client.GetObject("winmgmts:")
             for disk in wmi.InstancesOf("Win32_DiskDrive"):
                 if disk.DeviceID == device_path:
@@ -167,24 +115,23 @@ class CardOperations:
                         "NVMe" in disk.PNPDeviceID):
                         logger.info(f"检测到SD Express卡: {disk.Model}")
                         card_info = CardInfo()
-                        card_info.name = disk.Model  # 设置卡名称
+                        card_info.name = disk.Model
                         card_info.drive_letter = drive_letter
                         card_info.device_path = device_path
                         card_info.controller_type = ControllerType.NVME
-                        card_info.mode = self._determine_express_mode(device_path)
-                        card_info.capacity = self._get_drive_capacity(drive_letter)
+                        if full_check:
+                            card_info.mode = self._determine_express_mode(device_path)
+                            card_info.capacity = self._get_drive_capacity(drive_letter)
                         return card_info
                         
                     # 检查是否为传统SD卡（排除U盘）
                     elif disk.MediaType and "Removable Media" in disk.MediaType:
-                        # 检查设备描述，排除U盘
                         if ("USB" in disk.Model or 
                             "USB" in disk.Caption or 
                             "USB" in disk.Description):
                             logger.debug(f"跳过USB设备: {disk.Model}")
                             return None
                             
-                        # 检查是否包含SD卡相关标识
                         if ("SD" in disk.Model or 
                             "SD" in disk.Caption or 
                             "MMC" in disk.Model or 
@@ -193,17 +140,18 @@ class CardOperations:
                             "Card" in disk.Caption):
                             logger.info(f"检测到传统SD卡: {disk.Model}")
                             card_info = CardInfo()
-                            card_info.name = disk.Model  # 设置卡名称
+                            card_info.name = disk.Model
                             card_info.drive_letter = drive_letter
                             card_info.device_path = device_path
                             card_info.controller_type = ControllerType.SD_HOST
-                            card_info.mode = self._determine_sd_mode(device_path)
-                            card_info.capacity = self._get_drive_capacity(drive_letter)
+                            if full_check:
+                                card_info.mode = self._determine_sd_mode(device_path)
+                                card_info.capacity = self._get_drive_capacity(drive_letter)
                             return card_info
                         else:
                             logger.debug(f"未识别为SD卡的可移动设备: {disk.Model}")
                             return None
-                        
+            
             logger.debug(f"驱动器 {drive_letter} 不是SD卡设备")
             return None
             
@@ -265,15 +213,18 @@ class CardOperations:
                 return "3.0"  # 默认返回3.0
             
             max_speed = max(perf_info['read_speed'], perf_info['write_speed'])
+            logger.debug(f"测得最大速度: {max_speed:.2f}MB/s")
             
-            if max_speed >= 100:  # 实际速度通常低于理论速度
-                logger.info("根据速度判断为 SD 4.0 (UHS-II) 卡")
+            # UHS-II 速度范围：FD156是150MB/s，HD312是312MB/s
+            if max_speed >= 150:  # UHS-II 最低速度阈值调整为 150MB/s
+                logger.info(f"根据速度({max_speed:.2f}MB/s)判断为 SD 4.0 (UHS-II) 卡")
                 return "4.0"
-            elif max_speed >= 30:
-                logger.info("根据速度判断为 SD 3.0 (UHS-I) 卡")
+            # UHS-I 速度范围：SDR50是50MB/s，SDR104是104MB/s
+            elif max_speed >= 30:  # UHS-I 速度范围在 30-104MB/s
+                logger.info(f"根据速度({max_speed:.2f}MB/s)判断为 SD 3.0 (UHS-I) 卡")
                 return "3.0"
             else:
-                logger.info("根据速度判断为 SD 2.0 卡")
+                logger.info(f"根据速度({max_speed:.2f}MB/s)判断为 SD 2.0 卡")
                 return "2.0"
                 
         except Exception as e:
@@ -396,24 +347,64 @@ class CardOperations:
             
             return 0
     
-    def _detect_card(self):
-        """检测SD卡，用于wait_for_card方法"""
+    def _get_removable_drives(self):
+        """获取所有可能的SD卡驱动器（包括可移动驱动器和NVMe驱动器）"""
         try:
-            start_time = time.time()
-            while True:
-                card_info = self.check_card()
-                if card_info:
-                    return card_info
+            drives = []
+            bitmask = win32api.GetLogicalDrives()
+            logger.debug(f"获取到驱动器位图: {bin(bitmask)}")
+            
+            # 使用WMI查询所有磁盘信息
+            wmi = win32com.client.GetObject("winmgmts:")
+            physical_disks = {disk.DeviceID: disk for disk in wmi.InstancesOf("Win32_DiskDrive")}
+            
+            for letter in range(26):
+                if bitmask & (1 << letter):
+                    drive_letter = f"{chr(65 + letter)}:\\"
+                    drive_type = win32file.GetDriveType(drive_letter)
+                    logger.debug(f"检查驱动器 {drive_letter}, 类型: {drive_type}")
                     
-                # 检查是否超时
-                if time.time() - start_time > self.timeout:
-                    break
+                    # 检查是否为可移动驱动器或NVMe驱动器
+                    is_removable = (drive_type == win32file.DRIVE_REMOVABLE)
+                    is_nvme = self._is_nvme_drive(drive_letter, physical_disks)
                     
-                # 等待一段时间再次检查
-                time.sleep(1)
-                
-            return None
+                    if is_removable or is_nvme:
+                        logger.debug(f"找到潜在的SD卡驱动器: {drive_letter} "
+                                   f"({'可移动' if is_removable else 'NVMe'})")
+                        drives.append(drive_letter)
+            
+            logger.info(f"扫描完成,找到驱动器: {drives}")
+            return drives
             
         except Exception as e:
-            logger.error(f"检测SD卡时出: {str(e)}", exc_info=True)
-            return None
+            logger.error(f"获取驱动器时出错: {str(e)}", exc_info=True)
+            return []
+            
+    def _is_nvme_drive(self, drive_letter, physical_disks):
+        """检查驱动器是否为NVMe设备"""
+        try:
+            # 获取驱动器对应的物理磁盘信息
+            device_path = self._get_device_path(drive_letter)
+            if not device_path:
+                return False
+                
+            # 在物理磁盘列表中查找
+            for disk in physical_disks.values():
+                if disk.DeviceID == device_path:
+                    # 检查是否为NVMe设备
+                    is_nvme = ("NVM" in disk.Model or  # 检查型号
+                              "NVM" in disk.Caption or  # 检查标题
+                              "NVMe" in disk.PNPDeviceID)  # 检查PNP设备ID
+                    
+                    if is_nvme:
+                        logger.debug(f"检测到NVMe驱动器: {drive_letter}")
+                        logger.debug(f"设备信息: Model={disk.Model}, "
+                                   f"Caption={disk.Caption}, "
+                                   f"PNPDeviceID={disk.PNPDeviceID}")
+                    return is_nvme
+                    
+            return False
+            
+        except Exception as e:
+            logger.error(f"NVMe驱动器检查失败: {str(e)}", exc_info=True)
+            return False

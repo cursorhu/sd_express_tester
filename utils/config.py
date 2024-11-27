@@ -17,21 +17,11 @@ class Config:
     def _load_config(self):
         """加载配置文件"""
         try:
-            # 扩展配置文件查找路径
-            config_paths = [
-                'config.yaml',  # 当前目录
-                os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config.yaml'),  # 项目根目录
-                os.path.join(os.path.dirname(sys.executable), 'config.yaml'),  # exe所在目录
-                os.path.join(getattr(sys, '_MEIPASS', ''), 'config.yaml'),  # PyInstaller临时目录
-            ]
+            # 确保配置文件优先从exe目录读取
+            exe_dir = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(os.path.dirname(__file__))
+            config_file = os.path.join(exe_dir, 'config.yaml')
             
-            config_file = None
-            for path in config_paths:
-                if os.path.exists(path):
-                    config_file = path
-                    break
-            
-            if config_file:
+            if os.path.exists(config_file):
                 with open(config_file, 'r', encoding='utf-8') as f:
                     self.config = yaml.safe_load(f)
                 logger.info(f"已加载配置文件: {config_file}")
@@ -44,11 +34,11 @@ class Config:
                 self.config = {
                     'test': {
                         'loop': {
-                            'enabled': False,
-                            'count': 1
+                            'enabled': True,
+                            'count': 3
                         },
                         'performance': {
-                            'total_size': 128,
+                            'total_size': 64,
                             'block_size': 1,
                             'iterations': 3
                         }
@@ -59,12 +49,11 @@ class Config:
                 }
                 logger.warning("未找到配置文件，使用默认配置")
                 
-                # 尝试创建默认配置文件
+                # 创建默认配置文件
                 try:
-                    default_config_path = os.path.join(os.path.dirname(sys.executable), 'config.yaml')
-                    with open(default_config_path, 'w', encoding='utf-8') as f:
+                    with open(config_file, 'w', encoding='utf-8') as f:
                         yaml.dump(self.config, f, allow_unicode=True)
-                    logger.info(f"已创建默认配置文件: {default_config_path}")
+                    logger.info(f"已创建默认配置文件: {config_file}")
                 except Exception as e:
                     logger.warning(f"创建默认配置文件失败: {str(e)}")
                     
@@ -74,11 +63,11 @@ class Config:
             self.config = {
                 'test': {
                     'loop': {
-                        'enabled': False,
-                        'count': 1
+                        'enabled': True,
+                        'count': 3
                     },
                     'performance': {
-                        'total_size': 128,
+                        'total_size': 64,
                         'block_size': 1,
                         'iterations': 3
                     }
@@ -100,15 +89,25 @@ class Config:
             return default
     
     def set(self, key, value):
-        """设置配置值"""
+        """设置配置值并保存到文件"""
         try:
+            # 更新内存中的配置
             keys = key.split('.')
             config = self.config
             for k in keys[:-1]:
                 config = config[k]
             config[keys[-1]] = value
+            
+            # 保存到文件
+            exe_dir = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(os.path.dirname(__file__))
+            config_file = os.path.join(exe_dir, 'config.yaml')
+            
+            with open(config_file, 'w', encoding='utf-8') as f:
+                yaml.dump(self.config, f, allow_unicode=True)
+            logger.info(f"配置已更新并保存到: {config_file}")
             return True
-        except:
+        except Exception as e:
+            logger.error(f"保存配置失败: {str(e)}", exc_info=True)
             return False
     
     def reload(self):
@@ -119,17 +118,9 @@ class Config:
     
     def get_config_path(self):
         """获取当前使用的配置文件路径"""
-        config_paths = [
-            'config.yaml',  # 当前目录
-            os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config.yaml'),  # 项目根目录
-            os.path.join(os.path.dirname(sys.executable), 'config.yaml'),  # exe所在目录
-            os.path.join(getattr(sys, '_MEIPASS', ''), 'config.yaml'),  # PyInstaller临时目录
-        ]
-        
-        for path in config_paths:
-            if os.path.exists(path):
-                return path
-        return None
+        exe_dir = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(os.path.dirname(__file__))
+        config_file = os.path.join(exe_dir, 'config.yaml')
+        return config_file if os.path.exists(config_file) else None
 
 # 全局配置例
 config = Config() 

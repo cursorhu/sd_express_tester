@@ -379,7 +379,6 @@
   ('utils.config',
    'C:\\github\\sd_express_tester\\utils\\config.py',
    'PYMODULE'),
-  ('utils.i18n', 'C:\\github\\sd_express_tester\\utils\\i18n.py', 'PYMODULE'),
   ('utils.logger',
    'C:\\github\\sd_express_tester\\utils\\logger.py',
    'PYMODULE'),
