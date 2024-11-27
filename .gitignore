@@ -1,0 +1,29 @@
+# Python编译文件
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+# 发布/打包相关
+dist/
+build/
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+
+# PyInstaller生成的文件
+dist/
+build/
+
+# IDE相关
+.idea/
+.vscode/
+
+# 日志文件
+*.log
+
+# 临时文件
+*.swp
+*.swo
+*~

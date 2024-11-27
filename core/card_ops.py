@@ -38,9 +38,56 @@ class CardInfo:
 class CardOperations:
     def __init__(self):
         self.controller = SDController()
-        self.timeout = 30  # 默认超时时间
-        self._last_card_info = None  # 添加缓存
-        
+        self.timeout = 30
+        self._last_card_info = None
+        self._last_quick_check_time = 0
+        self._quick_check_interval = 0.1  # 100ms最小间隔
+    
+    def quick_check_card(self):
+        """快速检查SD卡状态,返回基本卡信息"""
+        try:
+            # 限制检查频率
+            current_time = time.time()
+            if current_time - self._last_quick_check_time < self._quick_check_interval:
+                return self._last_card_info  # 返回上次的结果
+            self._last_quick_check_time = current_time
+            
+            # 快速扫描可移动驱动器
+            drives = self._get_removable_drives()
+            if not drives:
+                self._last_card_info = None
+                return None
+                
+            # 获取第一个驱动器的基本信息
+            drive_letter = drives[0]
+            device_path = self._get_device_path(drive_letter)
+            
+            if not device_path:
+                self._last_card_info = None
+                return None
+                
+            # 获取基本卡信息
+            wmi = win32com.client.GetObject("winmgmts:")
+            for disk in wmi.InstancesOf("Win32_DiskDrive"):
+                if disk.DeviceID == device_path:
+                    # 创建基本卡信息
+                    card_info = CardInfo()
+                    card_info.drive_letter = drive_letter
+                    card_info.device_path = device_path
+                    card_info.name = disk.Model
+                    
+                    # 缓存并返回结果
+                    self._last_card_info = card_info
+                    return card_info
+            
+            self._last_card_info = None
+            return None
+                
+        except Exception as e:
+            logger.error(f"快速检查卡状态失败: {str(e)}")
+            self._last_card_info = None
+            return None
+    
     def _get_device_path(self, drive_letter):
         """获取驱动器的设备路径"""
         try:

@@ -84,6 +84,9 @@ class MainWindow(QMainWindow):
         
         # 延迟初始化核心组件和检测
         QTimer.singleShot(100, self._init_components)
+        
+        self._last_card_state = None
+        self._full_check_required = False  # 新增标志
     
     def _init_components(self):
         """延迟初始化核心组件"""
@@ -249,54 +252,69 @@ class MainWindow(QMainWindow):
             self.test_btn.setEnabled(False)
     
     def _check_card_status(self):
+        """检查SD卡状态"""
         try:
-            # 默认只做基本检测
-            card_info = self.card_ops.check_card(full_check=False)
+            # 快速检查卡状态
+            card_info = self.card_ops.quick_check_card()
             
-            # 检查卡状态是否发生变化
-            current_card_state = str(card_info) if card_info else "No Card"
-            if not hasattr(self, '_last_card_state'):
-                self._last_card_state = None
+            # 构建当前状态标识（使用设备路径和驱动器盘符组合）
+            current_state = None
+            if card_info:
+                current_state = f"{card_info.device_path}_{card_info.drive_letter}"
             
             # 如果卡状态发生变化
-            if current_card_state != self._last_card_state:
-                logger.info(f"卡状态变化: {self._last_card_state} -> {current_card_state}")
+            if current_state != self._last_card_state:
+                logger.info(f"卡状态变化: {self._last_card_state} -> {current_state}")
+                self._last_card_state = current_state
+                self._full_check_required = True  # 标记需要完整检测
                 
-                # 更新控制器信息
-                self._check_controller()
-                
-                # 更新UI显示
-                if card_info:
-                    self.card_name.setText(f"SD卡: {card_info.name}")
-                    self.card_name.setStyleSheet("color: green")
-                    
-                    capability_info = []
-                    if card_info.mode:
-                        capability_info.append(f"模式: {card_info.mode}")
-                    if card_info.capacity:
-                        capability_info.append(f"容量: {card_info.capacity/1024/1024/1024:.1f}GB")
-                    
-                    self.card_capability.setText("卡能力: " + ", ".join(capability_info))
-                    self.card_capability.setStyleSheet("color: green")
-                    self.test_btn.setEnabled(True)
-                    self.statusBar.showMessage("检测到SD卡插入")
-                else:
+                # 更新基本UI显示
+                if not card_info:
                     self.card_name.setText("SD卡: 未检测到卡")
                     self.card_name.setStyleSheet("color: red")
                     self.card_capability.setText("卡能力: 未知")
                     self.card_capability.setStyleSheet("color: red")
                     self.test_btn.setEnabled(False)
                     self.statusBar.showMessage("未检测到SD卡")
-                
-                self._last_card_state = current_card_state
-            
+                else:
+                    self.card_name.setText(f"SD卡: {card_info.name or '检测中...'}")
+                    self.card_name.setStyleSheet("color: black")
+                    QTimer.singleShot(100, self._perform_full_check)  # 延迟执行完整检测
+        
         except Exception as e:
             logger.error(f"SD卡状态检查失败: {str(e)}", exc_info=True)
-            self.card_name.setText("SD卡: 检查失败") 
+            self.card_name.setText("SD卡: 检查失败")
             self.card_name.setStyleSheet("color: red")
             self.card_capability.setText("卡能力: 检查失败")
             self.card_capability.setStyleSheet("color: red")
             self.test_btn.setEnabled(False)
+    
+    def _perform_full_check(self):
+        """执行完整的卡检测"""
+        try:
+            if not self._full_check_required:
+                return
+                
+            card_info = self.card_ops.check_card(full_check=True)
+            if card_info:
+                self.card_name.setText(f"SD卡: {card_info.name}")
+                self.card_name.setStyleSheet("color: green")
+                
+                capability_info = []
+                if card_info.mode:
+                    capability_info.append(f"模式: {card_info.mode}")
+                if card_info.capacity:
+                    capability_info.append(f"容量: {card_info.capacity/1024/1024/1024:.1f}GB")
+                
+                self.card_capability.setText("卡能力: " + ", ".join(capability_info))
+                self.card_capability.setStyleSheet("color: green")
+                self.test_btn.setEnabled(True)
+                self.statusBar.showMessage("检测到SD卡插入")
+            
+            self._full_check_required = False
+            
+        except Exception as e:
+            logger.error(f"完整卡检测失败: {str(e)}", exc_info=True)
     
     def _start_test(self):
         """开始测试"""
