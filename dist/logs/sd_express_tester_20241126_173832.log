@@ -1,0 +1,2379 @@
+2024-11-26 17:38:32,484 - sd_express_tester - INFO - ==================================================
+2024-11-26 17:38:32,484 - sd_express_tester - INFO - 程序启动
+2024-11-26 17:38:32,484 - sd_express_tester - INFO - 日志文件: C:\github\sd_express_tester\dist\logs\sd_express_tester_20241126_173832.log
+2024-11-26 17:38:32,484 - sd_express_tester - INFO - ==================================================
+2024-11-26 17:38:32,513 - sd_express_tester - INFO - 启动 SD Express 测试工具
+2024-11-26 17:38:32,513 - sd_express_tester - INFO - 以GUI模式运行
+2024-11-26 17:38:32,530 - gui.main_window - DEBUG - 设置窗口图标: C:\Users\cursorhu\AppData\Local\Temp\_MEI73202\sdexpresstester.ico
+2024-11-26 17:38:32,530 - core.controller - INFO - 初始化SD控制器
+2024-11-26 17:38:32,535 - core.controller - INFO - 初始化SD控制器
+2024-11-26 17:38:32,568 - gui.main_window - DEBUG - 添加图标显示: C:\Users\cursorhu\AppData\Local\Temp\_MEI73202\sdexpresstester.ico
+2024-11-26 17:38:32,568 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:32,576 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:32,630 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:32,630 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:32,768 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:32,772 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:32,872 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:32,876 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:32,876 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:32,968 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:32,976 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:32,982 - core.controller - DEBUG - 解析PCIe信息: PCI\VEN_8086&DEV_F1A6&SUBSYS_390B8086&REV_03\4&21705936&0&00EC
+2024-11-26 17:38:32,982 - core.controller - DEBUG - Bus Number: 4
+2024-11-26 17:38:32,982 - core.controller - DEBUG - Device Number: 0
+2024-11-26 17:38:32,982 - core.controller - DEBUG - 存储控制器: PCI\VEN_8086&DEV_F1A6&SUBSYS_390B8086&REV_03\4&21705936&0&00EC
+2024-11-26 17:38:32,982 - core.controller - DEBUG - Bus: 4, Device: 0
+2024-11-26 17:38:32,982 - core.controller - INFO - 找到NVMe控制器: 标准 NVM Express 控制器
+2024-11-26 17:38:32,985 - core.controller - DEBUG - 解析PCIe信息: PCI\VEN_8086&DEV_F1A6&SUBSYS_390B8086&REV_03\4&2A67E986&0&00D0
+2024-11-26 17:38:32,985 - core.controller - DEBUG - Bus Number: 4
+2024-11-26 17:38:32,985 - core.controller - DEBUG - Device Number: 0
+2024-11-26 17:38:32,985 - core.controller - DEBUG - 存储控制器: PCI\VEN_8086&DEV_F1A6&SUBSYS_390B8086&REV_03\4&2A67E986&0&00D0
+2024-11-26 17:38:32,985 - core.controller - DEBUG - Bus: 4, Device: 0
+2024-11-26 17:38:32,985 - core.controller - INFO - 找到NVMe控制器: 标准 NVM Express 控制器
+2024-11-26 17:38:32,985 - core.controller - INFO - 检测到SD Express NVMe控制器
+2024-11-26 17:38:32,985 - core.controller - INFO - 控制器支持: SD 7.0/8.0, SD 4.0, SD 3.0
+2024-11-26 17:38:32,985 - gui.main_window - INFO - 控制器兼容性检查通过: 控制器支持: SD 7.0/8.0, SD 4.0, SD 3.0
+2024-11-26 17:38:33,574 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:33,581 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:33,631 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:33,635 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:33,760 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:33,760 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:33,852 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:33,852 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:33,852 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:33,943 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:33,947 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:33,951 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:33,951 - gui.main_window - INFO - SD卡状态发生变化，重新检查控制器兼容性
+2024-11-26 17:38:33,951 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:33,956 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:34,006 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:34,006 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:34,127 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:34,127 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:34,219 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:34,219 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:34,219 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:34,315 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:34,319 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:34,327 - core.controller - DEBUG - 解析PCIe信息: PCI\VEN_8086&DEV_F1A6&SUBSYS_390B8086&REV_03\4&21705936&0&00EC
+2024-11-26 17:38:34,327 - core.controller - DEBUG - Bus Number: 4
+2024-11-26 17:38:34,327 - core.controller - DEBUG - Device Number: 0
+2024-11-26 17:38:34,327 - core.controller - DEBUG - 存储控制器: PCI\VEN_8086&DEV_F1A6&SUBSYS_390B8086&REV_03\4&21705936&0&00EC
+2024-11-26 17:38:34,327 - core.controller - DEBUG - Bus: 4, Device: 0
+2024-11-26 17:38:34,327 - core.controller - INFO - 找到NVMe控制器: 标准 NVM Express 控制器
+2024-11-26 17:38:34,327 - core.controller - DEBUG - 解析PCIe信息: PCI\VEN_8086&DEV_F1A6&SUBSYS_390B8086&REV_03\4&2A67E986&0&00D0
+2024-11-26 17:38:34,327 - core.controller - DEBUG - Bus Number: 4
+2024-11-26 17:38:34,327 - core.controller - DEBUG - Device Number: 0
+2024-11-26 17:38:34,327 - core.controller - DEBUG - 存储控制器: PCI\VEN_8086&DEV_F1A6&SUBSYS_390B8086&REV_03\4&2A67E986&0&00D0
+2024-11-26 17:38:34,327 - core.controller - DEBUG - Bus: 4, Device: 0
+2024-11-26 17:38:34,327 - core.controller - INFO - 找到NVMe控制器: 标准 NVM Express 控制器
+2024-11-26 17:38:34,327 - core.controller - INFO - 检测到SD Express NVMe控制器
+2024-11-26 17:38:34,327 - core.controller - INFO - 控制器支持: SD 7.0/8.0, SD 4.0, SD 3.0
+2024-11-26 17:38:34,327 - gui.main_window - INFO - 控制器兼容性检查通过: 控制器支持: SD 7.0/8.0, SD 4.0, SD 3.0
+2024-11-26 17:38:34,573 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:34,581 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:34,627 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:34,627 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:34,748 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:34,752 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:34,840 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:34,844 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:34,844 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:34,936 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:34,940 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:34,940 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:35,574 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:35,582 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:35,628 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:35,628 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:35,749 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:35,749 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:35,841 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:35,841 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:35,841 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:35,933 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:35,941 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:35,941 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:36,567 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:36,575 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:36,621 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:36,621 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:36,742 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:36,742 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:36,829 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:36,829 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:36,829 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:36,921 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:36,925 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:36,929 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:37,567 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:37,572 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:37,622 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:37,622 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:37,743 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:37,743 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:37,830 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:37,830 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:37,830 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:37,922 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:37,930 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:37,930 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:38,710 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:38,718 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:38,764 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:38,764 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:38,885 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:38,885 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:38,977 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:38,977 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:38,977 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:39,064 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:39,073 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:39,073 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:39,579 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:39,583 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:39,632 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:39,632 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:39,752 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:39,752 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:39,844 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:39,844 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:39,844 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:39,936 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:39,941 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:39,941 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:40,586 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:40,593 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:40,641 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:40,641 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:40,762 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:40,762 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:40,853 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:40,853 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:40,853 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:40,945 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:40,953 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:40,953 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:41,579 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:41,586 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:41,633 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:41,633 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:41,754 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:41,754 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:41,846 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:41,846 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:41,846 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:41,939 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:41,946 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:41,946 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:42,588 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:42,596 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:42,643 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:42,647 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:42,768 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:42,768 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:42,855 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:42,855 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:42,855 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:42,947 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:42,955 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:42,955 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:43,583 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:43,589 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:43,639 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:43,639 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:43,760 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:43,760 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:43,852 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:43,852 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:43,852 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:43,944 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:43,948 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:43,948 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:44,586 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:44,590 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:44,640 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:44,640 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:44,761 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:44,761 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:44,853 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:44,853 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:44,853 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:44,940 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:44,950 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:44,950 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:45,578 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:45,586 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:45,633 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:45,633 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:45,753 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:45,753 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:45,845 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:45,845 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:45,845 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:45,936 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:45,940 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:45,944 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:46,587 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:46,596 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:46,641 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:46,641 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:46,763 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:46,767 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:46,854 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:46,854 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:46,854 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:46,950 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:46,957 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:46,957 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:47,584 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:47,591 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:47,638 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:47,638 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:47,759 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:47,763 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:47,852 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:47,852 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:47,852 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:47,942 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:47,947 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:47,947 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:48,585 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:48,591 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:48,639 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:48,639 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:48,756 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:48,760 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:48,848 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:48,848 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:48,848 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:48,939 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:48,943 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:48,943 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:49,590 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:49,598 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:49,644 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:49,644 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:49,765 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:49,765 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:49,857 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:49,857 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:49,857 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:49,948 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:49,953 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:49,953 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:50,587 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:50,595 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:50,641 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:50,641 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:50,757 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:50,761 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:50,849 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:50,849 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:50,849 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:50,941 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:50,945 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:50,945 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:51,579 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:51,583 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:51,633 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:51,633 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:51,754 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:51,754 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:51,842 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:51,846 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:51,846 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:51,938 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:51,942 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:51,942 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:52,580 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:52,584 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:52,634 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:52,634 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:52,759 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:52,759 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:52,851 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:52,851 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:52,851 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:52,947 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:52,951 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:52,951 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:53,580 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:53,589 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:53,639 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:53,639 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:53,760 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:53,760 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:53,847 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:53,852 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:53,852 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:53,939 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:53,947 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:53,947 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:54,583 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:54,589 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:54,636 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:54,636 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:54,761 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:54,761 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:54,853 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:54,853 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:54,853 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:54,944 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:54,953 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:54,953 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:55,579 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:55,587 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:55,632 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:55,636 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:55,758 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:55,758 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:55,849 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:55,849 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:55,849 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:55,941 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:55,949 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:55,949 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:56,579 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:56,587 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:56,633 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:56,633 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:56,754 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:56,754 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:56,842 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:56,842 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:56,842 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:56,933 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:56,942 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:56,942 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:57,580 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:57,588 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:57,638 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:57,638 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:57,755 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:57,755 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:57,847 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:57,847 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:57,847 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:57,939 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:57,947 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:57,947 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:58,589 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:58,597 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:58,643 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:58,643 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:58,764 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:58,764 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:58,856 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:58,856 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:58,856 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:58,943 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:58,951 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:58,951 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:38:59,590 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:38:59,594 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:38:59,644 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:38:59,644 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:38:59,765 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:38:59,765 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:38:59,856 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:59,857 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:38:59,857 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:38:59,948 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:38:59,952 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:38:59,956 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:00,582 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:00,586 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:00,636 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:00,636 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:00,758 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:00,758 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:00,849 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:00,849 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:00,849 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:00,940 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:00,945 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:00,945 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:01,583 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:01,587 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:01,637 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:01,637 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:01,758 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:01,758 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:01,851 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:01,851 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:01,851 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:01,942 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:01,950 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:01,950 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:02,584 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:02,592 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:02,638 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:02,638 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:02,759 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:02,759 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:02,847 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:02,847 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:02,847 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:02,938 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:02,947 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:02,947 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:03,581 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:03,589 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:03,635 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:03,639 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:03,755 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:03,755 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:03,844 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:03,844 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:03,844 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:03,935 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:03,944 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:03,944 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:04,586 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:04,594 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:04,639 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:04,639 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:04,756 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:04,756 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:04,848 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:04,848 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:04,848 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:04,936 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:04,944 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:04,944 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:05,582 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:05,590 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:05,636 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:05,636 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:05,753 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:05,753 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:05,845 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:05,845 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:05,845 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:05,933 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:05,941 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:05,941 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:06,586 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:06,591 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:06,641 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:06,641 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:06,763 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:06,763 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:06,854 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:06,854 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:06,854 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:06,941 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:06,950 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:06,950 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:07,592 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:07,601 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:07,647 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:07,651 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:07,767 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:07,767 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:07,859 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:07,863 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:07,863 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:07,951 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:07,960 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:07,960 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:08,585 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:08,593 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:08,639 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:08,639 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:08,760 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:08,760 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:08,852 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:08,852 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:08,852 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:08,939 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:08,948 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:08,948 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:09,590 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:09,598 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:09,644 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:09,644 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:09,765 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:09,765 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:09,856 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:09,856 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:09,856 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:09,944 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:09,953 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:09,953 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:10,582 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:10,586 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:10,636 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:10,636 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:10,757 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:10,757 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:10,849 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:10,849 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:10,849 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:10,939 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:10,943 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:10,947 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:11,583 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:11,591 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:11,637 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:11,637 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:11,758 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:11,758 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:11,849 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:11,850 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:11,850 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:11,938 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:11,946 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:11,946 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:12,579 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:12,586 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:12,634 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:12,634 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:12,755 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:12,755 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:12,847 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:12,847 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:12,847 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:12,938 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:12,946 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:12,946 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:13,583 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:13,589 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:13,639 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:13,639 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:13,760 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:13,760 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:13,847 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:13,847 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:13,847 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:13,939 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:13,947 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:13,947 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:14,581 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:14,588 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:14,636 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:14,636 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:14,753 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:14,753 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:14,844 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:14,844 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:14,844 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:14,937 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:14,941 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:14,945 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:15,582 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:15,587 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:15,637 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:15,637 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:15,757 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:15,757 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:15,849 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:15,849 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:15,849 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:15,937 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:15,946 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:15,946 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:16,587 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:16,591 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:16,641 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:16,641 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:16,762 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:16,762 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:16,854 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:16,854 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:16,854 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:16,946 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:16,950 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:16,950 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:17,579 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:17,587 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:17,634 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:17,634 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:17,755 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:17,755 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:17,846 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:17,846 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:17,846 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:17,938 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:17,942 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:17,942 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:18,580 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:18,589 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:18,638 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:18,639 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:18,756 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:18,756 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:18,847 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:18,847 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:18,847 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:18,939 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:18,943 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:18,947 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:19,585 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:19,592 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:19,640 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:19,640 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:19,757 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:19,757 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:19,848 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:19,848 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:19,848 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:19,935 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:19,944 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:19,944 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:20,586 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:20,593 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:20,641 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:20,641 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:20,757 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:20,757 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:20,849 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:20,849 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:20,849 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:20,942 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:20,946 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:20,950 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:21,582 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:21,590 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:21,637 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:21,637 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:21,754 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:21,754 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:21,842 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:21,842 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:21,842 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:21,933 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:21,941 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:21,942 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:22,580 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:22,588 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:22,634 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:22,634 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:22,750 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:22,754 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:22,843 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:22,843 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:22,843 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:22,934 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:22,938 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:22,938 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:23,580 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:23,584 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:23,634 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:23,634 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:23,751 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:23,751 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:23,843 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:23,843 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:23,843 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:23,935 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:23,939 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:23,943 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:24,585 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:24,593 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:24,639 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:24,639 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:24,761 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:24,761 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:24,852 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:24,852 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:24,852 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:24,944 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:24,948 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:24,952 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:25,578 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:25,586 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:25,632 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:25,632 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:25,749 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:25,753 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:25,840 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:25,840 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:25,840 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:25,932 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:25,936 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:25,936 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:26,578 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:26,583 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:26,633 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:26,633 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:26,750 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:26,754 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:26,843 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:26,843 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:26,843 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:26,933 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:26,941 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:26,941 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:27,588 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:27,592 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:27,642 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:27,642 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:27,763 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:27,763 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:27,855 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:27,855 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:27,855 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:27,947 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:27,955 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:27,955 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:28,580 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:28,585 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:28,635 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:28,635 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:28,751 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:28,751 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:28,844 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:28,844 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:28,844 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:28,934 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:28,938 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:28,942 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:29,589 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:29,597 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:29,643 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:29,643 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:29,760 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:29,760 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:29,852 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:29,852 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:29,852 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:29,944 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:29,948 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:29,948 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:30,582 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:30,586 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:30,636 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:30,636 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:30,753 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:30,753 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:30,844 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:30,844 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:30,844 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:30,937 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:30,945 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:30,945 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:31,578 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:31,585 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:31,633 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:31,633 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:31,754 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:31,754 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:31,847 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:31,847 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:31,847 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:31,941 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:31,949 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:31,950 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:32,829 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:32,838 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:32,884 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:32,884 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:33,005 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:33,005 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:33,092 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:33,096 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:33,096 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:33,188 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:33,192 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:33,192 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:33,577 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:33,585 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:33,630 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:33,634 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:33,751 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:33,751 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:33,843 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:33,843 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:33,843 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:33,930 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:33,939 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:33,939 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:34,583 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:34,589 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:34,636 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:34,636 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:34,756 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:34,756 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:34,848 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:34,848 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:34,848 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:34,936 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:34,945 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:34,945 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:35,578 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:35,586 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:35,632 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:35,632 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:35,753 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:35,753 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:35,846 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:35,846 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:35,846 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:35,937 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:35,945 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:35,945 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:36,587 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:36,594 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:36,641 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:36,641 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:36,762 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:36,762 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:36,849 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:36,849 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:36,853 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:36,944 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:36,948 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:36,952 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:37,583 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:37,588 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:37,638 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:37,638 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:37,759 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:37,763 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:37,854 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:37,855 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:37,855 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:37,942 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:37,950 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:37,950 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:38,584 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:38,591 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:38,639 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:38,639 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:38,760 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:38,760 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:38,851 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:38,851 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:38,851 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:38,943 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:38,951 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:38,951 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:39,585 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:39,592 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:39,640 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:39,640 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:39,760 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:39,760 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:39,852 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:39,852 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:39,852 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:39,940 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:39,948 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:39,948 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:40,578 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:40,586 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:40,632 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:40,632 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:40,753 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:40,753 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:40,845 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:40,845 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:40,845 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:40,936 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:40,941 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:40,945 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:41,820 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:41,829 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:41,875 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:41,879 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:41,996 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:42,000 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:42,091 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:42,092 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:42,092 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:42,179 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:42,188 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:42,188 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:42,587 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:42,594 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:42,642 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:42,642 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:42,759 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:42,763 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:42,850 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:42,850 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:42,850 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:42,942 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:42,950 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:42,950 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:43,838 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:43,843 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:43,893 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:43,893 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:44,014 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:44,014 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:44,105 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:44,105 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:44,105 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:44,198 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:44,202 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:44,206 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:44,589 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:44,597 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:44,644 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:44,644 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:44,765 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:44,765 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:44,856 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:44,861 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:44,861 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:44,948 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:44,956 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:44,956 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:45,678 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:45,685 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:45,732 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:45,736 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:45,853 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:45,853 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:45,945 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:45,945 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:45,945 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:46,036 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:46,045 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:46,045 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:46,586 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:46,592 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:46,641 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:46,641 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:46,762 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:46,762 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:46,850 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:46,850 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:46,850 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:46,942 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:46,950 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:46,950 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:47,584 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:47,588 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:47,638 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:47,638 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:47,758 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:47,758 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:47,851 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:47,851 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:47,851 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:47,938 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:47,947 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:47,947 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:48,584 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:48,592 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:48,638 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:48,638 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:48,755 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:48,755 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:48,847 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:48,847 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:48,847 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:48,935 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:48,943 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:48,943 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:49,581 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:49,585 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:49,635 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:49,635 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:49,756 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:49,756 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:49,847 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:49,848 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:49,848 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:49,935 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:49,943 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:49,943 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:50,590 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:50,599 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:50,644 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:50,644 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:50,761 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:50,765 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:50,853 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:50,853 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:50,853 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:50,944 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:50,949 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:50,949 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:51,583 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:51,591 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:51,637 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:51,637 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:51,758 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:51,758 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:51,850 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:51,850 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:51,850 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:51,941 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:51,949 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:51,949 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:52,579 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:52,586 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:52,634 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:52,634 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:52,754 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:52,754 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:52,850 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:52,851 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:52,851 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:52,942 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:52,946 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:52,950 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:53,585 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:53,591 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:53,639 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:53,639 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:53,755 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:53,755 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:53,847 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:53,847 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:53,847 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:53,938 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:53,942 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:53,946 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:54,585 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:54,589 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:54,639 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:54,639 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:54,756 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:54,756 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:54,848 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:54,848 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:54,848 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:54,940 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:54,944 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:54,944 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:55,578 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:55,586 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:55,631 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:55,631 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:55,753 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:55,753 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:55,846 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:55,846 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:55,846 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:55,936 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:55,944 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:55,944 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:56,582 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:56,589 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:56,637 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:56,637 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:56,754 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:56,754 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:56,845 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:56,845 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:56,845 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:56,937 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:56,945 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:56,945 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:57,584 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:57,588 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:57,638 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:57,638 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:57,755 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:57,755 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:57,846 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:57,846 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:57,846 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:57,938 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:57,942 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:57,942 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:58,580 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:58,588 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:58,634 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:58,634 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:58,755 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:58,755 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:58,843 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:58,843 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:58,843 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:58,934 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:58,943 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:58,943 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:39:59,585 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:39:59,593 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:39:59,639 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:39:59,639 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:39:59,756 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:39:59,756 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:39:59,848 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:59,848 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:39:59,848 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:39:59,935 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:39:59,944 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:39:59,944 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:00,581 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:00,589 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:00,636 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:00,636 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:00,757 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:00,757 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:00,848 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:00,848 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:00,848 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:00,940 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:00,945 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:00,945 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:01,587 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:01,591 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:01,641 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:01,641 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:01,758 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:01,758 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:01,849 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:01,849 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:01,849 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:01,942 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:01,946 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:01,950 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:02,587 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:02,595 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:02,642 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:02,642 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:02,763 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:02,763 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:02,854 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:02,854 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:02,854 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:02,946 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:02,950 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:02,950 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:03,580 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:03,587 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:03,634 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:03,634 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:03,751 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:03,755 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:03,843 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:03,843 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:03,843 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:03,934 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:03,943 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:03,943 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:04,581 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:04,589 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:04,635 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:04,635 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:04,756 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:04,756 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:04,844 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:04,844 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:04,844 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:04,936 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:04,944 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:04,944 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:05,578 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:05,582 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:05,632 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:05,632 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:05,752 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:05,752 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:05,845 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:05,845 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:05,845 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:05,936 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:05,945 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:05,945 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:06,583 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:06,589 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:06,637 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:06,637 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:06,753 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:06,753 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:06,845 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:06,845 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:06,845 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:06,940 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:06,946 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:06,946 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:07,588 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:07,596 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:07,645 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:07,646 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:07,763 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:07,763 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:07,854 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:07,854 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:07,854 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:07,946 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:07,954 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:07,954 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:08,584 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:08,592 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:08,638 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:08,638 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:08,759 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:08,759 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:08,847 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:08,847 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:08,847 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:08,939 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:08,943 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:08,947 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:09,578 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:09,584 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:09,631 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:09,631 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:09,748 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:09,748 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:09,839 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:09,839 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:09,839 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:09,931 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:09,939 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:09,939 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:10,582 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:10,586 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:10,636 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:10,636 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:10,753 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:10,753 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:10,844 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:10,844 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:10,844 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:10,932 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:10,942 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:10,942 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:11,578 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:11,585 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:11,633 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:11,633 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:11,749 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:11,749 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:11,841 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:11,841 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:11,841 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:11,928 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:11,937 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:11,937 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:12,579 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:12,584 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:12,634 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:12,634 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:12,750 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:12,750 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:12,842 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:12,842 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:12,842 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:12,933 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:12,938 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:12,938 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:13,583 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:13,590 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:13,638 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:13,638 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:13,755 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:13,755 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:13,847 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:13,847 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:13,847 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:13,935 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:13,944 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:13,944 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:14,578 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:14,585 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:14,630 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:14,630 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:14,751 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:14,752 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:14,839 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:14,839 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:14,839 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:14,931 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:14,935 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:14,935 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:15,586 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:15,592 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:15,640 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:15,640 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:15,757 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:15,757 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:15,848 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:15,848 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:15,848 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:15,936 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:15,945 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:15,945 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:16,582 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:16,589 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:16,637 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:16,637 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:16,754 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:16,754 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:16,849 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:16,849 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:16,849 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:16,937 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:16,945 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:16,945 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:17,579 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:17,588 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:17,633 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:17,633 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:17,754 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:17,754 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:17,842 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:17,842 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:17,846 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:17,933 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:17,942 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:17,942 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:18,584 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:18,590 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:18,638 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:18,638 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:18,759 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:18,759 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:18,847 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:18,847 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:18,847 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:18,939 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:18,943 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:18,947 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:19,589 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:19,597 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:19,643 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:19,643 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:19,760 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:19,760 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:19,851 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:19,851 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:19,851 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:19,944 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:19,948 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:19,948 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:20,586 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:20,592 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:20,640 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:20,640 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:20,757 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:20,761 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:20,848 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:20,848 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:20,848 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:20,940 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:20,948 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:20,948 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:21,578 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:21,586 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:21,632 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:21,632 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:21,753 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:21,753 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:21,841 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:21,841 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:21,841 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:21,933 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:21,937 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:21,941 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:22,583 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:22,590 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:22,637 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:22,637 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:22,754 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:22,758 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:22,846 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:22,846 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:22,846 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:22,933 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:22,943 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:22,943 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:23,588 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:23,596 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:23,643 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:23,643 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:23,763 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:23,763 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:23,855 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:23,855 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:23,855 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:23,946 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:23,950 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:23,954 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:24,589 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:24,596 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:24,643 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:24,643 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:24,760 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:24,764 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:24,852 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:24,852 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:24,852 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:24,944 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:24,948 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:24,948 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:25,586 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:25,594 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:25,640 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:25,640 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:25,760 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:25,761 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:25,848 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:25,848 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:25,848 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:25,940 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:25,944 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:25,944 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:26,578 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:26,585 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:26,632 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:26,632 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:26,753 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:26,753 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:26,845 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:26,845 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:26,845 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:26,937 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:26,941 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:26,941 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:27,578 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:27,583 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:27,633 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:27,633 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:27,754 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:27,754 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:27,845 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:27,846 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:27,846 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:27,933 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:27,943 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:27,943 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:28,584 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:28,591 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:28,638 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:28,638 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:28,759 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:28,759 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:28,847 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:28,847 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:28,847 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:28,938 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:28,947 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:28,947 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:29,581 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:29,585 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:29,635 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:29,635 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:29,752 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:29,756 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:29,843 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:29,843 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:29,843 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:29,935 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:29,943 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:29,943 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:30,590 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:30,598 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:30,644 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:30,644 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:30,764 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:30,765 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:30,853 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:30,853 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:30,853 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:30,944 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:30,949 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:30,953 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:31,583 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:31,591 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:31,637 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:31,637 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:31,757 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:31,757 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:31,850 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:31,850 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:31,850 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:31,941 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:31,945 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:31,945 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:33,593 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:33,601 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:33,646 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:33,646 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:33,763 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:33,763 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:33,855 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:33,855 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:33,855 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:33,946 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:33,951 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:33,951 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:34,580 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:34,587 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:34,635 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:34,635 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:34,752 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:34,756 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:34,847 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:34,847 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:34,847 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:34,939 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:34,947 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:34,947 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:35,581 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:35,588 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:35,636 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:35,636 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:35,753 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:35,757 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:35,844 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:35,844 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:35,844 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:35,936 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:35,944 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:35,944 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:36,578 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:36,582 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:36,632 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:36,632 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:36,753 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:36,753 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:36,841 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:36,841 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:36,841 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:36,932 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:36,941 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:36,941 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:37,583 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:37,587 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:37,637 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:37,637 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:37,754 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:37,754 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:37,846 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:37,846 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:37,846 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:37,933 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:37,942 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:37,942 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:38,580 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:38,586 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:38,634 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:38,634 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:38,750 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:38,754 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:38,842 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:38,842 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:38,842 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:38,934 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:38,939 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:38,939 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:39,594 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:39,598 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:39,647 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:39,647 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:39,768 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:39,768 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:39,860 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:39,860 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:39,860 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:39,947 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:39,956 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:39,956 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:40,594 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:40,600 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:40,648 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:40,648 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:40,769 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:40,769 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:40,857 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:40,857 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:40,857 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:40,948 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:40,957 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:40,957 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:41,595 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:41,601 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:41,649 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:41,649 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:41,766 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:41,766 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:41,858 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:41,858 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:41,858 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:41,949 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:41,957 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:41,957 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:42,596 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:42,602 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:42,650 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:42,650 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:42,770 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:42,770 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:42,862 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:42,862 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:42,862 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:42,954 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:42,959 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:42,962 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:43,599 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:43,603 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:43,650 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:43,654 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:43,775 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:43,776 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:43,867 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:43,867 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:43,867 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:43,959 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:43,967 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:43,967 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:44,593 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:44,601 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:44,647 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:44,647 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:44,768 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:44,768 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:44,860 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:44,864 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:44,864 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:44,955 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:44,962 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:44,962 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:45,594 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:45,602 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:45,648 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:45,648 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:45,765 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:45,769 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:45,860 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:45,861 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:45,861 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:45,952 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:45,960 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:45,960 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:46,599 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:46,603 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:46,653 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:46,653 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:46,774 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:46,774 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:46,867 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:46,867 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:46,867 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:46,957 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:46,967 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:46,967 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:47,596 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:47,604 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:47,654 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:47,654 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:47,774 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:47,774 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:47,863 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:47,863 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:47,867 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:47,954 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:47,963 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:47,963 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:48,596 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:48,601 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:48,651 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:48,651 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:48,771 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:48,771 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:48,859 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:48,863 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:48,863 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:48,951 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:48,959 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:48,959 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:49,599 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:49,607 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:49,651 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:49,651 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:49,772 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:49,772 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:49,860 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:49,864 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:49,864 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:49,952 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:49,960 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:49,960 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:50,598 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:50,602 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:50,652 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:50,652 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:50,773 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:50,773 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:50,864 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:50,865 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:50,865 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:50,955 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:50,959 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:50,963 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:51,599 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:51,603 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:51,653 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:51,653 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:51,770 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:51,770 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:51,861 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:51,861 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:51,861 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:51,953 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:51,957 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:51,957 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:52,604 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:52,612 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:52,658 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:52,658 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:52,775 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:52,779 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:52,867 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:52,867 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:52,867 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:52,954 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:52,963 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:52,963 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:53,601 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:53,605 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:53,655 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:53,655 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:53,775 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:53,775 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:53,863 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:53,867 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:53,867 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:53,956 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:53,960 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:53,960 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:54,601 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:54,605 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:54,655 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:54,655 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:54,772 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:54,772 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:54,864 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:54,864 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:54,864 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:54,956 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:54,960 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:54,960 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:55,594 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:55,602 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:55,648 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:55,648 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:55,764 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:55,764 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:55,852 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:55,856 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:55,856 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:55,944 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:55,953 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:55,953 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:56,594 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:56,602 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:56,648 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:56,648 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:56,765 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:56,769 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:56,857 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:56,857 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:56,857 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:56,949 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:56,957 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:56,957 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:57,603 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:57,610 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:57,658 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:57,658 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:57,779 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:57,779 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:57,866 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:57,870 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:57,870 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:57,960 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:57,964 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:57,968 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:58,598 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:58,605 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:58,655 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:58,655 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:58,772 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:58,772 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:58,863 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:58,863 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:58,863 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:58,955 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:58,959 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:58,959 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:40:59,597 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:40:59,606 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:40:59,651 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:40:59,651 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:40:59,772 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:40:59,772 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:40:59,864 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:59,864 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:40:59,864 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:40:59,956 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:40:59,960 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:40:59,960 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:00,602 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:00,609 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:00,656 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:00,656 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:00,777 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:00,777 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:00,865 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:00,869 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:00,869 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:00,957 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:00,965 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:00,965 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:01,598 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:01,605 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:01,653 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:01,653 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:01,774 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:01,774 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:01,861 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:01,861 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:01,861 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:01,953 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:01,961 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:01,961 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:02,595 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:02,602 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:02,649 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:02,649 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:02,770 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:02,770 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:02,858 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:02,862 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:02,862 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:02,950 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:02,958 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:02,958 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:03,597 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:03,601 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:03,650 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:03,650 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:03,771 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:03,771 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:03,861 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:03,861 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:03,861 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:03,950 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:03,959 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:03,959 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:04,601 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:04,606 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:04,655 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:04,655 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:04,772 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:04,776 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:04,864 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:04,864 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:04,864 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:04,959 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:04,965 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:04,965 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:05,598 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:05,606 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:05,652 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:05,652 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:05,773 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:05,773 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:05,865 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:05,865 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:05,865 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:05,956 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:05,961 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:05,961 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:06,599 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:06,607 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:06,653 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:06,653 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:06,773 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:06,773 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:06,862 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:06,862 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:06,862 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:06,953 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:06,957 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:06,957 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:07,595 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:07,601 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:07,649 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:07,649 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:07,766 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:07,766 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:07,858 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:07,858 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:07,858 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:07,950 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:07,958 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:07,958 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:08,600 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:08,608 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:08,654 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:08,654 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:08,771 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:08,771 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:08,863 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:08,863 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:08,863 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:08,955 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:08,963 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:08,963 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:09,597 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:09,601 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:09,651 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:09,651 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:09,772 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:09,772 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:09,859 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:09,859 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:09,859 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:09,951 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:09,959 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:09,959 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:10,593 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:10,598 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:10,648 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:10,648 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:10,765 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:10,765 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:10,856 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:10,856 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:10,856 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:10,948 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:10,956 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:10,956 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:11,599 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:11,603 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:11,653 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:11,653 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:11,774 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:11,774 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:11,861 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:11,865 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:11,865 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:11,957 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:11,961 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:11,961 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:12,604 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:12,612 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:12,658 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:12,658 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:12,778 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:12,778 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:12,866 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:12,866 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:12,866 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:12,958 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:12,967 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:12,967 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:13,600 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:13,606 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:13,654 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:13,654 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:13,771 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:13,771 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:13,863 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:13,863 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:13,863 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:13,951 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:13,960 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:13,960 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:14,599 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:14,605 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:14,651 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:14,655 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:14,772 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:14,776 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:14,863 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:14,863 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:14,863 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:14,956 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:14,962 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:14,962 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:15,601 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:15,606 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:15,656 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:15,656 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:15,773 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:15,773 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:15,866 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:15,866 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:15,866 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:15,956 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:15,960 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:15,964 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:16,598 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:16,607 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:16,653 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:16,653 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:16,770 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:16,770 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:16,857 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:16,857 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:16,857 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:16,948 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:16,957 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:16,957 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:17,594 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:17,602 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:17,649 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:17,649 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:17,766 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:17,766 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:17,858 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:17,858 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:17,858 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:17,948 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:17,954 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:17,954 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:18,595 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:18,602 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:18,650 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:18,650 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:18,767 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:18,767 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:18,859 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:18,859 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:18,859 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:18,950 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:18,955 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:18,955 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:19,606 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:19,612 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:19,659 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:19,659 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:19,780 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:19,780 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:19,868 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:19,868 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:19,868 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:19,960 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:19,964 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:19,968 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:20,598 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:20,606 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:20,652 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:20,656 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:20,773 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:20,773 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:20,865 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:20,865 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:20,865 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:20,956 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:20,960 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:20,960 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:21,598 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:21,606 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:21,652 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:21,652 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:21,774 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:21,774 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:21,861 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:21,861 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:21,861 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:21,957 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:21,961 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:21,961 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:22,595 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:22,602 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:22,649 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:22,649 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:22,770 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:22,770 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:22,858 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:22,858 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:22,858 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:22,951 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:22,958 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:22,958 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:23,597 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:23,605 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:23,654 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:23,654 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:23,771 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:23,771 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:23,863 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:23,863 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:23,863 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:23,950 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:23,960 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:23,960 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:24,601 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:24,606 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:24,655 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:24,655 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:24,776 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:24,776 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:24,864 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:24,864 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:24,864 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:24,955 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:24,960 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:24,960 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:25,598 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:25,604 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:25,652 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:25,652 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:25,772 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:25,772 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:25,864 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:25,864 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:25,864 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:25,952 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:25,961 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:25,961 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:26,603 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:26,611 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:26,656 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:26,656 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:26,777 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:26,778 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:26,865 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:26,865 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:26,865 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:26,957 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:26,965 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:26,965 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:27,604 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:27,612 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:27,657 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:27,657 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:27,779 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:27,779 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:27,866 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:27,866 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:27,866 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:27,958 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:27,966 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:27,966 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:28,605 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:28,610 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:28,658 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:28,658 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:28,779 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:28,780 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:28,867 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:28,871 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:28,871 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:28,958 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:28,967 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:28,967 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:29,601 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:29,607 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:29,655 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:29,655 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:29,772 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:29,772 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:29,864 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:29,864 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:29,864 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:29,951 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:29,960 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:29,960 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:30,597 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:30,604 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:30,652 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:30,652 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:30,769 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:30,769 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:30,860 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:30,860 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:30,860 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:30,948 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:30,956 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:30,956 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:31,594 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:31,600 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:31,649 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:31,649 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:31,765 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:31,765 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:31,857 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:31,857 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:31,857 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:31,944 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:31,953 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:31,953 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:32,595 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:32,599 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:32,649 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:32,649 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:32,770 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:32,770 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:32,862 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:32,866 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:32,866 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:32,954 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:32,962 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:32,962 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:33,597 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:33,604 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:33,650 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:33,650 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:33,767 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:33,767 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:33,858 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:33,858 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:33,858 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:33,946 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:33,954 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:33,954 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:34,596 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:34,605 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:34,651 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:34,655 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:34,772 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:34,776 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:34,863 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:34,863 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:34,863 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:34,955 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:34,963 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:34,963 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:35,597 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:35,602 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:35,652 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:35,652 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:35,773 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:35,773 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:35,865 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:35,865 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:35,865 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:35,956 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:35,960 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:35,960 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:36,598 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:36,603 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:36,653 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:36,653 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:36,774 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:36,774 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:36,861 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:36,861 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:36,861 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:36,953 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:36,957 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:36,961 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:37,604 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:37,611 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:37,658 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:37,662 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:37,778 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:37,778 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:37,873 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:37,873 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:37,873 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:37,962 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:37,969 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:37,969 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:38,598 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:38,604 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:38,654 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:38,654 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:38,771 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:38,771 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:38,863 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:38,863 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:38,863 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:38,955 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:38,959 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:38,963 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:39,601 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:39,607 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:39,655 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:39,655 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:39,772 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:39,776 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:39,863 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:39,863 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:39,863 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:39,956 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:39,960 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:39,960 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:40,601 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:40,606 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:40,656 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:40,656 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:40,773 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:40,773 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:40,864 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:40,868 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:40,868 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:40,958 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:40,962 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:40,966 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:41,598 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:41,607 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:41,652 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:41,652 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:41,774 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:41,774 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:41,865 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:41,865 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:41,865 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:41,952 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:41,961 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:41,961 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:42,603 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:42,608 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:42,658 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:42,658 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:42,778 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:42,778 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:42,870 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:42,870 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:42,870 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:42,958 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:42,966 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:42,966 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:43,596 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:43,604 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:43,650 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:43,650 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:43,771 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:43,771 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:43,859 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:43,863 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:43,863 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:43,953 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:43,961 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:43,961 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:44,601 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:44,609 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:44,655 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:44,655 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:44,776 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:44,776 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:44,867 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:44,871 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:44,871 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:44,960 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:44,968 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:44,968 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:45,597 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:45,601 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:45,651 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:45,651 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:45,768 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:45,768 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:45,860 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:45,864 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:45,864 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:45,952 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:45,960 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:45,960 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 17:41:46,594 - core.card_ops - DEBUG - 获取到驱动器位图: 0b11100
+2024-11-26 17:41:46,598 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 17:41:46,648 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 17:41:46,648 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 17:41:46,769 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 17:41:46,769 - core.card_ops - DEBUG - 检查驱动器 E:\, 类型: 2
+2024-11-26 17:41:46,861 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:46,861 - core.card_ops - DEBUG - 找到潜在的SD卡驱动器: E:\ (可移动)
+2024-11-26 17:41:46,861 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-26 17:41:46,953 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE2 对应驱动器: E:\
+2024-11-26 17:41:46,961 - core.card_ops - DEBUG - 跳过USB设备: Kingston DataTraveler 3.0 USB Device
+2024-11-26 17:41:46,961 - gui.main_window - DEBUG - 未检测到SD卡

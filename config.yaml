@@ -1,0 +1,15 @@
+# 测试配置
+test:
+  # 循环测试配置
+  loop:
+    enabled: false  # 是否启用循环测试
+    count: 1       # 循环次数
+
+  # 性能测试配置
+  performance:
+    total_size: 128  # 总数据大小(MB)
+    block_size: 1    # 块大小(MB)
+    iterations: 3    # 平均次数
+# 日志配置
+logger:
+  level: INFO  # 日志级别: DEBUG, INFO, WARNING, ERROR, CRITICAL 

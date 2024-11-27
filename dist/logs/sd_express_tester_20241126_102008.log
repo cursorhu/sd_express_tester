@@ -1,0 +1,92 @@
+2024-11-26 10:20:08,584 - sd_express_tester - INFO - ==================================================
+2024-11-26 10:20:08,584 - sd_express_tester - INFO - 程序启动
+2024-11-26 10:20:08,584 - sd_express_tester - INFO - 日志文件: C:\github\sd_express_tester\dist\logs\sd_express_tester_20241126_102008.log
+2024-11-26 10:20:08,584 - sd_express_tester - INFO - ==================================================
+2024-11-26 10:20:08,601 - sd_express_tester - INFO - 启动 SD Express 测试工具
+2024-11-26 10:20:08,601 - sd_express_tester - INFO - 以GUI模式运行
+2024-11-26 10:20:08,633 - gui.main_window - DEBUG - 设置窗口图标: C:\Users\cursorhu\AppData\Local\Temp\_MEI109722\sdexpresstester.ico
+2024-11-26 10:20:08,633 - core.controller - INFO - 初始化SD控制器
+2024-11-26 10:20:08,634 - core.controller - INFO - 初始化SD控制器
+2024-11-26 10:20:09,134 - core.controller - ERROR - NVMe控制器检查错误: argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "core\controller.py", line 43, in _check_nvme_controller
+TypeError: argument of type 'NoneType' is not iterable
+2024-11-26 10:20:10,569 - core.controller - WARNING - 未检测到支持的控制器
+2024-11-26 10:20:10,569 - gui.main_window - WARNING - 控制器不兼容
+2024-11-26 10:20:10,785 - core.card_ops - DEBUG - 获取到驱动器位图: 0b1100
+2024-11-26 10:20:10,786 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 10:20:10,836 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 10:20:10,836 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 10:20:10,936 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 10:20:10,936 - core.card_ops - INFO - 扫描完成,找到驱动器: []
+2024-11-26 10:20:10,936 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 10:20:10,936 - gui.main_window - INFO - SD卡状态发生变化，重新检查控制器兼容性
+2024-11-26 10:20:11,386 - core.controller - ERROR - NVMe控制器检查错误: argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "core\controller.py", line 43, in _check_nvme_controller
+TypeError: argument of type 'NoneType' is not iterable
+2024-11-26 10:20:12,771 - core.controller - WARNING - 未检测到支持的控制器
+2024-11-26 10:20:12,771 - gui.main_window - WARNING - 控制器不兼容
+2024-11-26 10:20:13,654 - core.card_ops - DEBUG - 获取到驱动器位图: 0b1100
+2024-11-26 10:20:13,655 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 10:20:13,705 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 10:20:13,705 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 10:20:13,789 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 10:20:13,789 - core.card_ops - INFO - 扫描完成,找到驱动器: []
+2024-11-26 10:20:13,789 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 10:20:14,655 - core.card_ops - DEBUG - 获取到驱动器位图: 0b1100
+2024-11-26 10:20:14,656 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 10:20:14,706 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 10:20:14,706 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 10:20:14,789 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 10:20:14,789 - core.card_ops - INFO - 扫描完成,找到驱动器: []
+2024-11-26 10:20:14,789 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 10:20:15,657 - core.card_ops - DEBUG - 获取到驱动器位图: 0b1100
+2024-11-26 10:20:15,657 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 10:20:15,706 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 10:20:15,706 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 10:20:15,790 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 10:20:15,790 - core.card_ops - INFO - 扫描完成,找到驱动器: []
+2024-11-26 10:20:15,790 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 10:20:16,656 - core.card_ops - DEBUG - 获取到驱动器位图: 0b1100
+2024-11-26 10:20:16,657 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 10:20:16,707 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 10:20:16,707 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 10:20:16,791 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 10:20:16,791 - core.card_ops - INFO - 扫描完成,找到驱动器: []
+2024-11-26 10:20:16,791 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 10:20:17,657 - core.card_ops - DEBUG - 获取到驱动器位图: 0b1100
+2024-11-26 10:20:17,658 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 10:20:17,708 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 10:20:17,708 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 10:20:17,791 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 10:20:17,791 - core.card_ops - INFO - 扫描完成,找到驱动器: []
+2024-11-26 10:20:17,791 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 10:20:18,659 - core.card_ops - DEBUG - 获取到驱动器位图: 0b1100
+2024-11-26 10:20:18,659 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 10:20:18,709 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 10:20:18,709 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 10:20:18,792 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 10:20:18,792 - core.card_ops - INFO - 扫描完成,找到驱动器: []
+2024-11-26 10:20:18,792 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 10:20:19,659 - core.card_ops - DEBUG - 获取到驱动器位图: 0b1100
+2024-11-26 10:20:19,660 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 10:20:19,710 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 10:20:19,710 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 10:20:19,793 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 10:20:19,793 - core.card_ops - INFO - 扫描完成,找到驱动器: []
+2024-11-26 10:20:19,793 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 10:20:20,659 - core.card_ops - DEBUG - 获取到驱动器位图: 0b1100
+2024-11-26 10:20:20,660 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 10:20:20,711 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 10:20:20,711 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 10:20:20,794 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 10:20:20,794 - core.card_ops - INFO - 扫描完成,找到驱动器: []
+2024-11-26 10:20:20,794 - gui.main_window - DEBUG - 未检测到SD卡
+2024-11-26 10:20:21,661 - core.card_ops - DEBUG - 获取到驱动器位图: 0b1100
+2024-11-26 10:20:21,661 - core.card_ops - DEBUG - 检查驱动器 C:\, 类型: 3
+2024-11-26 10:20:21,711 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE1 对应驱动器: C:\
+2024-11-26 10:20:21,711 - core.card_ops - DEBUG - 检查驱动器 D:\, 类型: 3
+2024-11-26 10:20:21,795 - core.card_ops - DEBUG - 找到设备路径: \\.\PHYSICALDRIVE0 对应驱动器: D:\
+2024-11-26 10:20:21,795 - core.card_ops - INFO - 扫描完成,找到驱动器: []
+2024-11-26 10:20:21,795 - gui.main_window - DEBUG - 未检测到SD卡

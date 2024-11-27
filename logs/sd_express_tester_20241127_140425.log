@@ -1,0 +1,15 @@
+2024-11-27 14:04:25,109 - sd_express_tester - INFO - ==================================================
+2024-11-27 14:04:25,109 - sd_express_tester - INFO - 程序启动
+2024-11-27 14:04:25,109 - sd_express_tester - INFO - 日志文件: C:\github\sd_express_tester\logs\sd_express_tester_20241127_140425.log
+2024-11-27 14:04:25,109 - sd_express_tester - INFO - 日志级别: INFO
+2024-11-27 14:04:25,109 - sd_express_tester - INFO - ==================================================
+2024-11-27 14:04:25,143 - utils.config - INFO - 已加载配置文件: config.yaml
+2024-11-27 14:04:25,146 - sd_express_tester - INFO - 日志级别已更新为: INFO
+2024-11-27 14:04:25,155 - sd_express_tester - INFO - 启动 SD Express 测试工具
+2024-11-27 14:04:25,155 - sd_express_tester - INFO - Running in GUI mode
+2024-11-27 14:04:25,163 - gui.main_window - INFO - 初始化主窗口
+2024-11-27 14:04:25,393 - core.controller - INFO - 初始化SD控制器
+2024-11-27 14:04:25,412 - core.controller - INFO - 初始化SD控制器
+2024-11-27 14:04:25,414 - gui.main_window - INFO - 核心组件初始化完成
+2024-11-27 14:04:25,706 - core.card_ops - INFO - 扫描完成,找到驱动器: ['E:\\']
+2024-11-27 14:04:25,806 - gui.main_window - INFO - 卡状态变化: None -> No Card
