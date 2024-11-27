@@ -79,6 +79,12 @@ class MainWindow(QMainWindow):
             else:
                 logger.warning(f"图标文件不存在: {icon_path}")
         
+        # 设置窗口置顶
+        always_on_top = config.get('ui.always_on_top', False)
+        if always_on_top:
+            self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
+            logger.info("窗口已设置为始终置顶")
+        
         # 初始化UI
         self._setup_ui()
         
@@ -330,7 +336,7 @@ class MainWindow(QMainWindow):
             self.progress_bar.setValue(0)
             self.result_text.clear()
             
-            # 添加简单的测试开始标记
+            # 添加简单测试开始标记
             start_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             self.result_text.insertHtml(
                 f"=== 测试开始 ({start_time}) ===<br><br>"
@@ -429,36 +435,29 @@ class MainWindow(QMainWindow):
             if is_loop_test:
                 # 统计每轮测试的结果
                 rounds = text.split("=== 第")  # 分割每轮测试
-                total_rounds = 0  # 总轮数
-                passed_rounds = 0  # 通过的轮数
-                failed_rounds = 0  # 失败的轮数
+                total_rounds = len(rounds) - 1  # 减去第一个空分割
+                passed_rounds = 0
+                failed_rounds = 0
                 
-                for round_text in rounds:
-                    if "测试项目" not in round_text:  # 跳过不包含测试结果的部分
-                        continue
-                        
-                    total_rounds += 1
-                    # 检查这一轮是否有失败的测试项
-                    has_failed = False
-                    test_items = 0  # 每轮的测试项数
-                    lines = round_text.split('\n')
-                    for line in lines:
+                for round_text in rounds[1:]:  # 跳过第一个空分割
+                    # 检查这一轮的测试项
+                    test_items = 0
+                    failed_items = 0
+                    for line in round_text.split('\n'):
                         if "测试项目" in line:
                             test_items += 1
                             if ": 失败" in line:
-                                has_failed = True
+                                failed_items += 1
                     
                     # 只有完成所有4个测试项才计入统计
                     if test_items == 4:
-                        if has_failed:
+                        if failed_items > 0:
                             failed_rounds += 1
                         else:
                             passed_rounds += 1
-                    else:
-                        total_rounds -= 1  # 未完成的轮次不计入总数
                 
                 # 生成循环测试汇总信息
-                if total_rounds == 0:
+                if passed_rounds + failed_rounds == 0:
                     return "<br><span style='color: gray; font-weight: bold;'>测试结果: 无测试完成</span>"
                 elif failed_rounds > 0:
                     return (f"<br><span style='color: red; font-weight: bold;'>"
@@ -466,7 +465,7 @@ class MainWindow(QMainWindow):
                            f"</span>")
                 else:
                     return (f"<br><span style='color: green; font-weight: bold;'>"
-                           f"测试结果: 全部通过 (共 {total_rounds}轮)"
+                           f"测试结果: 全部通过 (共 {passed_rounds}轮)"
                            f"</span>")
             else:
                 # 单次测试的汇总
@@ -575,6 +574,17 @@ class MainWindow(QMainWindow):
                 logger.info("检测到配置文件变化，重新加载配置")
                 config.reload()
                 self._last_config_mtime = current_mtime
+                
+                # 更新窗口置顶状态
+                always_on_top = config.get('ui.always_on_top', False)
+                flags = self.windowFlags()
+                if always_on_top:
+                    flags |= Qt.WindowStaysOnTopHint
+                else:
+                    flags &= ~Qt.WindowStaysOnTopHint
+                self.setWindowFlags(flags)
+                self.show()  # 需要重新显示窗口
+                
                 self.statusBar.showMessage("配置文件已更新")
                 
                 # 停止监控定时器

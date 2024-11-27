@@ -10,6 +10,11 @@ test:
     total_size: 128  # 总数据大小(MB)
     block_size: 1    # 块大小(MB)
     iterations: 3    # 平均次数
+
+# 界面配置
+ui:
+  always_on_top: false  # 窗口是否始终置顶
+
 # 日志配置
 logger:
   level: INFO  # 日志级别: DEBUG, INFO, WARNING, ERROR, CRITICAL 
