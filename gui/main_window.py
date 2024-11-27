@@ -254,33 +254,37 @@ class MainWindow(QMainWindow):
     def _check_card_status(self):
         """检查SD卡状态"""
         try:
-            # 快速检查卡状态
-            card_info = self.card_ops.quick_check_card()
+            card_info = self.card_ops.check_card()  # 移除 quick_mode 参数
             
-            # 构建当前状态标识（使用设备路径和驱动器盘符组合）
-            current_state = None
-            if card_info:
-                current_state = f"{card_info.device_path}_{card_info.drive_letter}"
+            # 更新卡名称显示
+            if not card_info:
+                self.card_name.setText("SD卡: 未检测到卡")
+                self.card_name.setStyleSheet("color: red")
+                self.card_capability.setText("卡能力: 未知")
+                self.card_capability.setStyleSheet("color: red")
+                self.test_btn.setEnabled(False)
+                self.statusBar.showMessage("未检测到SD卡")
+                return
+
+            # 更新卡名称和能力信息
+            self.card_name.setText(f"SD卡: {card_info.name or '未知'}")
+            self.card_name.setStyleSheet("color: green")
             
-            # 如果卡状态发生变化
-            if current_state != self._last_card_state:
-                logger.info(f"卡状态变化: {self._last_card_state} -> {current_state}")
-                self._last_card_state = current_state
-                self._full_check_required = True  # 标记需要完整检测
-                
-                # 更新基本UI显示
-                if not card_info:
-                    self.card_name.setText("SD卡: 未检测到卡")
-                    self.card_name.setStyleSheet("color: red")
-                    self.card_capability.setText("卡能力: 未知")
-                    self.card_capability.setStyleSheet("color: red")
-                    self.test_btn.setEnabled(False)
-                    self.statusBar.showMessage("未检测到SD卡")
-                else:
-                    self.card_name.setText(f"SD卡: {card_info.name or '检测中...'}")
-                    self.card_name.setStyleSheet("color: black")
-                    QTimer.singleShot(100, self._perform_full_check)  # 延迟执行完整检测
-        
+            # 构建卡能力信息
+            capability_info = []
+            if card_info.mode:
+                capability_info.append(f"模式: {card_info.mode}")
+            if card_info.capacity:
+                capability_info.append(f"容量: {card_info.capacity/1024/1024/1024:.1f}GB")
+            
+            # 更新卡能力显示
+            self.card_capability.setText("卡能力: " + (", ".join(capability_info) if capability_info else "未知"))
+            self.card_capability.setStyleSheet("color: green" if capability_info else "color: red")
+            
+            # 启用测试按钮
+            self.test_btn.setEnabled(True)
+            self.statusBar.showMessage("SD卡已就绪")
+
         except Exception as e:
             logger.error(f"SD卡状态检查失败: {str(e)}", exc_info=True)
             self.card_name.setText("SD卡: 检查失败")
@@ -482,7 +486,7 @@ class MainWindow(QMainWindow):
                 elif test_items == 4:  # 确保所有4个测试项都通过
                     return "<br><span style='color: green; font-weight: bold;'>测试结果: 测试通过</span>"
                 else:
-                    return "<br><span style='color: orange; font-weight: bold;'>测试结果: 测试未完成</span>"
+                    return "<br><span style='color: orange; font-weight: bold;'>测试结果: 测试未成</span>"
             
         except Exception as e:
             logger.error(f"生成测试汇总失败: {str(e)}", exc_info=True)
