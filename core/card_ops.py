@@ -466,7 +466,7 @@ class CardOperations:
                                    f"({'可移动' if is_removable else 'NVMe'})")
                         drives.append(drive_letter)
             
-            logger.info(f"扫描完成,找到驱动器: {drives}")
+            logger.debug(f"扫描完成,找到驱动器: {drives}")
             return drives
             
         except Exception as e:

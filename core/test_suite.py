@@ -71,7 +71,6 @@ class TestSuite:
 
     def run_tests(self, config):
         """运行测试用例"""
-        logger.info(f"开始测试套件，配置: {config}")
         self._running = True
         self._stop_event.clear()
         results = {}
@@ -164,7 +163,6 @@ class TestSuite:
                 logger.error(f"清理测试目录失败: {str(e)}")
         
         self._running = False
-        logger.info("测试套件执行完成")
         return results
     
     def _test_performance(self, config):

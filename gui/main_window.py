@@ -11,6 +11,7 @@ from core.test_suite import TestSuite
 from utils.logger import get_logger
 from utils.config import config
 from datetime import datetime
+from pathlib import Path
 
 logger = get_logger(__name__)
 
@@ -362,6 +363,13 @@ class MainWindow(QMainWindow):
                 'status_callback': self._update_status  # 添加状态更新回调
             }
             
+            # 设置输出文件
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            output_path = Path(f"test_report_{timestamp}.txt")
+            
+            # 初始化结果列表
+            all_results = []
+            
             # 执行循环测试
             for i in range(loop_count if loop_enabled else 1):
                 if self.test_suite._stop_event.is_set():
@@ -375,9 +383,12 @@ class MainWindow(QMainWindow):
                 results = self.test_suite.run_tests(test_config)
                 if not results:
                     break
+                all_results.append(results)
             
-            logger.info("测试完成")
-            self.statusBar.showMessage("测试完成")
+            # 生成报告
+            self._generate_report(all_results if loop_enabled else results, output_path)
+            logger.info(f"测试报告已保存至: {output_path}")
+            self.statusBar.showMessage(f"测试报告已保存至: {output_path}")
             
         except Exception as e:
             logger.error(f"测试过程出错: {str(e)}", exc_info=True)
@@ -613,7 +624,7 @@ class MainWindow(QMainWindow):
                 QMessageBox.warning(self, "错误", "未找到日志目录")
                 self.statusBar.showMessage("错误：未找到日志目录")
         except Exception as e:
-            logger.error(f"打开日���目录失败: {str(e)}")
+            logger.error(f"打开日志目录失败: {str(e)}")
             QMessageBox.critical(self, "错误", f"打开日志目录失败: {str(e)}")
             self.statusBar.showMessage("错误：打开日志目录失败")
     
@@ -621,3 +632,51 @@ class MainWindow(QMainWindow):
         """显示关于对话框"""
         dialog = AboutDialog(self)
         dialog.exec_()
+    
+    def _generate_report(self, all_results, output_path):
+        """生成测试报告"""
+        with open(output_path, 'w', encoding='utf-8') as f:
+            # 写入报告头部
+            f.write("=== SD Express Tester 测试报告 ===\n")
+            f.write(f"测试时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+            
+            # 写入配置信息
+            f.write("测试配置:\n")
+            f.write(f"- 循环测试: {'启用' if config.get('test.loop.enabled') else '禁用'}\n")
+            if config.get('test.loop.enabled'):
+                f.write(f"- 循环次数: {config.get('test.loop.count')}\n")
+            f.write(f"- 性能测试总大小: {config.get('test.performance.total_size')}MB\n")
+            f.write(f"- 性能测试块大小: {config.get('test.performance.block_size')}MB\n")
+            f.write(f"- 性能测试迭代次数: {config.get('test.performance.iterations')}\n\n")
+            
+            # 写入测试结果
+            if isinstance(all_results, list):  # 循环测试结果
+                total_rounds = len(all_results)
+                passed_rounds = sum(1 for results in all_results 
+                                  if all(r.get('passed', False) for r in results.values()))
+                failed_rounds = total_rounds - passed_rounds
+                
+                f.write(f"测试结果汇总:\n")
+                f.write(f"- 完成测试轮数: {total_rounds}\n")
+                f.write(f"- 通过轮数: {passed_rounds}\n")
+                f.write(f"- 失败轮数: {failed_rounds}\n\n")
+                
+                # 写入每轮测试的详细结果
+                for round_num, results in enumerate(all_results, 1):
+                    f.write(f"\n=== 第 {round_num}/{total_rounds} 轮测试 ===\n")
+                    self._write_test_details(f, results)
+                    
+            else:  # 单次测试结果
+                f.write("测试结果:\n")
+                self._write_test_details(f, all_results)
+    
+    def _write_test_details(self, f, results):
+        """写入测试详情"""
+        for test_name, result in results.items():
+            status = "通过" if result['passed'] else "失败"
+            f.write(f"\n{test_name}: {status}\n")
+            # 处理多行详情
+            details = result['details'].split('\n')
+            for detail in details:
+                if detail.strip():
+                    f.write(f"  {detail}\n")

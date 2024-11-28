@@ -139,7 +139,7 @@ SDExpressTester [选项]
         """生成测试报告"""
         with open(output_path, 'w', encoding='utf-8') as f:
             # 写入报告头部
-            f.write("=== SD Express Card 测试报告 ===\n")
+            f.write("=== SD Express Tester 测试报告 ===\n")
             f.write(f"测试时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
             
             # 写入配置信息
