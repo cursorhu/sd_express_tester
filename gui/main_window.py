@@ -444,9 +444,10 @@ class MainWindow(QMainWindow):
                     test_items = 0
                     failed_items = 0
                     for line in round_text.split('\n'):
-                        if "测试项目" in line:
+                        if "控制器检测" in line or "基本读写" in line or \
+                           "性能测试" in line or "稳定性测试" in line:
                             test_items += 1
-                            if ": 失败" in line:
+                            if "失败" in line:
                                 failed_items += 1
                     
                     # 只有完成所有4个测试项才计入统计
@@ -473,9 +474,10 @@ class MainWindow(QMainWindow):
                 failed_items = 0  # 失败的测试项数
                 lines = text.split('\n')
                 for line in lines:
-                    if "测试项目" in line:
+                    if "控制器检测" in line or "基本读写" in line or \
+                       "性能测试" in line or "稳定性测试" in line:
                         test_items += 1
-                        if ": 失败" in line:
+                        if "失败" in line:
                             failed_items += 1
                 
                 if test_items == 0:
@@ -485,7 +487,7 @@ class MainWindow(QMainWindow):
                 elif test_items == 4:  # 确保所有4个测试项都通过
                     return "<br><span style='color: green; font-weight: bold;'>测试结果: 测试通过</span>"
                 else:
-                    return "<br><span style='color: orange; font-weight: bold;'>测试结果: 测试未成</span>"
+                    return "<br><span style='color: orange; font-weight: bold;'>测试结果: 测试未完成</span>"
             
         except Exception as e:
             logger.error(f"生成测试汇总失败: {str(e)}", exc_info=True)

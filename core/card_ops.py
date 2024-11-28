@@ -104,6 +104,8 @@ class CardOperations:
             # 如果需要完整检测，添加详细信息
             if full_check:
                 self._enhance_card_info(card_info)
+                # 根据卡的模式更新控制器能力,因为SD Express和SD 4.0/3.0的控制器能力不同
+                self.controller.check_compatibility(card_info.mode)
             else:
                 # 仅获取容量信息，不进行性能测试
                 card_info.capacity = self._get_drive_capacity(drive_letter)
@@ -113,7 +115,68 @@ class CardOperations:
         except Exception as e:
             logger.error(f"驱动器分析失败 {drive_letter}: {str(e)}", exc_info=True)
             return None
-    
+        
+    def _is_sd_express(self, disk):
+        """检查是否为SD Express卡"""
+        try:
+            # 检查设备描述符中的特征
+            descriptors = [
+                disk.Model,
+                disk.Caption,
+                disk.Description,
+                disk.PNPDeviceID
+            ]
+            
+            # 打印设备描述符信息
+            logger.debug("设备描述符信息:")
+            logger.debug(f"Model: {disk.Model}")
+            logger.debug(f"Caption: {disk.Caption}")
+            logger.debug(f"Description: {disk.Description}")
+            logger.debug(f"PNPDeviceID: {disk.PNPDeviceID}")
+
+            # 首先检查是否包含SSD关键字，如果有则不是SD Express卡
+            # 注意并不是所有厂商的SSD的Model Name都包含SSD关键字
+            ssd_keywords = [
+                "SSD",
+            ]
+            
+            for desc in descriptors:
+                if desc:
+                    desc = desc.upper()
+                    for keyword in ssd_keywords:
+                        if keyword.upper() in desc:
+                            logger.debug(f"检测到SSD关键字: {keyword}")
+                            return False
+
+            # SD Express卡特有标识(实际是无效的，SD Express卡通常不包含这些关键字)
+            sd_express_keywords = [
+                "SD EXPRESS",
+                "SDEX",
+                "SD-EXPRESS",
+                "SD XS",
+                "SDXC EXPRESS"
+            ]
+            
+            # 检查是否包含SD Express特征
+            for desc in descriptors:
+                if desc:
+                    desc = desc.upper()
+                    for keyword in sd_express_keywords:
+                        if keyword in desc:
+                            return True
+                            
+            # 检查物理特征（如果可用）
+            if hasattr(disk, 'Size'):
+                size_gb = int(disk.Size) / (1024**3)
+                if size_gb <= 2048:  # SD Express卡目前最大2TB
+                    return True
+                    
+            return False
+        
+        except Exception as e:
+            logger.error(f"SD Express检测失败: {str(e)}")
+            return False
+        
     def _detect_device_type(self, device_path, drive_letter):
         """检测设备类型(NVMe/SD/USB)并返回基本卡信息"""
         try:
@@ -130,8 +193,14 @@ class CardOperations:
                     if ("NVM" in disk.Model or 
                         "NVM" in disk.Caption or 
                         "NVMe" in disk.PNPDeviceID):
-                        card_info.controller_type = ControllerType.NVME
-                        return card_info
+                        # 进一步检查是否为SD Express卡
+                        if self._is_sd_express(disk):
+                            card_info.controller_type = ControllerType.NVME
+                            card_info.is_sd_express = True
+                            return card_info
+                        else:
+                            # 是普通NVMe SSD，返回None
+                            return None
 
                     # 检测是否为传统SD卡(排除USB设备)
                     if disk.MediaType and "Removable Media" in disk.MediaType:
@@ -250,7 +319,7 @@ class CardOperations:
             perf_info = self._get_disk_performance(device_path)
             if not perf_info:
                 logger.error("无法获取性能信息")
-                return "3.0"  # 默认返回3.0
+                return "unknown"
             
             max_speed = max(perf_info['read_speed'], perf_info['write_speed'])
             logger.debug(f"测得最大速度: {max_speed:.2f}MB/s")
@@ -392,7 +461,7 @@ class CardOperations:
         try:
             drives = []
             bitmask = win32api.GetLogicalDrives()
-            logger.debug(f"获取到驱动器位图: {bin(bitmask)}")
+            logger.debug(f"���取到驱动器���图: {bin(bitmask)}")
             
             # 使用WMI查询所有磁盘信息
             wmi = win32com.client.GetObject("winmgmts:")

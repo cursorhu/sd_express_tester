@@ -40,8 +40,16 @@ class SDController:
             
             # 如果提供了卡的模式，确定当前工作模式
             if card_mode:
-                current_mode = self._determine_working_mode(card_mode, supported_modes)
-                
+                # 根据卡的模式确定控制器工作模式
+                if "8.0" in card_mode or "7.0" in card_mode:
+                    current_mode = "SD 7.0/8.0"
+                elif "4.0" in card_mode:
+                    current_mode = "SD 4.0"
+                elif "3.0" in card_mode:
+                    current_mode = "SD 3.0"
+                elif "2.0" in card_mode:
+                    current_mode = "SD 2.0"
+            
             # 构建返回信息
             if supported_modes:
                 info = f"控制器支持: {', '.join(supported_modes)}"
@@ -160,34 +168,6 @@ class SDController:
             logger.error(f"提取PCIe信息失败: {str(e)}", exc_info=True)
             return None
     
-    def _determine_working_mode(self, card_mode, supported_modes):
-        """根据卡模式和控制器支持的模式确定当前工作模式"""
-        if not supported_modes:
-            return None
-            
-        # 将卡模式映射到控制器支持的模式
-        mode_mapping = {
-            "8.0": "SD 7.0/8.0",  # 8.0卡在支持7.0/8.0的控制器上以8.0模式工作
-            "7.0": "SD 7.0/8.0",  # 7.0卡在支持7.0/8.0的控制器上以7.0模式工作
-            "4.0": "SD 4.0",
-            "3.0": "SD 3.0"
-        }
-        
-        # 从卡模式中提取版本号
-        for version in mode_mapping:
-            if version in card_mode:
-                target_mode = mode_mapping[version]
-                if target_mode in supported_modes:
-                    return target_mode
-                # 如果不支持目标模式，尝试降
-                for supported_mode in supported_modes:
-                    if "SD 7.0/8.0" in supported_mode:
-                        continue  # 跳过Express模式的降级
-                    if float(supported_mode.split()[1]) < float(version):
-                        return supported_mode
-                        
-        return None
-    
     def _check_nvme_controller(self):
         """检查NVMe控制器支持"""
         try:
@@ -218,7 +198,7 @@ class SDController:
             return ControllerType.SD_HOST
             
         if "NVME" in device_path.upper():
-            logger.debug(f"检测到NVMe控制器: {device_path}")
+            logger.debug(f"检测到NVMe��制器: {device_path}")
             return ControllerType.NVME
             
         logger.debug(f"检测到SD Host控制器: {device_path}")
