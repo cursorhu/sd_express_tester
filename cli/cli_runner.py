@@ -12,7 +12,7 @@ logger = get_logger(__name__)
 
 class CLIRunner:
     def __init__(self):
-        logger.info("初始化CLI运行器")
+        logger.debug("初始化CLI运行器")
         self.parser = ArgumentParser(
             description='SD Express Card 测试工具',
             add_help=False,  # 禁用默认的help选项
@@ -22,7 +22,7 @@ class CLIRunner:
         self.controller = SDController()
         self.card_ops = CardOperations()
         self.test_suite = TestSuite(self.card_ops)
-        logger.info("CLI运行器初始化完成")
+        logger.debug("CLI运行器初始化完成")
     
     def _setup_arguments(self):
         """设置命令行参数"""
@@ -31,7 +31,7 @@ class CLIRunner:
 SDExpressTester [选项]
 
 示例:
-  SDExpressTester --cli --run  # 按config.yaml配置运行测试
+  ./SDExpressTester.exe --cli --run  # 按config.yaml配置运行测试
 """
         
         basic = self.parser.add_argument_group('基本选项')
@@ -49,16 +49,19 @@ SDExpressTester [选项]
     def run(self):
         """运行CLI测试"""
         try:
-            # 如果没有参数，显示帮助信息
-            if len(sys.argv) == 1:
+            args = self.parser.parse_args()
+            logger.debug(f"CLI参数: {args}")
+            
+            # 只有--cli参数时显示帮助信息
+            if args.cli and not args.run:
                 self.parser.print_help()
                 return True
-                
-            args = self.parser.parse_args()
-            logger.info(f"CLI参数: {args}")
             
-            # 如果没有--cli参数且没有--run参数，返回False
-            if not (args.cli or args.run):
+            # 同时有--cli和--run参数时执行测试
+            if args.cli and args.run:
+                logger.info("开始执行CLI测试")
+            else:
+                logger.info("请使用--cli和--run参数运行测试")
                 return False
             
             # 检查控制器

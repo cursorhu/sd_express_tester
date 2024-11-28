@@ -18,7 +18,7 @@ class SDMode(Enum):
 
 class SDController:
     def __init__(self):
-        logger.info("初始化SD控制器")
+        logger.debug("初始化SD控制器")
         self.wmi = wmi.WMI()
         self.bayhub_vid = "VEN_1217"
         self.last_bayhub_info = None  # 保存历史的Bayhub控制器信息
