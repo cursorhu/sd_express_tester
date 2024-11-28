@@ -330,6 +330,9 @@ class MainWindow(QMainWindow):
         """开始测试"""
         logger.info("开始测试流程")
         try:
+            # 重置测试套件状态
+            self.test_suite = TestSuite(self.card_ops)
+
             self.test_btn.setEnabled(False)
             self.stop_btn.setEnabled(True)
             self.progress_bar.setVisible(True)
@@ -363,7 +366,7 @@ class MainWindow(QMainWindow):
             for i in range(loop_count if loop_enabled else 1):
                 if self.test_suite._stop_event.is_set():
                     logger.info("测试被用户停止，退出循环")
-                    return  # 直接返回，不执行finally中的_finish_test，_stop_test已经调用过了
+                    break
                 
                 if loop_enabled:
                     self.result_text.append(f"\n=== 第 {i+1}/{loop_count} 次测试 ===\n")
@@ -380,6 +383,7 @@ class MainWindow(QMainWindow):
             logger.error(f"测试过程出错: {str(e)}", exc_info=True)
             QMessageBox.critical(self, "错误", f"测试过程出错: {str(e)}")
             self.statusBar.showMessage("测试失败")
+            
         finally:
             self._finish_test()
     
@@ -395,9 +399,6 @@ class MainWindow(QMainWindow):
         
         self.statusBar.showMessage("测试已停止")
         self._finish_test()
-
-        # 重新初始化测试套件
-        self.test_suite = TestSuite(self.card_ops)
     
     def _finish_test(self):
         """完成测试（无论是正常完成还是被停止）"""
@@ -418,10 +419,7 @@ class MainWindow(QMainWindow):
             # 滚动到底部
             self.result_text.verticalScrollBar().setValue(
                 self.result_text.verticalScrollBar().maximum()
-            )
-            
-            # 重置测试套件状态
-            self.test_suite = TestSuite(self.card_ops)
+            ) 
             
         except Exception as e:
             logger.error(f"完成测试更新UI失败: {str(e)}", exc_info=True)
