@@ -333,31 +333,66 @@ class TestSuite:
         """基本读写测试"""
         try:
             test_dir = self._get_test_path()
+            # 确保测试目录存在
+            os.makedirs(test_dir, exist_ok=True)
+            
             test_file = os.path.join(test_dir, "basic_rw_test.bin")
             test_size = 1 * 1024 * 1024  # 1MB
             
             logger.info(f"开始基本读写测试，文件大小: {test_size/1024/1024}MB")
             
-            # 写测试
-            logger.debug("开始写入测试")
-            data = os.urandom(test_size)
-            with open(test_file, 'wb') as f:
-                f.write(data)
-                f.flush()
-                os.fsync(f.fileno())
-            
-            # 读测试
-            logger.debug("开始读取测试")
-            with open(test_file, 'rb') as f:
-                read_data = f.read()
-            
-            # 验证数据
-            if data == read_data:
-                logger.info("基本读写测试通过")
-                return True, "读写测试成功，数据验证通过"
-            else:
-                logger.error("数据验证失败")
-                return False, "数据验证失败"
+            # 使用Windows API进行文件操作，以获得更好的控制
+            try:
+                # 写测试
+                logger.debug("开始写入测试")
+                data = os.urandom(test_size)
+                
+                handle = win32file.CreateFile(
+                    test_file,
+                    win32file.GENERIC_WRITE,
+                    0,  # 不共享
+                    None,
+                    win32file.CREATE_ALWAYS,
+                    win32file.FILE_FLAG_WRITE_THROUGH,
+                    None
+                )
+                
+                try:
+                    win32file.WriteFile(handle, data)
+                finally:
+                    handle.Close()
+                
+                # 等待数据写入完成
+                time.sleep(0.1)
+                
+                # 读测试
+                logger.debug("开始读取测试")
+                handle = win32file.CreateFile(
+                    test_file,
+                    win32file.GENERIC_READ,
+                    win32file.FILE_SHARE_READ,
+                    None,
+                    win32file.OPEN_EXISTING,
+                    0,
+                    None
+                )
+                
+                try:
+                    _, read_data = win32file.ReadFile(handle, test_size)
+                finally:
+                    handle.Close()
+                
+                # 验证数据
+                if data == read_data:
+                    logger.info("基本读写测试通过")
+                    return True, "读写测试成功，数据验证通过"
+                else:
+                    logger.error("数据验证失败")
+                    return False, "数据验证失败"
+                    
+            except Exception as e:
+                logger.error(f"文件操作失败: {str(e)}")
+                return False, f"文件操作失败: {str(e)}"
                 
         except Exception as e:
             logger.error(f"基本读写测试失败: {str(e)}", exc_info=True)

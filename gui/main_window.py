@@ -361,16 +361,16 @@ class MainWindow(QMainWindow):
             
             # 执行循环测试
             for i in range(loop_count if loop_enabled else 1):
-                if self.test_suite._stop_event.is_set():  # 检查停止标志
+                if self.test_suite._stop_event.is_set():
                     logger.info("测试被用户停止，退出循环")
-                    break
+                    return  # 直接返回，不执行finally中的_finish_test，_stop_test已经调用过了
                 
                 if loop_enabled:
                     self.result_text.append(f"\n=== 第 {i+1}/{loop_count} 次测试 ===\n")
                     self.statusBar.showMessage(f"正在执行第 {i+1}/{loop_count} 次测试...")
                 
                 results = self.test_suite.run_tests(test_config)
-                if not results or self.test_suite._stop_event.is_set():  # 检查测试结果和停止标志
+                if not results:
                     break
             
             logger.info("测试完成")
@@ -395,6 +395,9 @@ class MainWindow(QMainWindow):
         
         self.statusBar.showMessage("测试已停止")
         self._finish_test()
+
+        # 重新初始化测试套件
+        self.test_suite = TestSuite(self.card_ops)
     
     def _finish_test(self):
         """完成测试（无论是正常完成还是被停止）"""
@@ -416,66 +419,66 @@ class MainWindow(QMainWindow):
             self.result_text.verticalScrollBar().setValue(
                 self.result_text.verticalScrollBar().maximum()
             )
+            
+            # 重置测试套件状态
+            self.test_suite = TestSuite(self.card_ops)
+            
         except Exception as e:
             logger.error(f"完成测试更新UI失败: {str(e)}", exc_info=True)
     
     def _generate_test_summary(self):
         """生成测试结果汇总"""
         try:
-            # 获取所有测试结果的文本
             text = self.result_text.toPlainText()
+            if not text:
+                return ""
             
-            # 检查是否被用户终止
-            if "测试已被用户停止" in text:
-                return "<br><span style='color: orange; font-weight: bold;'>测试结果: 测试终止</span>"
-            
-            # 检查是否是循环测试
-            is_loop_test = "=== 第" in text
-            
-            if is_loop_test:
-                # 统计每轮测试的结果
-                rounds = text.split("=== 第")  # 分割每轮测试
-                total_rounds = len(rounds) - 1  # 减去第一个空分割
+            # 检查是否为循环测试
+            if "=== 第 1/" in text:
+                # 循环测试的汇总
+                total_rounds = 0
                 passed_rounds = 0
                 failed_rounds = 0
                 
-                for round_text in rounds[1:]:  # 跳过第一个空分割
-                    # 检查这一轮的测试项
+                # 分析每轮测试结果
+                rounds = text.split("=== 第 ")[1:]
+                for round_text in rounds:
+                    if "/" not in round_text:
+                        continue
+                    
+                    total_rounds += 1
                     test_items = 0
                     failed_items = 0
-                    for line in round_text.split('\n'):
-                        if "控制器检测" in line or "基本读写" in line or \
-                           "性能测试" in line or "稳定性测试" in line:
+                    
+                    # 检查该轮测试中的所有测试项
+                    lines = round_text.split('\n')
+                    for line in lines:
+                        if any(test in line for test in ["控制器检测", "基本读写", "性能测试", "稳定性测试"]):
                             test_items += 1
-                            if "失败" in line:
+                            if "失败" in line or "错误" in line:  # 增加对"错误"的检查
                                 failed_items += 1
                     
-                    # 只有完成所有4个测试项才计入统计
-                    if test_items == 4:
-                        if failed_items > 0:
-                            failed_rounds += 1
-                        else:
-                            passed_rounds += 1
+                    # 只有完成所有测试项且全部通过才算通过
+                    if test_items == 4 and failed_items == 0:
+                        passed_rounds += 1
+                    else:
+                        failed_rounds += 1
                 
-                # 生成循环测试汇总信息
-                if passed_rounds + failed_rounds == 0:
+                # 生成汇总信息
+                if total_rounds == 0:
                     return "<br><span style='color: gray; font-weight: bold;'>测试结果: 无测试完成</span>"
-                elif failed_rounds > 0:
-                    return (f"<br><span style='color: red; font-weight: bold;'>"
-                           f"测试结果: 测试出错 (总计: {total_rounds}轮, 成功: {passed_rounds}轮, 失败: {failed_rounds}轮)"
-                           f"</span>")
                 else:
-                    return (f"<br><span style='color: green; font-weight: bold;'>"
-                           f"测试结果: 全部通过 (共 {passed_rounds}轮)"
-                           f"</span>")
+                    status_color = "green" if failed_rounds == 0 else "red"
+                    return (f"<br><span style='color: {status_color}; font-weight: bold;'>"
+                           f"测试结果: 完成{total_rounds}轮测试, "
+                           f"通过{passed_rounds}轮, 失败{failed_rounds}轮</span>")
             else:
-                # 单次测试的汇总
-                test_items = 0  # 测试项目总数
-                failed_items = 0  # 失败的测试项数
+                # 单次测试的汇总逻辑保持不变
+                test_items = 0
+                failed_items = 0
                 lines = text.split('\n')
                 for line in lines:
-                    if "控制器检测" in line or "基本读写" in line or \
-                           "性能测试" in line or "稳定性测试" in line:
+                    if any(test in line for test in ["控制器检测", "基本读写", "性能测试", "稳定性测试"]):
                         test_items += 1
                         if "失败" in line:
                             failed_items += 1
@@ -484,7 +487,7 @@ class MainWindow(QMainWindow):
                     return "<br><span style='color: gray; font-weight: bold;'>测试结果: 无测试完成</span>"
                 elif failed_items > 0:
                     return f"<br><span style='color: red; font-weight: bold;'>测试结果: 测试出错 (失败项: {failed_items}/{test_items})</span>"
-                elif test_items == 4:  # 确保所有4个测试项都通过
+                elif test_items == 4:
                     return "<br><span style='color: green; font-weight: bold;'>测试结果: 测试通过</span>"
                 else:
                     return "<br><span style='color: orange; font-weight: bold;'>测试结果: 测试未完成</span>"
@@ -612,7 +615,7 @@ class MainWindow(QMainWindow):
                 QMessageBox.warning(self, "错误", "未找到日志目录")
                 self.statusBar.showMessage("错误：未找到日志目录")
         except Exception as e:
-            logger.error(f"打开日志目录失败: {str(e)}")
+            logger.error(f"打开日���目录失败: {str(e)}")
             QMessageBox.critical(self, "错误", f"打开日志目录失败: {str(e)}")
             self.statusBar.showMessage("错误：打开日志目录失败")
     

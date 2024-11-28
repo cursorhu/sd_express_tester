@@ -14,6 +14,30 @@ class Config:
             cls._instance._load_config()
         return cls._instance
     
+    def _get_default_config_yaml(self):
+        """获取带注释的默认配置YAML文本"""
+        return '''# 测试配置
+test:
+  # 循环测试配置
+  loop:
+    enabled: false  # 是否启用循环测试 (true/false)
+    count: 1       # 循环次数 (1-100)
+
+  # 性能测试配置
+  performance:
+    total_size: 128  # 总数据大小(MB) (1-1024)
+    block_size: 1    # 块大小(MB) (1-64)
+    iterations: 3    # 平均次数 (1-10)
+
+# 界面配置
+ui:
+  always_on_top: true  # 窗口是否始终置顶 (true/false)
+
+# 日志配置
+logger:
+  level: INFO  # 日志级别: DEBUG, INFO, WARNING, ERROR, CRITICAL 
+'''
+    
     def _load_config(self):
         """加载配置文件"""
         try:
@@ -29,53 +53,22 @@ class Config:
                 # 更新日志级别
                 log_level = self.config.get('logger', {}).get('level', 'INFO')
                 update_log_level(log_level)
+                
             else:
                 # 使用默认配置
-                self.config = {
-                    'test': {
-                        'loop': {
-                            'enabled': True,
-                            'count': 3
-                        },
-                        'performance': {
-                            'total_size': 64,
-                            'block_size': 1,
-                            'iterations': 3
-                        }
-                    },
-                    'logger': {
-                        'level': 'INFO'
-                    }
-                }
+                self.config = yaml.safe_load(self._get_default_config_yaml())
                 logger.warning("未找到配置文件，使用默认配置")
                 
                 # 创建默认配置文件
                 try:
                     with open(config_file, 'w', encoding='utf-8') as f:
-                        yaml.dump(self.config, f, allow_unicode=True)
+                        f.write(self._get_default_config_yaml())
                     logger.info(f"已创建默认配置文件: {config_file}")
                 except Exception as e:
                     logger.warning(f"创建默认配置文件失败: {str(e)}")
                     
         except Exception as e:
             logger.error(f"加载配置文件失败: {str(e)}", exc_info=True)
-            # 使用默认配置
-            self.config = {
-                'test': {
-                    'loop': {
-                        'enabled': True,
-                        'count': 3
-                    },
-                    'performance': {
-                        'total_size': 64,
-                        'block_size': 1,
-                        'iterations': 3
-                    }
-                },
-                'logger': {
-                    'level': 'INFO'
-                }
-            }
     
     def get(self, key, default=None):
         """获取配置值"""
