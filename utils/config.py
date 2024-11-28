@@ -117,10 +117,17 @@ class Config:
         return True
     
     def get_config_path(self):
-        """获取当前使用的配置文件路径"""
-        exe_dir = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(os.path.dirname(__file__))
-        config_file = os.path.join(exe_dir, 'config.yaml')
-        return config_file if os.path.exists(config_file) else None
+        """获取配置文件路径"""
+        try:
+            if getattr(sys, 'frozen', False):
+                # 如果是打包后的exe
+                return os.path.join(os.path.dirname(sys.executable), 'config.yaml')
+            else:
+                # 如果是开发环境
+                return os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config.yaml')
+        except Exception as e:
+            logger.error(f"获取配置文件路径失败: {str(e)}", exc_info=True)
+            return None
 
 # 全局配置例
 config = Config() 

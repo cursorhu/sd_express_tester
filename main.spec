@@ -8,6 +8,7 @@ a = Analysis(
     binaries=[],
     datas=[
         ('sdexpresstester.ico', '.'),
+        ('config.yaml', '.')
     ],
     hiddenimports=[
         'gui',

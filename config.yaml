@@ -13,7 +13,7 @@ test:
 
 # 界面配置
 ui:
-  always_on_top: false  # 窗口是否始终置顶
+  always_on_top: true  # 窗口是否始终置顶
 
 # 日志配置
 logger:

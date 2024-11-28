@@ -1,10 +1,10 @@
 import sys
+import os
+import ctypes
 from PyQt5.QtWidgets import QApplication
 from gui.main_window import MainWindow
 from cli.cli_runner import CLIRunner
 from utils.logger import get_logger
-import os
-import ctypes
 
 # 获取主logger
 logger = get_logger()

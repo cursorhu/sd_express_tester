@@ -34,7 +34,7 @@ class AboutDialog(QDialog):
         icon_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'sdexpresstester.ico')
         if os.path.exists(icon_path):
             icon = QIcon(icon_path)
-            pixmap = icon.pixmap(64, 64)
+            pixmap = icon.pixmap(48, 48)
             icon_label.setPixmap(pixmap)
             icon_label.setAlignment(Qt.AlignCenter)
             layout.addWidget(icon_label)
@@ -475,7 +475,7 @@ class MainWindow(QMainWindow):
                 lines = text.split('\n')
                 for line in lines:
                     if "控制器检测" in line or "基本读写" in line or \
-                       "性能测试" in line or "稳定性测试" in line:
+                           "性能测试" in line or "稳定性测试" in line:
                         test_items += 1
                         if "失败" in line:
                             failed_items += 1

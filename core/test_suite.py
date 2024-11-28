@@ -216,12 +216,12 @@ class TestSuite:
                             None
                         )
                         
-                        start_time = time.time()
+                        start_time = time.perf_counter()
                         for offset in range(0, len(data), block_size):
                             block = data[offset:offset + block_size]
                             win32file.WriteFile(handle, block)
                             
-                        write_time = time.time() - start_time
+                        write_time = time.perf_counter() - start_time
                         write_speed = size / write_time / (1024 * 1024)
                         total_write_speed += write_speed
                         
@@ -257,7 +257,8 @@ class TestSuite:
                         
                         buffer = win32file.AllocateReadBuffer(block_size)
                         bytes_read = 0
-                        start_time = time.time()
+                        start_time = time.perf_counter()
+                        
                         while bytes_read < size:
                             # 使用异步读取
                             result, _ = win32file.ReadFile(handle, buffer, overlapped)
@@ -268,7 +269,7 @@ class TestSuite:
                             overlapped.Offset += block_size  # 更新下一次读取的位置
                             bytes_read += block_size
                                 
-                        read_time = time.time() - start_time
+                        read_time = time.perf_counter() - start_time
                         read_speed = size / read_time / (1024 * 1024)
                         total_read_speed += read_speed
                         

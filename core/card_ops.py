@@ -321,15 +321,15 @@ class CardOperations:
                 logger.error("无法获取性能信息")
                 return "unknown"
             
-            max_speed = max(perf_info['read_speed'], perf_info['write_speed'])
+            max_speed = perf_info['read_speed']
             logger.debug(f"测得最大速度: {max_speed:.2f}MB/s")
             
-            # UHS-II 速度范围：FD156是150MB/s，HD312是312MB/s
-            if max_speed >= 150:  # UHS-II 最低速度阈值调整为 150MB/s
+            # UHS-II 速度范围：FD156是156MB/s，HD312是312MB/s
+            if max_speed >= 130:  # UHS-II 最低速度阈值调整为 130MB/s
                 logger.info(f"根据速度({max_speed:.2f}MB/s)判断为 SD 4.0 (UHS-II) 卡")
                 return "4.0"
             # UHS-I 速度范围：SDR50是50MB/s，SDR104是104MB/s
-            elif max_speed >= 30:  # UHS-I 速度范围在 30-104MB/s
+            elif max_speed >= 30:  # UHS-I 最低速度阈值调整为 30MB/s
                 logger.info(f"根据速度({max_speed:.2f}MB/s)判断为 SD 3.0 (UHS-I) 卡")
                 return "3.0"
             else:
@@ -338,8 +338,8 @@ class CardOperations:
                 
         except Exception as e:
             logger.error(f"SD卡模式检测失败: {str(e)}", exc_info=True)
-            return "3.0"  # 出错时返回较保守的估计
-    
+            return "unknown"  # 出错
+
     def _get_disk_performance(self, device_path):
         """获取磁盘性能特征"""
         try:
@@ -357,66 +357,51 @@ class CardOperations:
             if not drive_letter:
                 logger.error("无法获取驱动器盘符")
                 return None
+
+            # 等待磁盘活动结束
+            time.sleep(1)
             
             # 创建测试文件
             test_file = os.path.join(drive_letter, "speed_test.bin")
-            test_size = 4 * 1024 * 1024  # 4MB
+            test_size = 1 * 1024 * 1024  # 4MB
             block_size = 1024 * 1024  # 1MB
             
             try:
-                # 写入测试
-                handle = win32file.CreateFile(
-                    test_file,
-                    win32file.GENERIC_WRITE,
-                    0,  # 不共享
-                    None,
-                    win32file.CREATE_ALWAYS,
-                    win32file.FILE_FLAG_NO_BUFFERING | 
-                    win32file.FILE_FLAG_WRITE_THROUGH |
-                    win32file.FILE_FLAG_SEQUENTIAL_SCAN,
-                    None
-                )
+                # 先创建并写入测试文件
+                with open(test_file, 'wb') as f:
+                    f.write(os.urandom(test_size))
                 
-                data = os.urandom(test_size)
-                start_time = time.time()
+                # 执行读取测试
+                max_read_speed = 0
+                for _ in range(3):  # 测试3次取最大值
+                    handle = win32file.CreateFile(
+                        test_file,
+                        win32file.GENERIC_READ,
+                        win32file.FILE_SHARE_READ,  # 允许共享读取
+                        None,
+                        win32file.OPEN_EXISTING,
+                        win32file.FILE_FLAG_NO_BUFFERING | 
+                        win32file.FILE_FLAG_SEQUENTIAL_SCAN,
+                        None
+                    )
+                    
+                    # 使用高精度计时器，避免小数据计时误认为0
+                    start_time = time.perf_counter()  
+                    bytes_read = 0
+                    
+                    while bytes_read < test_size:
+                        win32file.ReadFile(handle, block_size)
+                        bytes_read += block_size
+                    
+                    read_time = time.perf_counter() - start_time
+                    read_speed = test_size / read_time / (1024 * 1024)  # MB/s
+                    max_read_speed = max(max_read_speed, read_speed)
+                    handle.Close()
+                    
+                    time.sleep(0.1)  # 每次测试间隔
                 
-                for offset in range(0, len(data), block_size):
-                    block = data[offset:offset + block_size]
-                    win32file.WriteFile(handle, block)
-                
-                write_time = time.time() - start_time
-                write_speed = test_size / write_time / (1024 * 1024)  # MB/s
-                handle.Close()
-                
-                # 读取测试
-                handle = win32file.CreateFile(
-                    test_file,
-                    win32file.GENERIC_READ,
-                    0,  # 不共享
-                    None,
-                    win32file.OPEN_EXISTING,
-                    win32file.FILE_FLAG_NO_BUFFERING | 
-                    win32file.FILE_FLAG_SEQUENTIAL_SCAN,
-                    None
-                )
-                
-                start_time = time.time()
-                bytes_read = 0
-                
-                while bytes_read < test_size:
-                    win32file.ReadFile(handle, block_size)
-                    bytes_read += block_size
-                
-                read_time = time.time() - start_time
-                read_speed = test_size / read_time / (1024 * 1024)  # MB/s
-                handle.Close()
-                
-                logger.debug(f"性能测试结果: 读取={read_speed:.1f}MB/s, 写入={write_speed:.1f}MB/s")
-                
-                return {
-                    'read_speed': read_speed,
-                    'write_speed': write_speed
-                }
+                logger.debug(f"性能测试结果: 读取={max_read_speed:.1f}MB/s")
+                return {'read_speed': max_read_speed}
                 
             finally:
                 # 清理测试文件
@@ -425,7 +410,7 @@ class CardOperations:
                         os.remove(test_file)
                     except:
                         pass
-            
+        
         except Exception as e:
             logger.error(f"获取磁盘性能特征失败: {str(e)}", exc_info=True)
             return None
@@ -461,7 +446,6 @@ class CardOperations:
         try:
             drives = []
             bitmask = win32api.GetLogicalDrives()
-            logger.debug(f"���取到驱动器���图: {bin(bitmask)}")
             
             # 使用WMI查询所有磁盘信息
             wmi = win32com.client.GetObject("winmgmts:")
@@ -517,3 +501,30 @@ class CardOperations:
         except Exception as e:
             logger.error(f"NVMe驱动器检查失败: {str(e)}", exc_info=True)
             return False
+    
+    def wait_for_card(self, timeout=300):
+        """等待SD卡插入
+        Args:
+            timeout: 超时时间(秒)
+        Returns:
+            CardInfo: 检测到的SD卡信息，如果超时返回None
+        """
+        try:
+            logger.info(f"等待SD卡插入，超时时间: {timeout}秒")
+            start_time = time.time()
+            
+            while time.time() - start_time < timeout:
+                card_info = self.check_card()
+                if card_info:
+                    logger.info(f"检测到SD卡: {card_info}")
+                    return card_info
+                
+                # 每秒检查一次
+                time.sleep(1)
+            
+            logger.warning("等待SD卡超时")
+            return None
+            
+        except Exception as e:
+            logger.error(f"等待SD卡时出错: {str(e)}", exc_info=True)
+            return None

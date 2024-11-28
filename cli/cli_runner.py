@@ -1,4 +1,4 @@
-from argparse import ArgumentParser, SUPPRESS
+from argparse import ArgumentParser, RawTextHelpFormatter, SUPPRESS
 from pathlib import Path
 from core.controller import SDController
 from core.card_ops import CardOperations
@@ -16,7 +16,7 @@ class CLIRunner:
         self.parser = ArgumentParser(
             description='SD Express Card 测试工具',
             add_help=False,  # 禁用默认的help选项
-            formatter_class=argparse.RawTextHelpFormatter  # 保持帮助信息的格式
+            formatter_class=RawTextHelpFormatter  # 保持帮助信息的格式
         )
         self._setup_arguments()
         self.controller = SDController()
