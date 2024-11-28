@@ -383,7 +383,7 @@ class MainWindow(QMainWindow):
             logger.error(f"测试过程出错: {str(e)}", exc_info=True)
             QMessageBox.critical(self, "错误", f"测试过程出错: {str(e)}")
             self.statusBar.showMessage("测试失败")
-            
+
         finally:
             self._finish_test()
     
@@ -394,7 +394,7 @@ class MainWindow(QMainWindow):
         
         # 添加停止信息，但不添加汇总
         self.result_text.insertHtml(
-            "<br><span style='color: red;'>测试已被用户停止</span><br>"
+            "<br><span style='color: orange;'>测试已被用户停止</span><br>"
         )
         
         self.statusBar.showMessage("测试已停止")

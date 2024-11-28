@@ -107,7 +107,10 @@ class TestSuite:
                     # 更新状态
                     if 'status_callback' in config:
                         config['status_callback'](f"正在执行测试: {test_case.name}")
-                    
+                    # 处理界面事件循环，及时更新状态栏
+                    if 'event_loop' in config:
+                        config['event_loop'].processEvents()
+
                     logger.info(f"执行测试用例: {test_case.name}")
                     test_case.passed, test_case.details = test_case.func(config)
                     
@@ -128,13 +131,13 @@ class TestSuite:
                     # 调用结果回调
                     if 'result_callback' in config:
                         config['result_callback'](result)
+
+                    logger.info(f"测试用例 {test_case.name} 完成: {'通过' if test_case.passed else '失败'}")                    
                     
-                    logger.info(f"测试用例 {test_case.name} 完成: {'通过' if test_case.passed else '失败'}")
-                    
-                    # 处理事件循环，避免界面卡死
+                    # 处理界面事件循环，避免界面卡死
                     if 'event_loop' in config:
                         config['event_loop'].processEvents()
-                    
+
                 except Exception as e:
                     logger.error(f"测试用例 {test_case.name} 执行出错: {str(e)}", exc_info=True)
                     result = {
@@ -191,8 +194,6 @@ class TestSuite:
                 
                 msg = f"开始 {size/1024/1024}MB 性能测试"
                 logger.info(msg)
-                if 'status_callback' in config:
-                    config['status_callback'](msg)
                 
                 for i in range(iterations):
                     if self._stop_event.is_set():
@@ -230,9 +231,6 @@ class TestSuite:
                             handle.Close()
                     
                     # 等待一段时间确保数据写入
-                    msg = "等待数据写入..."
-                    if 'status_callback' in config:
-                        config['status_callback'](msg)
                     time.sleep(1)
                     
                     # 读速度测试
@@ -279,9 +277,12 @@ class TestSuite:
                     
                     msg = f"第 {i+1} 次测试: 读取={read_speed:.2f}MB/s, 写入={write_speed:.2f}MB/s"
                     logger.debug(msg)
+                    # 更新状态栏
                     if 'status_callback' in config:
                         config['status_callback'](msg)
-                
+                    if 'event_loop' in config:
+                        config['event_loop'].processEvents()
+                        
                 # 计算平均速度
                 avg_write_speed = total_write_speed / iterations
                 avg_read_speed = total_read_speed / iterations

@@ -83,11 +83,19 @@ SDExpressTester [选项]
             logger.info(f"检测到SD卡: {card_info}")
             print(f"检测到SD卡: {card_info}")
             
+            # 获取循环测试配置
+            loop_enabled = config.get('test.loop.enabled', False)
+            loop_count = config.get('test.loop.count', 1)
+            
             # 使用配置文件中的设置
             test_config = {
-                'mode': 'all',  # 自动检测模式
-                'type': 'quick',  # 默认快速测试
-                'config': config  # 传递配置对象
+                'mode': 'all',
+                'type': 'quick',
+                'timeout': 300,
+                'config': config,  # 传递完整的配置对象
+                'progress_callback': self._update_progress,
+                'result_callback': self._show_result,
+                'status_callback': self._update_status
             }
             
             # 设置输出文件
@@ -96,15 +104,27 @@ SDExpressTester [选项]
             
             try:
                 logger.info(f"开始测试，配置: {test_config}")
-                results = self.test_suite.run_tests(test_config)
+                # 初始化结果列表
+                all_results = []
+
+                # 执行循环测试
+                for i in range(loop_count if loop_enabled else 1):
+                    if loop_enabled:
+                        print(f"\n=== 第 {i+1}/{loop_count} 次测试 ===")
+                        logger.info(f"开始第 {i+1}/{loop_count} 次测试")
+                    
+                    results = self.test_suite.run_tests(test_config)
+                    if not results: break
+                    all_results.append(results)
                 
                 # 生成报告
-                self._generate_report(results, output_path)
+                self._generate_report(all_results if loop_enabled else results, output_path)
                 logger.info(f"测试报告已保存至: {output_path}")
                 print(f"测试报告已保存至: {output_path}")
                 
                 logger.info("测试完成")
                 return True
+                
             except Exception as e:
                 logger.error(f"测试过程出错: {str(e)}", exc_info=True)
                 print(f"错误: 测试过程出错: {str(e)}")
@@ -115,19 +135,67 @@ SDExpressTester [选项]
             print(f"错误: {str(e)}")
             return False
     
-    def _generate_report(self, results, output_path):
+    def _generate_report(self, all_results, output_path):
         """生成测试报告"""
-        try:
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            logger.info(f"开始生成测试报告: {output_path}")
-            with open(output_path, 'w', encoding='utf-8') as f:
-                f.write(f"SD Express 测试报告 - {timestamp}\n")
-                f.write("-" * 50 + "\n")
-                for test_name, result in results.items():
-                    f.write(f"\n{test_name}:\n")
-                    f.write(f"状态: {'通过' if result['passed'] else '失败'}\n")
-                    f.write(f"详情: {result['details']}\n")
-            logger.info("测试报告生成完成")
-        except Exception as e:
-            logger.error(f"生成测试报告失败: {str(e)}", exc_info=True)
-            raise
+        with open(output_path, 'w', encoding='utf-8') as f:
+            # 写入报告头部
+            f.write("=== SD Express Card 测试报告 ===\n")
+            f.write(f"测试时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+            
+            # 写入配置信息
+            f.write("测试配置:\n")
+            f.write(f"- 循环测试: {'启用' if config.get('test.loop.enabled') else '禁用'}\n")
+            if config.get('test.loop.enabled'):
+                f.write(f"- 循环次数: {config.get('test.loop.count')}\n")
+            f.write(f"- 性能测试总大小: {config.get('test.performance.total_size')}MB\n")
+            f.write(f"- 性能测试块大小: {config.get('test.performance.block_size')}MB\n")
+            f.write(f"- 性能测试迭代次数: {config.get('test.performance.iterations')}\n\n")
+            
+            # 写入测试结果
+            if isinstance(all_results, list):  # 循环测试结果
+                total_rounds = len(all_results)
+                passed_rounds = sum(1 for results in all_results 
+                                  if all(r.get('passed', False) for r in results.values()))
+                failed_rounds = total_rounds - passed_rounds
+                
+                f.write(f"测试结果汇总:\n")
+                f.write(f"- 完成测试轮数: {total_rounds}\n")
+                f.write(f"- 通过轮数: {passed_rounds}\n")
+                f.write(f"- 失败轮数: {failed_rounds}\n\n")
+                
+                # 写入每轮测试的详细结果
+                for round_num, results in enumerate(all_results, 1):
+                    f.write(f"\n=== 第 {round_num}/{total_rounds} 轮测试 ===\n")
+                    self._write_test_details(f, results)
+                    
+            else:  # 单次测试结果
+                f.write("测试结果:\n")
+                self._write_test_details(f, all_results)
+
+    def _write_test_details(self, f, results):
+        """写入测试详情"""
+        for test_name, result in results.items():
+            status = "通过" if result['passed'] else "失败"
+            f.write(f"\n{test_name}: {status}\n")
+            # 处理多行详情
+            details = result['details'].split('\n')
+        for detail in details:
+                if detail.strip():
+                    f.write(f"  {detail}\n")
+
+    def _update_progress(self, value):
+        """更新进度"""
+        print(f"\r进度: {value}%", end="", flush=True)
+        if value == 100:
+            print()  # 完成时换行
+            
+    def _show_result(self, result):
+        """显示测试结果"""
+        for test_name, test_result in result.items():
+            status = "通过" if test_result['passed'] else "失败"
+            print(f"{test_name}: {status}")
+            print(f"详情: {test_result['details']}\n")
+            
+    def _update_status(self, message):
+        """更新状态"""
+        print(f"\r{message}", end="\n", flush=True)
