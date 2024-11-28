@@ -104,8 +104,6 @@ class CardOperations:
             # 如果需要完整检测，添加详细信息
             if full_check:
                 self._enhance_card_info(card_info)
-                # 根据卡的模式更新控制器能力,因为SD Express和SD 4.0/3.0的控制器能力不同
-                self.controller.check_compatibility(card_info.mode)
             else:
                 # 仅获取容量信息，不进行性能测试
                 card_info.capacity = self._get_drive_capacity(drive_letter)

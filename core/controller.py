@@ -30,41 +30,7 @@ class SDController:
             "DEV_8620": ["SD 3.0"],
             "DEV_8621": ["SD 3.0"]
         }
-        
-    def check_compatibility(self, card_mode=None):
-        """检查主机控制器兼容性"""
-        try:
-            # 获取控制器支持的所有模式
-            supported_modes = self._get_controller_capabilities()
-            current_mode = None
-            
-            # 如果提供了卡的模式，确定当前工作模式
-            if card_mode:
-                # 根据卡的模式确定控制器工作模式
-                if "8.0" in card_mode or "7.0" in card_mode:
-                    current_mode = "SD 7.0/8.0"
-                elif "4.0" in card_mode:
-                    current_mode = "SD 4.0"
-                elif "3.0" in card_mode:
-                    current_mode = "SD 3.0"
-                elif "2.0" in card_mode:
-                    current_mode = "SD 2.0"
-            
-            # 构建返回信息
-            if supported_modes:
-                info = f"控制器支持: {', '.join(supported_modes)}"
-                if current_mode:
-                    info += f"\n当前工作模式: {current_mode}"
-                logger.info(info)
-                return info
-            else:
-                logger.warning("未检测到支持的控制器")
-                return None
-                
-        except Exception as e:
-            logger.error(f"控制器兼容性检查失败: {str(e)}", exc_info=True)
-            return None
-            
+              
     def _get_controller_capabilities(self):
         """获取控制器支持的所有模式"""
         try:
@@ -92,6 +58,7 @@ class SDController:
                 # 检查是否是Bayhub控制器
                 if self.bayhub_vid in device_id:
                     current_bayhub_info = {
+                        'name': controller.Name,
                         'bus': bus_id,
                         'device': dev_id,
                         'device_id': device_id
@@ -103,10 +70,10 @@ class SDController:
                 # 检查是否是NVMe控制器
                 if "NVM" in controller.Name or "NVME" in device_id:
                     nvme_info = {
+                        'name': controller.Name,
                         'bus': bus_id,
                         'device': dev_id,
-                        'device_id': device_id,
-                        'name': controller.Name
+                        'device_id': device_id
                     }
                     logger.info(f"找到NVMe控制器: {controller.Name}")
             
@@ -114,7 +81,10 @@ class SDController:
             if current_bayhub_info:
                 for dev_id in self.controller_capabilities.keys():
                     if dev_id in current_bayhub_info['device_id']:
-                        return self.controller_capabilities[dev_id]
+                        return {
+                            'name': current_bayhub_info['name'],
+                            'capabilities': self.controller_capabilities[dev_id]
+                        }
             
             # 如果找到了NVMe控制器
             if nvme_info:
@@ -126,13 +96,18 @@ class SDController:
                         # 从历史信息中获取控制器能力
                         for dev_id in self.controller_capabilities.keys():
                             if dev_id in self.last_bayhub_info['device_id']:
-                                return self.controller_capabilities[dev_id]
+                                return {
+                                    'name': nvme_info['name'],
+                                    'capabilities': self.controller_capabilities[dev_id]
+                                }
                 
                 # 如果没有Bayhub控制器历史信息，说明初始状态是插入了SD Express卡
                 else:  
-                    logger.info("检测到SD Express NVMe控制器")
-                    # 直接返回完整能力集
-                    return ["SD Express"]
+                    logger.info("检测到标准SD Express NVMe控制器")
+                    return {
+                        'name': nvme_info['name'],
+                        'capabilities': ["SD Express"]
+                    }
             
             logger.warning("未检测到支持的控制器")
             return None

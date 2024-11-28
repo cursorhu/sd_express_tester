@@ -261,7 +261,7 @@ class MainWindow(QMainWindow):
     def _check_card_status(self):
         """检查SD卡状态"""
         try:
-            card_info = self.card_ops.check_card()  # 移除 quick_mode 参数
+            card_info = self.card_ops.check_card()
             
             # 更新卡名称显示
             if not card_info:
@@ -287,7 +287,21 @@ class MainWindow(QMainWindow):
             # 更新卡能力显示
             self.card_capability.setText("卡能力: " + (", ".join(capability_info) if capability_info else "未知"))
             self.card_capability.setStyleSheet("color: green" if capability_info else "color: red")
-            
+
+            # 更新控制器信息，因为SD Express和SD 4.0/3.0的控制器能力不同
+            controller_info = self.controller._get_controller_capabilities()
+            if controller_info:
+                # 分别更新控制器名称和能力
+                self.controller_name.setText(f"控制器: {controller_info['name']}")
+                self.controller_name.setStyleSheet("color: green")
+                self.controller_capability.setText(f"控制器能力: {', '.join(controller_info['capabilities'])}")
+                self.controller_capability.setStyleSheet("color: green")
+            else:
+                self.controller_name.setText("控制器: 未检测到支持的控制器")
+                self.controller_name.setStyleSheet("color: red")
+                self.controller_capability.setText("控制器能力: 未知")
+                self.controller_capability.setStyleSheet("color: red")
+
             # 启用测试按钮
             self.test_btn.setEnabled(True)
             self.statusBar.showMessage("SD卡已就绪")
@@ -298,6 +312,10 @@ class MainWindow(QMainWindow):
             self.card_name.setStyleSheet("color: red")
             self.card_capability.setText("卡能力: 检查失败")
             self.card_capability.setStyleSheet("color: red")
+            self.controller_name.setText("控制器: 检查失败")
+            self.controller_name.setStyleSheet("color: red")
+            self.controller_capability.setText("控制器能力: 检查失败")
+            self.controller_capability.setStyleSheet("color: red")
             self.test_btn.setEnabled(False)
     
     def _perform_full_check(self):

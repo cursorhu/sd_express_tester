@@ -65,14 +65,14 @@ SDExpressTester [选项]
                 return False
             
             # 检查控制器
-            compatibility = self.controller.check_compatibility()
-            if not compatibility:
+            controller_info = self.controller._get_controller_capabilities()
+            if not controller_info:
                 logger.error("主机控制器不兼容")
                 print("错误: 主机控制器不兼容")
                 return False
             else:
-                logger.info(f"控制器兼容性: {compatibility}")
-                print(f"控制器兼容性: {compatibility}")
+                logger.info(f"控制器兼容性: {controller_info}")
+                print(f"控制器兼容性: {controller_info}")
             
             # 等待并检测SD卡
             print("请插入SD卡...")
