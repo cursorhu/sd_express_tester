@@ -20,41 +20,40 @@ SD Express Tester是SD Express卡的测试软件，同时向下兼容SD 4.0, SD 
 
 ### 系统要求
 - Windows 10/11
-- SD Express卡控制器（O2Micro/Bayhub系列控制器）
+- SD Express卡控制器（O2Micro/BayHub系列控制器）
 
 ### GUI模式使用说明
-1. 运行`SDExpressTester.exe`
-2. 等待程序自动检测SD卡
 
+![gui-image](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202411291721560.png)
+
+1. 运行`SDExpressTester.exe`
+2. 程序自动检测SD卡和SD/NVMe控制器
 3. 界面说明：
- 
    - 系统状态：
      - 控制器：显示当前控制器型号
      - 控制器能力：显示当前控制器支持的SD卡模式
      - 卡名称：显示当前检测到的SD卡型号
      - 卡能力：显示SD卡支持的速度模式
-   
+
    - 控制按钮：
      - 开始测试：开始执行测试套件
      - 停止测试：中断当前测试过程
      - 配置文件：打开配置文件进行编辑
      - 日志文件：打开日志文件查看详细日志
      - 关于：显示软件版本和作者信息
-   
+
    - 进度显示：
      - 进度条：显示当前测试项的完成进度
      - 状态栏：显示当前测试项状态
-   
+
    - 结果区域：
      - 实时显示测试结果和详细信息
      - 显示测试汇总信息
-
 4. 测试流程：
    - 插入SD卡后自动检测
    - 点击"开始测试"启动测试
    - 测试过程中可随时停止
    - 测试完成后自动生成报告
-
 5. 配置说明：
    - 循环测试：
      - 在config.yaml中设置enabled为true/false
@@ -67,15 +66,15 @@ SD Express Tester是SD Express卡的测试软件，同时向下兼容SD 4.0, SD 
    
    - 界面设置：
      - always_on_top：窗口是否置顶
-    
+   
    - 日志设置：
      - level：日志级别
 
 ### CLI模式使用说明
 1. 命令行运行：
 ```bash
-SDExpressTester.exe --cli --run # 使用配置文件运行测试
-SDExpressTester.exe --cli --help # 显示帮助信息
+./SDExpressTester.exe --cli --run # 使用配置文件运行测试
+./SDExpressTester.exe --cli --help # 显示帮助信息
 ```
 2. 测试过程：
    - 自动检测SD卡
@@ -230,4 +229,4 @@ pyinstaller main.spec --clean
    - 向下兼容传统SD模式
    
 ## 许可证
-MIT License
+GPLv3
