@@ -91,20 +91,18 @@ class MainWindow(QMainWindow):
         
         # 延迟初始化核心组件和检测
         QTimer.singleShot(100, self._init_components)
-        
-        self._last_card_state = None
-        self._full_check_required = False  # 新增标志
     
     def _init_components(self):
         """延迟初始化核心组件"""
         try:
             self.controller = SDController()
-            self.card_ops = CardOperations()
+            # 传递控制器对象给CardOperations，否则无法通过CardOperations更新控制器信息
+            self.card_ops = CardOperations(controller=self.controller)
             self.test_suite = TestSuite(self.card_ops)
             logger.info("核心组件初始化完成")
             
             # 开始检测
-            self._check_controller()
+            self._check_controller_status()
             self._check_card_status()
             
             # 添加定时器,每秒检查一次卡状态
@@ -224,46 +222,44 @@ class MainWindow(QMainWindow):
         # 添加状态栏
         self.statusBar = self.statusBar()
         self.statusBar.showMessage("就绪")
-    
-    def _check_controller(self):
+
+    def _check_controller_status(self):
+        """检查SD控制器状态"""
         try:
-            controller_info = self.controller.get_controller_info()
-            if controller_info:
-                # 显示控制器名称
-                self.controller_name.setText(f"控制器: {controller_info['name']}")
-                self.controller_name.setStyleSheet("color: green")
-                
-                # 显示控制器能力
-                if controller_info['capabilities']:
-                    self.controller_capability.setText(
-                        f"控制器能力: {', '.join(controller_info['capabilities'])}")
-                    self.controller_capability.setStyleSheet("color: green")
-                    self.test_btn.setEnabled(True)
-                else:
-                    self.controller_capability.setText("控制器能力: 不支持")
-                    self.controller_capability.setStyleSheet("color: red")
-                    self.test_btn.setEnabled(False)
-            else:
+            controller_info = self.controller._controller_info()
+            if not controller_info:
                 self.controller_name.setText("控制器: 未检测到支持的控制器")
                 self.controller_name.setStyleSheet("color: red")
                 self.controller_capability.setText("控制器能力: 未知")
                 self.controller_capability.setStyleSheet("color: red")
                 self.test_btn.setEnabled(False)
-                
+                return
+            
+            # 更新控制器名称和能力
+            self.controller_name.setText(f"控制器: {controller_info['name']}")
+            self.controller_name.setStyleSheet("color: green")
+            self.controller_capability.setText(f"控制器能力: {', '.join(controller_info['capabilities'])}")
+            self.controller_capability.setStyleSheet("color: green")
+            
         except Exception as e:
-            logger.error(f"控制器检查失败: {str(e)}", exc_info=True)
+            logger.error(f"控制器状态检查失败: {str(e)}", exc_info=True)
             self.controller_name.setText("控制器: 检查失败")
             self.controller_name.setStyleSheet("color: red")
             self.controller_capability.setText("控制器能力: 检查失败")
             self.controller_capability.setStyleSheet("color: red")
             self.test_btn.setEnabled(False)
-    
+
     def _check_card_status(self):
         """检查SD卡状态"""
         try:
+            # 检查SD卡信息
             card_info = self.card_ops.check_card()
-            
-            # 更新卡名称显示
+
+            # 检查控制器信息，有两种情况需要检查控制器信息
+            # 1. 初始状态没有插入卡，控制器是平台其他的NVMe SSD.
+            # 2. 插入SD卡后，控制器从NVMe SD Express切换为SD 4.0/3.0
+            self._check_controller_status()
+
             if not card_info:
                 self.card_name.setText("SD卡: 未检测到卡")
                 self.card_name.setStyleSheet("color: red")
@@ -274,7 +270,7 @@ class MainWindow(QMainWindow):
                 return
 
             # 更新卡名称和能力信息
-            self.card_name.setText(f"SD卡: {card_info.name or '未知'}")
+            self.card_name.setText(f"SD卡: {card_info.name}")
             self.card_name.setStyleSheet("color: green")
             
             # 构建卡能力信息
@@ -285,22 +281,8 @@ class MainWindow(QMainWindow):
                 capability_info.append(f"容量: {card_info.capacity/1024/1024/1024:.1f}GB")
             
             # 更新卡能力显示
-            self.card_capability.setText("卡能力: " + (", ".join(capability_info) if capability_info else "未知"))
-            self.card_capability.setStyleSheet("color: green" if capability_info else "color: red")
-
-            # 更新控制器信息，因为SD Express和SD 4.0/3.0的控制器能力不同
-            controller_info = self.controller._get_controller_capabilities()
-            if controller_info:
-                # 分别更新控制器名称和能力
-                self.controller_name.setText(f"控制器: {controller_info['name']}")
-                self.controller_name.setStyleSheet("color: green")
-                self.controller_capability.setText(f"控制器能力: {', '.join(controller_info['capabilities'])}")
-                self.controller_capability.setStyleSheet("color: green")
-            else:
-                self.controller_name.setText("控制器: 未检测到支持的控制器")
-                self.controller_name.setStyleSheet("color: red")
-                self.controller_capability.setText("控制器能力: 未知")
-                self.controller_capability.setStyleSheet("color: red")
+            self.card_capability.setText("卡能力: " + ", ".join(capability_info))
+            self.card_capability.setStyleSheet("color: green")
 
             # 启用测试按钮
             self.test_btn.setEnabled(True)
@@ -312,39 +294,8 @@ class MainWindow(QMainWindow):
             self.card_name.setStyleSheet("color: red")
             self.card_capability.setText("卡能力: 检查失败")
             self.card_capability.setStyleSheet("color: red")
-            self.controller_name.setText("控制器: 检查失败")
-            self.controller_name.setStyleSheet("color: red")
-            self.controller_capability.setText("控制器能力: 检查失败")
-            self.controller_capability.setStyleSheet("color: red")
             self.test_btn.setEnabled(False)
-    
-    def _perform_full_check(self):
-        """执行完整的卡检测"""
-        try:
-            if not self._full_check_required:
-                return
-                
-            card_info = self.card_ops.check_card(full_check=True)
-            if card_info:
-                self.card_name.setText(f"SD卡: {card_info.name}")
-                self.card_name.setStyleSheet("color: green")
-                
-                capability_info = []
-                if card_info.mode:
-                    capability_info.append(f"模式: {card_info.mode}")
-                if card_info.capacity:
-                    capability_info.append(f"容量: {card_info.capacity/1024/1024/1024:.1f}GB")
-                
-                self.card_capability.setText("卡能力: " + ", ".join(capability_info))
-                self.card_capability.setStyleSheet("color: green")
-                self.test_btn.setEnabled(True)
-                self.statusBar.showMessage("检测到SD卡插入")
-            
-            self._full_check_required = False
-            
-        except Exception as e:
-            logger.error(f"完整卡检测失败: {str(e)}", exc_info=True)
-    
+ 
     def _start_test(self):
         """开始测试"""
         logger.info("开始测试流程")

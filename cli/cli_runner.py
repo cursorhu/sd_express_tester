@@ -20,7 +20,7 @@ class CLIRunner:
         )
         self._setup_arguments()
         self.controller = SDController()
-        self.card_ops = CardOperations()
+        self.card_ops = CardOperations(controller=self.controller)
         self.test_suite = TestSuite(self.card_ops)
         logger.debug("CLI运行器初始化完成")
     
@@ -65,11 +65,13 @@ SDExpressTester [选项]
                 return False
             
             # 检查控制器
-            controller_info = self.controller._get_controller_capabilities()
+            controller_info = self.controller._controller_info()
+            # 如果运行工具时SD Express已处于NVMe模式，是无法确定控制器兼容性的
+            # 所以这里不退出，而是提示用户
             if not controller_info:
-                logger.error("主机控制器不兼容")
-                print("错误: 主机控制器不兼容")
-                return False
+                logger.info("SD控制器可能不兼容或已处于NVMe模式")
+                print("INFO: SD控制器可能不兼容或已处于NVMe模式")
+                # return False
             else:
                 logger.info(f"控制器兼容性: {controller_info}")
                 print(f"控制器兼容性: {controller_info}")
@@ -106,7 +108,7 @@ SDExpressTester [选项]
             output_path = Path(f"test_report_{timestamp}.txt")
             
             try:
-                logger.info(f"开始测试，配置: {test_config}")
+                logger.info(f"开始测试...")
                 # 初始化结果列表
                 all_results = []
 

@@ -17,27 +17,10 @@ class CardInfo:
         self.drive_letter = None
         self.capacity = 0  # 默认值为0
         self.name = None   # 添加卡名称属性
-        
-    def __str__(self):
-        """返回卡信息的字符串表示"""
-        try:
-            if self.capacity is None or self.capacity == 0:
-                capacity_str = "未知"
-            else:
-                capacity_str = f"{self.capacity/1024/1024/1024:.1f}GB"
-            
-            name_str = self.name if self.name else "未知"
-            
-            return f"SD卡 ({name_str}, 模式:{self.mode or '未知'}, " \
-                   f"类型:{self.controller_type.value if self.controller_type else '未知'}, " \
-                   f"容量:{capacity_str})"
-        except Exception as e:
-            logger.error(f"格式化卡信息时出错: {str(e)}", exc_info=True)
-            return "SD卡信息格式化错误"
-
+ 
 class CardOperations:
-    def __init__(self):
-        self.controller = SDController()
+    def __init__(self, controller=None):
+        self.controller = controller
         self.timeout = 30
         self._last_card_info = None
     
@@ -49,10 +32,9 @@ class CardOperations:
             CardInfo: 找到的第一个有效SD卡信息，如果没有找到则返回None
         """
         try:
-            # 获取所有可移动驱动器
-            drives = self._get_removable_drives()
+            # 获取所有Disk驱动器(包括SD卡和USB设备，NVMe SD Express等等)
+            drives = self._get_drives()
             if not drives:
-                self._last_card_info = None
                 return None
 
             # 遍历所有驱动器，寻找有效的SD卡
@@ -60,12 +42,14 @@ class CardOperations:
                 # 基本检测
                 card_info = self._analyze_drive(drive_letter, full_check=False)
                 if card_info:  # 找到有效的SD卡
+                    # 更新控制器中的卡信息
+                    self.controller.update_card_info(card_info)
                     # 检查是否需要执行完整检测
                     if not quick_mode or self._is_card_changed(card_info):
-                        detailed_info = self._analyze_drive(drive_letter, full_check=True)
-                        if detailed_info:
-                            self._last_card_info = detailed_info
-                            return detailed_info
+                        detailed_card_info = self._analyze_drive(drive_letter, full_check=True)
+                        if detailed_card_info:
+                            self._last_card_info = detailed_card_info
+                            return detailed_card_info
                     else:
                         # 使用上次的性能信息
                         if self._last_card_info and self._last_card_info.device_path == card_info.device_path:
@@ -76,6 +60,10 @@ class CardOperations:
                     return card_info
 
             # 未找到有效的SD卡
+            if self._last_card_info:
+                logger.info("检测到SD卡被拔出")
+                self.controller.update_card_info(None)
+
             self._last_card_info = None
             return None
 
@@ -191,13 +179,13 @@ class CardOperations:
                     if ("NVM" in disk.Model or 
                         "NVM" in disk.Caption or 
                         "NVMe" in disk.PNPDeviceID):
-                        # 进一步检查是否为SD Express卡
+                        # 检查NVMe设备是否为SD Express卡
                         if self._is_sd_express(disk):
                             card_info.controller_type = ControllerType.NVME
                             card_info.is_sd_express = True
                             return card_info
                         else:
-                            # 是普通NVMe SSD，返回None
+                            # 是NVMe SSD硬盘
                             return None
 
                     # 检测是否为传统SD卡(排除USB设备)
@@ -258,6 +246,7 @@ class CardOperations:
     
     def _is_card_changed(self, new_card_info):
         """检查卡信息是否发生变化"""
+        # 如果上次卡信息为空，则认为是新卡
         if not self._last_card_info:
             return True
             
@@ -439,7 +428,7 @@ class CardOperations:
             
             return 0
     
-    def _get_removable_drives(self):
+    def _get_drives(self):
         """获取所有可能的SD卡驱动器（包括可移动驱动器和NVMe驱动器）"""
         try:
             drives = []
@@ -456,13 +445,18 @@ class CardOperations:
                     logger.debug(f"检查驱动器 {drive_letter}, 类型: {drive_type}")
                     
                     # 检查是否可移动驱动器或NVMe驱动器
-                    is_removable = (drive_type == win32file.DRIVE_REMOVABLE)
-                    is_nvme = self._is_nvme_drive(drive_letter, physical_disks)
+                    # is_removable = (drive_type == win32file.DRIVE_REMOVABLE)
+                    # is_nvme = self._is_nvme_drive(drive_letter, physical_disks)
                     
-                    if is_removable or is_nvme:
-                        logger.debug(f"找到潜在的SD卡驱动器: {drive_letter} "
-                                   f"({'可移动' if is_removable else 'NVMe'})")
-                        drives.append(drive_letter)
+                    # if is_removable or is_nvme:
+                    #     logger.debug(f"找到潜在的SD卡驱动器: {drive_letter} "
+                    #                f"({'可移动' if is_removable else 'NVMe'})")
+                    #     drives.append(drive_letter)
+
+                    # NVMe SD Express卡不是Removable，不好和NVMe SSD区分
+                    # 所以这里直接把所有Disk驱动器都返回，在_analyze_drive中分析
+                    logger.debug(f"找到Disk驱动器: {drive_letter} ")
+                    drives.append(drive_letter)
             
             logger.debug(f"扫描完成,找到驱动器: {drives}")
             return drives
@@ -482,7 +476,7 @@ class CardOperations:
             # 在物理磁盘列表中查找
             for disk in physical_disks.values():
                 if disk.DeviceID == device_path:
-                    # 检查是否为NVMe设备
+                    # 检查是否包含NVMe关键字
                     is_nvme = ("NVM" in disk.Model or  # 检查型号
                               "NVM" in disk.Caption or  # 检查标题
                               "NVMe" in disk.PNPDeviceID)  # 检查PNP设备ID
