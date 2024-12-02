@@ -5,202 +5,200 @@ from core.card_ops import CardOperations
 from core.test_suite import TestSuite
 from utils.logger import get_logger
 from utils.config import config
-import sys
 from datetime import datetime
 
 logger = get_logger(__name__)
 
 class CLIRunner:
     def __init__(self):
-        logger.debug("初始化CLI运行器")
+        logger.debug("Initializing CLI runner")
         self.parser = ArgumentParser(
-            description='SD Express Card 测试工具',
-            add_help=False,  # 禁用默认的help选项
-            formatter_class=RawTextHelpFormatter  # 保持帮助信息的格式
+            description='SD Express Card Test Tool',
+            add_help=False,  # Disable default help option
+            formatter_class=RawTextHelpFormatter  # Keep help message format
         )
         self._setup_arguments()
         self.controller = SDController()
         self.card_ops = CardOperations(controller=self.controller)
         self.test_suite = TestSuite(self.card_ops)
-        logger.debug("CLI运行器初始化完成")
+        logger.debug("CLI runner initialization complete")
     
     def _setup_arguments(self):
-        """设置命令行参数"""
-        # 添加程序描述
+        """Setup command line arguments"""
+        # Add program description
         self.parser.usage = """
-SDExpressTester [选项]
+SDExpressTester [options]
 
-示例:
-  ./SDExpressTester.exe --cli --run  # 按config.yaml配置运行测试
+Examples:
+  ./SDExpressTester.exe --cli --run  # Run test according to config.yaml
 """
         
-        basic = self.parser.add_argument_group('基本选项')
+        basic = self.parser.add_argument_group('Basic Options')
         basic.add_argument('-h', '--help', 
                           action='help', 
                           default=SUPPRESS,
-                          help='显示帮助信息并退出')
+                          help='Show help message and exit')
         basic.add_argument('--cli',
                           action='store_true',
-                          help='以命令行模式运行')
+                          help='Run in command line mode')
         basic.add_argument('--run',
                           action='store_true',
-                          help='使用config.yaml配置运行测试')
+                          help='Run test using config.yaml')
     
     def run(self):
-        """运行CLI测试"""
+        """Run CLI test"""
         try:
             args = self.parser.parse_args()
-            logger.debug(f"CLI参数: {args}")
+            logger.debug(f"CLI parameters: {args}")
             
-            # 只有--cli参数时显示帮助信息
+            # Show help info when only --cli parameter is present
             if args.cli and not args.run:
                 self.parser.print_help()
                 return True
             
-            # 同时有--cli和--run参数时执行测试
+            # Execute test when both --cli and --run parameters are present
             if args.cli and args.run:
-                logger.info("开始执行CLI测试")
+                logger.info("Starting CLI test")
             else:
-                logger.info("请使用--cli和--run参数运行测试")
+                logger.info("Please use --cli and --run parameters to run test")
                 return False
             
-            # 检查控制器
+            # Check controller
             controller_info = self.controller._controller_info()
-            # 如果运行工具时SD Express已处于NVMe模式，是无法确定控制器兼容性的
-            # 所以这里不退出，而是提示用户
+            # If SD Express is already in NVMe mode when running the tool, controller compatibility cannot be determined
+            # So here we don't exit, just notify user
             if not controller_info:
-                logger.info("SD控制器可能不兼容或已处于NVMe模式")
-                print("INFO: SD控制器可能不兼容或已处于NVMe模式")
+                logger.info("SD controller may be incompatible or already in NVMe mode")
+                print("INFO: SD controller may be incompatible or already in NVMe mode")
                 # return False
             else:
-                logger.info(f"控制器兼容性: {controller_info}")
-                print(f"控制器兼容性: {controller_info}")
+                logger.info(f"Controller compatibility: {controller_info}")
+                print(f"Controller compatibility: {controller_info}")
             
-            # 等待并检测SD卡
-            print("请插入SD卡...")
-            logger.info("等待SD卡插入...")
-            card_info = self.card_ops.wait_for_card(timeout=300)  # 使用默认超时时间
+            # Wait and detect SD card
+            print("Please insert SD card...")
+            logger.info("Waiting for SD card insertion...")
+            card_info = self.card_ops.wait_for_card(timeout=300)  # Use default timeout
             if not card_info:
-                logger.error("未检测到SD卡或等待超时")
-                print("错误: 未检测到SD卡或等待超时")
+                logger.error("No SD card detected or timeout")
+                print("Error: No SD card detected or timeout")
                 return False
                 
-            logger.info(f"检测到SD卡: {card_info}")
-            print(f"检测到SD卡: {card_info}")
+            logger.info(f"SD card detected: {card_info}")
+            print(f"SD card detected: {card_info}")
             
-            # 获取循环测试配置
+            # Get loop test configuration
             loop_enabled = config.get('test.loop.enabled', False)
             loop_count = config.get('test.loop.count', 1)
             
-            # 使用配置文件中的设置
+            # Use settings from config file
             test_config = {
                 'mode': 'all',
                 'type': 'quick',
                 'timeout': 300,
-                'config': config,  # 传递完整的配置对象
+                'config': config,  # Pass complete config object
                 'progress_callback': self._update_progress,
                 'result_callback': self._show_result,
                 'status_callback': self._update_status
             }
             
-            # 设置输出文件
+            # Set output file
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             output_path = Path(f"test_report_{timestamp}.txt")
             
             try:
-                logger.info(f"开始测试...")
-                # 初始化结果列表
+                logger.info("Starting test...")
+                # Initialize results list
                 all_results = []
 
-                # 执行循环测试
+                # Execute loop test
                 for i in range(loop_count if loop_enabled else 1):
                     if loop_enabled:
-                        print(f"\n=== 第 {i+1}/{loop_count} 次测试 ===")
-                        logger.info(f"开始第 {i+1}/{loop_count} 次测试")
+                        print(f"\n=== Test {i+1}/{loop_count} ===")
+                        logger.info(f"Starting test {i+1}/{loop_count}")
                     
                     results = self.test_suite.run_tests(test_config)
                     if not results: break
                     all_results.append(results)
                 
-                # 生成报告
+                # Generate report
                 self._generate_report(all_results if loop_enabled else results, output_path)
-                logger.info(f"测试报告已保存至: {output_path}")
-                print(f"测试报告已保存至: {output_path}")
+                logger.info(f"Test report saved to: {output_path}")
+                print(f"Test report saved to: {output_path}")
                 
-                logger.info("测试完成")
+                logger.info("Test completed")
                 return True
                 
             except Exception as e:
-                logger.error(f"测试过程出错: {str(e)}", exc_info=True)
-                print(f"错误: 测试过程出错: {str(e)}")
+                logger.error(f"Test process error: {str(e)}", exc_info=True)
+                print(f"Error: Test process error: {str(e)}")
                 return False
                 
         except Exception as e:
-            logger.error(f"CLI运行错误: {str(e)}", exc_info=True)
-            print(f"错误: {str(e)}")
+            logger.error(f"CLI run error: {str(e)}", exc_info=True)
+            print(f"Error: {str(e)}")
             return False
     
     def _generate_report(self, all_results, output_path):
-        """生成测试报告"""
+        """Generate test report"""
         with open(output_path, 'w', encoding='utf-8') as f:
-            # 写入报告头部
-            f.write("=== SD Express Tester 测试报告 ===\n")
-            f.write(f"测试时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+            # Write report header
+            f.write("=== SD Express Tester Test Report ===\n")
+            f.write(f"Test time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
             
-            # 写入配置信息
-            f.write("测试配置:\n")
-            f.write(f"- 循环测试: {'启用' if config.get('test.loop.enabled') else '禁用'}\n")
+            # Write configuration information
+            f.write("Test configuration:\n")
+            f.write(f"- Loop test: {'Enabled' if config.get('test.loop.enabled') else 'Disabled'}\n")
             if config.get('test.loop.enabled'):
-                f.write(f"- 循环次数: {config.get('test.loop.count')}\n")
-            f.write(f"- 性能测试总大小: {config.get('test.performance.total_size')}MB\n")
-            f.write(f"- 性能测试块大小: {config.get('test.performance.block_size')}MB\n")
-            f.write(f"- 性能测试迭代次数: {config.get('test.performance.iterations')}\n\n")
+                f.write(f"- Loop count: {config.get('test.loop.count')}\n")
+            f.write(f"- Total size of performance test: {config.get('test.performance.total_size')}MB\n")
+            f.write(f"- Performance test block size: {config.get('test.performance.block_size')}MB\n")
+            f.write(f"- Performance test iterations: {config.get('test.performance.iterations')}\n\n")
             
-            # 写入测试结果
-            if isinstance(all_results, list):  # 循环测试结果
+            # Write test results
+            if isinstance(all_results, list):  # Loop test results
                 total_rounds = len(all_results)
                 passed_rounds = sum(1 for results in all_results 
                                   if all(r.get('passed', False) for r in results.values()))
                 failed_rounds = total_rounds - passed_rounds
                 
-                f.write(f"测试结果汇总:\n")
-                f.write(f"- 完成测试轮数: {total_rounds}\n")
-                f.write(f"- 通过轮数: {passed_rounds}\n")
-                f.write(f"- 失败轮数: {failed_rounds}\n\n")
+                f.write(f"Test result summary:\n")
+                f.write(f"- Total number of test rounds: {total_rounds}\n")
+                f.write(f"- Passed rounds: {passed_rounds}\n")
+                f.write(f"- Failed rounds: {failed_rounds}\n\n")
                 
-                # 写入每轮测试的详细结果
+                # Write detailed results of each test round
                 for round_num, results in enumerate(all_results, 1):
-                    f.write(f"\n=== 第 {round_num}/{total_rounds} 轮测试 ===\n")
+                    f.write(f"\n=== Test round {round_num}/{total_rounds} ===\n")
                     self._write_test_details(f, results)
                     
-            else:  # 单次测试结果
-                f.write("测试结果:\n")
+            else:  # Single test result
+                f.write("Test result:\n")
                 self._write_test_details(f, all_results)
 
     def _write_test_details(self, f, results):
-        """写入测试详情"""
+        """Write test details"""
         for test_name, result in results.items():
-            status = "通过" if result['passed'] else "失败"
+            status = "Passed" if result['passed'] else "Failed"
             f.write(f"\n{test_name}: {status}\n")
-            # 处理多行详情
             details = result['details'].split('\n')
-        for detail in details:
+            for detail in details:
                 if detail.strip():
                     f.write(f"  {detail}\n")
 
     def _update_progress(self, value):
-        """更新进度"""
-        print(f"\r进度: {value}%", end="", flush=True)
+        """Show progress"""
+        print(f"\rProgress: {value}%", end="", flush=True)
         if value == 100:
-            print()  # 完成时换行
+            print()  # New line when complete
             
     def _show_result(self, result):
-        """显示测试结果"""
+        """Show test results"""
         for test_name, test_result in result.items():
-            status = "通过" if test_result['passed'] else "失败"
+            status = "Passed" if test_result['passed'] else "Failed"
             print(f"{test_name}: {status}")
-            print(f"详情: {test_result['details']}\n")
+            print(f"Details: {test_result['details']}\n")
             
     def _update_status(self, message):
-        """更新状态"""
+        """Update status"""
         print(f"\r{message}", end="\n", flush=True)

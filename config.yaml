@@ -1,20 +1,20 @@
-# 测试配置
+# Test Configuration
 test:
-  # 循环测试配置
+  # Loop test configuration
   loop:
-    enabled: false  # 是否启用循环测试
-    count: 1       # 循环次数
+    enabled: false  # Enable loop test
+    count: 1       # Loop count
 
-  # 性能测试配置
+  # Performance test configuration
   performance:
-    total_size: 128  # 总数据大小(MB)
-    block_size: 1    # 块大小(MB)
-    iterations: 3    # 平均次数
+    total_size: 128  # Total data size (MB)
+    block_size: 1    # Block size (MB)
+    iterations: 3    # Average times
 
-# 界面配置
+# UI Configuration
 ui:
-  always_on_top: true  # 窗口是否始终置顶
+  always_on_top: true  # Keep window always on top
 
-# 日志配置
+# Logger Configuration
 logger:
-  level: INFO  # 日志级别: DEBUG, INFO, WARNING, ERROR, CRITICAL 
+  level: INFO  # Log level: DEBUG, INFO, WARNING, ERROR, CRITICAL 

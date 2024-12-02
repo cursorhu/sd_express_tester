@@ -15,22 +15,22 @@ from pathlib import Path
 
 logger = get_logger(__name__)
 
-# 添加版本信息常量
+# Add version info constants
 VERSION = "1.0.0"
 BUILD_DATE = "2024-11"
 AUTHOR = "Thomas.Hu"
 CONTACT = "thomas.hu@o2micro.com"
 
-# 添加About对话框类
+# Add About dialog class
 class AboutDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setWindowTitle("关于")
+        self.setWindowTitle("About")
         self.setFixedSize(400, 200)
         
         layout = QVBoxLayout()
         
-        # 添加图标
+        # Add icon
         icon_label = QLabel()
         icon_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'sdexpresstester.ico')
         if os.path.exists(icon_path):
@@ -40,19 +40,19 @@ class AboutDialog(QDialog):
             icon_label.setAlignment(Qt.AlignCenter)
             layout.addWidget(icon_label)
         
-        # 添加标题
-        title_label = QLabel("SD Express 测试工具")
+        # Add title
+        title_label = QLabel("SD Express Tester")
         title_label.setStyleSheet("font-size: 16pt; font-weight: bold;")
         title_label.setAlignment(Qt.AlignCenter)
         layout.addWidget(title_label)
         
-        # 添加版本信息
-        version_label = QLabel(f"版本: {VERSION}\n发布日期: {BUILD_DATE}")
+        # Add version info
+        version_label = QLabel(f"Version: {VERSION}\nRelease Date: {BUILD_DATE}")
         version_label.setAlignment(Qt.AlignCenter)
         layout.addWidget(version_label)
         
-        # 添加作者信息
-        author_label = QLabel(f"作者: {AUTHOR}\n邮箱: {CONTACT}")
+        # Add author info
+        author_label = QLabel(f"Author: {AUTHOR}\nEmail: {CONTACT}")
         author_label.setAlignment(Qt.AlignCenter)
         layout.addWidget(author_label)
 
@@ -61,59 +61,59 @@ class AboutDialog(QDialog):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        logger.info("初始化主窗口")
-        self.setWindowTitle("SD Express 测试工具")
+        logger.info("Initializing main window")
+        self.setWindowTitle("SD Express Tester")
         self.setMinimumSize(800, 600)
         
-        # 设置窗口图标
+        # Set window icon
         icon_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'sdexpresstester.ico')
         if os.path.exists(icon_path):
             self.setWindowIcon(QIcon(icon_path))
-            logger.debug(f"设置窗口图标: {icon_path}")
+            logger.debug(f"Set window icon: {icon_path}")
         else:
-            # 尝试在可执行文件目录查找图标
+            # Try to find icon in executable directory
             exe_dir = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(__file__)
             icon_path = os.path.join(exe_dir, 'sdexpresstester.ico')
             if os.path.exists(icon_path):
                 self.setWindowIcon(QIcon(icon_path))
-                logger.debug(f"设置窗口图标: {icon_path}")
+                logger.debug(f"Set window icon: {icon_path}")
             else:
-                logger.warning(f"图标文件不存在: {icon_path}")
+                logger.warning(f"Icon file not found: {icon_path}")
         
-        # 设置窗口置顶
+        # Set window always on top
         always_on_top = config.get('ui.always_on_top', False)
         if always_on_top:
             self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
-            logger.info("窗口已设置为始终置顶")
+            logger.info("Window set to always on top")
         
-        # 初始化UI
+        # Initialize UI
         self._setup_ui()
         
-        # 延迟初始化核心组件和检测
+        # Delay initialize core components and check
         QTimer.singleShot(100, self._init_components)
     
     def _init_components(self):
-        """延迟初始化核心组件"""
+        """Delay initialize core components"""
         try:
             self.controller = SDController()
-            # 传递控制器对象给CardOperations，否则无法通过CardOperations更新控制器信息
+            # Pass controller object to CardOperations, otherwise cannot update controller info through CardOperations
             self.card_ops = CardOperations(controller=self.controller)
             self.test_suite = TestSuite(self.card_ops)
-            logger.info("核心组件初始化完成")
+            logger.info("Core components initialized")
             
-            # 开始检测
+            # Start check
             self._check_controller_status()
             self._check_card_status()
             
-            # 添加定时器,每秒检查一次卡状态
+            # Add timer, check card status every second
             self.card_check_timer = QTimer()
             self.card_check_timer.timeout.connect(self._check_card_status)
-            self.card_check_timer.start(1000)  # 每1000ms检查一次
-            logger.debug("已启动SD卡状态检查定时器")
+            self.card_check_timer.start(1000)  # Check every 1000ms
+            logger.debug("Started SD card status check timer")
             
         except Exception as e:
-            logger.error(f"核心组件初始化失败: {str(e)}", exc_info=True)
-            self.controller_info.setText("控制器状态: 初始化失败")
+            logger.error(f"Failed to initialize core components: {str(e)}", exc_info=True)
+            self.controller_info.setText("Controller status: Initialization failed")
             self.controller_info.setStyleSheet("color: red")
             self.test_btn.setEnabled(False)
     
@@ -122,24 +122,24 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(central_widget)
         main_layout = QHBoxLayout(central_widget)
         
-        # 左侧主要内容区域
+        # Left main content area
         left_layout = QVBoxLayout()
         
-        # 状态面板
-        self.status_panel = QGroupBox("系统状态")
+        # Status panel
+        self.status_panel = QGroupBox("System status")
         status_layout = QVBoxLayout()
         
-        # 控制器信息（分两行显示）
+        # Controller info (displayed in two lines)
         controller_layout = QVBoxLayout()
-        self.controller_name = QLabel("控制器: 检查中...")
-        self.controller_capability = QLabel("控制器能力: 检查中...")
+        self.controller_name = QLabel("Controller: Checking...")
+        self.controller_capability = QLabel("Controller capability: Checking...")
         controller_layout.addWidget(self.controller_name)
         controller_layout.addWidget(self.controller_capability)
         
-        # 卡信息（分两行显示）
+        # Card info (displayed in two lines)
         card_layout = QVBoxLayout()
-        self.card_name = QLabel("SD: 等待插入...")
-        self.card_capability = QLabel("卡能力: 未知")
+        self.card_name = QLabel("SD: Waiting for insertion...")
+        self.card_capability = QLabel("Card capability: Unknown")
         card_layout.addWidget(self.card_name)
         card_layout.addWidget(self.card_capability)
         
@@ -147,160 +147,160 @@ class MainWindow(QMainWindow):
         status_layout.addLayout(card_layout)
         self.status_panel.setLayout(status_layout)
         
-        # 进度条
+        # Progress bar
         self.progress_bar = QProgressBar()
         self.progress_bar.setVisible(False)
         
-        # 结果显示区
+        # Result display area
         self.result_text = QTextEdit()
         self.result_text.setReadOnly(True)
         
-        # 添加到左侧布局
+        # Add to left layout
         left_layout.addWidget(self.status_panel)
         left_layout.addWidget(self.progress_bar)
         left_layout.addWidget(self.result_text)
         
-        # 右侧区域
+        # Right area
         right_layout = QVBoxLayout()
         
-        # 图标显示
+        # Icon display
         icon_label = QLabel()
         icon_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'sdexpresstester.ico')
         if os.path.exists(icon_path):
             icon = QIcon(icon_path)
             pixmap = icon.pixmap(128, 128)
             icon_label.setPixmap(pixmap)
-            logger.debug(f"添加图标显示: {icon_path}")
+            logger.debug(f"Added icon display: {icon_path}")
         else:
-            # 尝试在可执行文件目录查找图标
+            # Try to find icon in executable directory
             exe_dir = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(__file__)
             icon_path = os.path.join(exe_dir, 'sdexpresstester.ico')
             if os.path.exists(icon_path):
                 icon = QIcon(icon_path)
                 pixmap = icon.pixmap(128, 128)
                 icon_label.setPixmap(pixmap)
-                logger.debug(f"添加图标显示: {icon_path}")
+                logger.debug(f"Added icon display: {icon_path}")
             else:
-                logger.warning(f"图标文件不存在: {icon_path}")
-                icon_label.setText("图标未找到")
+                logger.warning(f"Icon file not found: {icon_path}")
+                icon_label.setText("Icon not found")
         
         icon_label.setAlignment(Qt.AlignCenter)
         right_layout.addWidget(icon_label)
         
-        # 测试按钮
+        # Test button
         test_btn_layout = QVBoxLayout()
-        self.test_btn = QPushButton("开始测试")
+        self.test_btn = QPushButton("Start test")
         self.test_btn.clicked.connect(self._start_test)
-        self.stop_btn = QPushButton("停止测试")
+        self.stop_btn = QPushButton("Stop test")
         self.stop_btn.clicked.connect(self._stop_test)
         self.stop_btn.setEnabled(False)
         test_btn_layout.addWidget(self.test_btn)
         test_btn_layout.addWidget(self.stop_btn)
         
-        # 工具按钮
+        # Tool button
         tools_btn_layout = QVBoxLayout()
-        self.config_btn = QPushButton("配置文件")
+        self.config_btn = QPushButton("Configuration file")
         self.config_btn.clicked.connect(self._open_config)
-        self.log_btn = QPushButton("日志文件")
+        self.log_btn = QPushButton("Log file")
         self.log_btn.clicked.connect(self._open_log)
-        self.about_btn = QPushButton("关于")  # 添加About按钮
+        self.about_btn = QPushButton("About")  # Add About button
         self.about_btn.clicked.connect(self._show_about)
         tools_btn_layout.addWidget(self.config_btn)
         tools_btn_layout.addWidget(self.log_btn)
-        tools_btn_layout.addWidget(self.about_btn)  # 添加到布局
+        tools_btn_layout.addWidget(self.about_btn)  # Add to layout
         
-        # 添加按钮到右侧布局
+        # Add buttons to right layout
         right_layout.addLayout(test_btn_layout)
-        right_layout.addSpacing(20)  # 添加间距
+        right_layout.addSpacing(20)  # Add spacing
         right_layout.addLayout(tools_btn_layout)
-        right_layout.addStretch()  # 添加弹性空间
+        right_layout.addStretch()  # Add elastic space
         
-        # 将左右两侧布局添加到主布局
+        # Add left and right layouts to main layout
         main_layout.addLayout(left_layout, stretch=4)
         main_layout.addLayout(right_layout, stretch=1)
         
-        # 添加状态栏
+        # Add status bar
         self.statusBar = self.statusBar()
-        self.statusBar.showMessage("就绪")
+        self.statusBar.showMessage("Ready")
 
     def _check_controller_status(self):
-        """检查SD控制器状态"""
+        """Check SD controller status"""
         try:
             controller_info = self.controller._controller_info()
             if not controller_info:
-                self.controller_name.setText("控制器: 未检测到支持的控制器")
+                self.controller_name.setText("Controller: No supported controller detected")
                 self.controller_name.setStyleSheet("color: red")
-                self.controller_capability.setText("控制器能力: 未知")
+                self.controller_capability.setText("Controller capability: Unknown")
                 self.controller_capability.setStyleSheet("color: red")
                 self.test_btn.setEnabled(False)
                 return
             
-            # 更新控制器名称和能力
-            self.controller_name.setText(f"控制器: {controller_info['name']}")
+            # Update controller name and capability
+            self.controller_name.setText(f"Controller: {controller_info['name']}")
             self.controller_name.setStyleSheet("color: green")
-            self.controller_capability.setText(f"控制器能力: {', '.join(controller_info['capabilities'])}")
+            self.controller_capability.setText(f"Controller capability: {', '.join(controller_info['capabilities'])}")
             self.controller_capability.setStyleSheet("color: green")
             
         except Exception as e:
-            logger.error(f"控制器状态检查失败: {str(e)}", exc_info=True)
-            self.controller_name.setText("控制器: 检查失败")
+            logger.error(f"Failed to check controller status: {str(e)}", exc_info=True)
+            self.controller_name.setText("Controller: Check failed")
             self.controller_name.setStyleSheet("color: red")
-            self.controller_capability.setText("控制器能力: 检查失败")
+            self.controller_capability.setText("Controller capability: Check failed")
             self.controller_capability.setStyleSheet("color: red")
             self.test_btn.setEnabled(False)
 
     def _check_card_status(self):
-        """检查SD卡状态"""
+        """Check SD card status"""
         try:
-            # 检查SD卡信息
+            # Check SD card information
             card_info = self.card_ops.check_card()
 
-            # 检查控制器信息，有两种情况需要检查控制器信息
-            # 1. 初始状态没有插入卡，控制器是平台其他的NVMe SSD.
-            # 2. 插入SD卡后，控制器从NVMe SD Express切换为SD 4.0/3.0
+            # Check controller information, there are two cases to check controller information
+            # 1. The initial state has no inserted card, the controller is other NVMe SSDs on the platform.
+            # 2. After inserting the SD card, the controller switches from NVMe SD Express to SD 4.0/3.0
             self._check_controller_status()
 
             if not card_info:
-                self.card_name.setText("SD卡: 未检测到卡")
+                self.card_name.setText("SD Card: Not Detected")
                 self.card_name.setStyleSheet("color: red")
-                self.card_capability.setText("卡能力: 未知")
+                self.card_capability.setText("Card Capability: Unknown")
                 self.card_capability.setStyleSheet("color: red")
                 self.test_btn.setEnabled(False)
-                self.statusBar.showMessage("未检测到SD卡")
+                self.statusBar.showMessage("No SD card detected")
                 return
 
-            # 更新卡名称和能力信息
-            self.card_name.setText(f"SD卡: {card_info.name}")
+            # Update card name and capability information
+            self.card_name.setText(f"SD Card: {card_info.name}")
             self.card_name.setStyleSheet("color: green")
             
-            # 构建卡能力信息
+            # Build card capability information
             capability_info = []
             if card_info.mode:
-                capability_info.append(f"模式: {card_info.mode}")
+                capability_info.append(f"Mode: {card_info.mode}")
             if card_info.capacity:
-                capability_info.append(f"容量: {card_info.capacity/1024/1024/1024:.1f}GB")
+                capability_info.append(f"Capacity: {card_info.capacity/1024/1024/1024:.1f}GB")
             
-            # 更新卡能力显示
-            self.card_capability.setText("卡能力: " + ", ".join(capability_info))
+            # Update card capability display
+            self.card_capability.setText("Card Capability: " + ", ".join(capability_info))
             self.card_capability.setStyleSheet("color: green")
 
-            # 启用测试按钮
+            # Enable test button
             self.test_btn.setEnabled(True)
-            self.statusBar.showMessage("SD卡已就绪")
+            self.statusBar.showMessage("SD card ready")
 
         except Exception as e:
-            logger.error(f"SD卡状态检查失败: {str(e)}", exc_info=True)
-            self.card_name.setText("SD卡: 检查失败")
+            logger.error(f"Failed to check SD card status: {str(e)}", exc_info=True)
+            self.card_name.setText("SD card: Check failed")
             self.card_name.setStyleSheet("color: red")
-            self.card_capability.setText("卡能力: 检查失败")
+            self.card_capability.setText("Card capability: Check failed")
             self.card_capability.setStyleSheet("color: red")
             self.test_btn.setEnabled(False)
  
     def _start_test(self):
-        """开始测试"""
-        logger.info("开始测试流程")
+        """Start test"""
+        logger.info("Start test process")
         try:
-            # 重置测试套件状态
+            # Reset test suite status
             self.test_suite = TestSuite(self.card_ops)
 
             self.test_btn.setEnabled(False)
@@ -309,15 +309,15 @@ class MainWindow(QMainWindow):
             self.progress_bar.setValue(0)
             self.result_text.clear()
             
-            # 添加简单测试开始标记
+            # Add simple test start marker
             start_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             self.result_text.insertHtml(
-                f"=== 测试开始 ({start_time}) ===<br><br>"
+                f"=== Test start ({start_time}) ===<br><br>"
             )
             
-            self.statusBar.showMessage("正在执行测试...")
+            self.statusBar.showMessage("Executing test...")
             
-            # 获取循环测试配置
+            # Get loop test configuration
             loop_enabled = config.get('test.loop.enabled', False)
             loop_count = config.get('test.loop.count', 1)
             
@@ -328,98 +328,98 @@ class MainWindow(QMainWindow):
                 'progress_callback': self._update_progress,
                 'event_loop': QApplication.instance(),
                 'result_callback': self._show_test_result,
-                'config': config,  # 传递配置对象
-                'status_callback': self._update_status  # 添加状态更新回调
+                'config': config,  # Pass configuration object
+                'status_callback': self._update_status  # Add status update callback
             }
             
-            # 设置输出文件
+            # Set output file
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             output_path = Path(f"test_report_{timestamp}.txt")
             
-            # 初始化结果列表
+            # Initialize result list
             all_results = []
             
-            # 执行循环测试
+            # Execute loop test
             for i in range(loop_count if loop_enabled else 1):
                 if self.test_suite._stop_event.is_set():
-                    logger.info("测试被用户停止，退出循环")
+                    logger.info("Test stopped by user, exit loop")
                     break
                 
                 if loop_enabled:
-                    self.result_text.append(f"\n=== 第 {i+1}/{loop_count} 次测试 ===\n")
-                    self.statusBar.showMessage(f"正在执行第 {i+1}/{loop_count} 次测试...")
+                    self.result_text.append(f"\n=== Test {i+1}/{loop_count} ===\n")
+                    self.statusBar.showMessage(f"Executing test {i+1}/{loop_count}...")
                 
                 results = self.test_suite.run_tests(test_config)
                 if not results:
                     break
                 all_results.append(results)
             
-            # 生成报告
+            # Generate report
             self._generate_report(all_results if loop_enabled else results, output_path)
-            logger.info(f"测试报告已保存至: {output_path}")
-            self.statusBar.showMessage(f"测试报告已保存至: {output_path}")
+            logger.info(f"Test report saved to: {output_path}")
+            self.statusBar.showMessage(f"Test report saved to: {output_path}")
             
         except Exception as e:
-            logger.error(f"测试过程出错: {str(e)}", exc_info=True)
-            QMessageBox.critical(self, "错误", f"测试过程出错: {str(e)}")
-            self.statusBar.showMessage("测试失败")
+            logger.error(f"Test process error: {str(e)}", exc_info=True)
+            QMessageBox.critical(self, "Error", f"Test process error: {str(e)}")
+            self.statusBar.showMessage("Test failed")
 
         finally:
             self._finish_test()
     
     def _stop_test(self):
-        """停止测试"""
-        logger.info("用户请求停止测试")
-        self.test_suite._stop_event.set()  # 设置停止标志
+        """Stop test"""
+        logger.info("User requested to stop test")
+        self.test_suite._stop_event.set()  # Set stop flag
         
-        # 添加停止信息，但不添加汇总
+        # Add stop information, but no summary
         self.result_text.insertHtml(
-            "<br><span style='color: orange;'>测试已被用户停止</span><br>"
+            "<br><span style='color: orange;'>Test stopped by user</span><br>"
         )
         
-        self.statusBar.showMessage("测试已停止")
+        self.statusBar.showMessage("Test stopped")
         self._finish_test()
     
     def _finish_test(self):
-        """完成测试（无论是正常完成还是被停止）"""
+        """Finish test (whether normally or stopped)"""
         try:
-            # 添加测试结果汇总
+            # Add test result summary
             summary_html = self._generate_test_summary()
             
-            # 添加简单的测试结束标记
+            # Add simple test end marker
             end_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             self.result_text.insertHtml(
-                f"<br>=== 测试结束 ({end_time}) ===<br>{summary_html}<br>"
+                f"<br>=== Test end ({end_time}) ===<br>{summary_html}<br>"
             )
             
             self.test_btn.setEnabled(True)
             self.stop_btn.setEnabled(False)
             self.progress_bar.setVisible(False)
             
-            # 滚动到底部
+            # Scroll to bottom
             self.result_text.verticalScrollBar().setValue(
                 self.result_text.verticalScrollBar().maximum()
             ) 
             
         except Exception as e:
-            logger.error(f"完成测试更新UI失败: {str(e)}", exc_info=True)
+            logger.error(f"Failed to update UI after test completion: {str(e)}", exc_info=True)
     
     def _generate_test_summary(self):
-        """生成测试结果汇总"""
+        """Generate test result summary"""
         try:
             text = self.result_text.toPlainText()
             if not text:
                 return ""
             
-            # 检查是否为循环测试
-            if "=== 第 1/" in text:
-                # 循环测试的汇总
+            # Check if it's a loop test
+            if "=== Test 1/" in text:
+                # Loop test summary
                 total_rounds = 0
                 passed_rounds = 0
                 failed_rounds = 0
                 
-                # 分析每轮测试结果
-                rounds = text.split("=== 第 ")[1:]
+                # Analyze each test round result
+                rounds = text.split("=== Test ")[1:]
                 for round_text in rounds:
                     if "/" not in round_text:
                         continue
@@ -428,125 +428,125 @@ class MainWindow(QMainWindow):
                     test_items = 0
                     failed_items = 0
                     
-                    # 检查该轮测试中的所有测试项
+                    # Check all test items in the current test round
                     lines = round_text.split('\n')
                     for line in lines:
-                        if any(test in line for test in ["控制器检测", "基本读写", "性能测试", "稳定性测试"]):
+                        if any(test in line for test in ["Controller Detection", "Basic Read/Write", "Performance Test", "Stability Test"]):
                             test_items += 1
-                            if "失败" in line or "错误" in line:  # 增加对"错误"的检查
+                            if "Failed" in line or "Error" in line:  # Add check for "Error"
                                 failed_items += 1
                     
-                    # 只有完成所有测试项且全部通过才算通过
+                    # Only pass if all test items are completed and all passed
                     if test_items == 4 and failed_items == 0:
                         passed_rounds += 1
                     else:
                         failed_rounds += 1
                 
-                # 生成汇总信息
+                # Generate summary information
                 if total_rounds == 0:
-                    return "<br><span style='color: gray; font-weight: bold;'>测试结果: 无测试完成</span>"
+                    return "<br><span style='color: gray; font-weight: bold;'>Test result: No test completed</span>"
                 else:
                     status_color = "green" if failed_rounds == 0 else "red"
                     return (f"<br><span style='color: {status_color}; font-weight: bold;'>"
-                           f"测试结果: 完成{total_rounds}轮测试, "
-                           f"通过{passed_rounds}轮, 失败{failed_rounds}轮</span>")
+                           f"Test result: Completed {total_rounds} rounds of testing, "
+                           f"passed {passed_rounds} rounds, failed {failed_rounds} rounds</span>")
             else:
-                # 单次测试的汇总逻辑保持不变
+                # Single test summary logic remains unchanged
                 test_items = 0
                 failed_items = 0
                 lines = text.split('\n')
                 for line in lines:
-                    if any(test in line for test in ["控制器检测", "基本读写", "性能测试", "稳定性测试"]):
+                    if any(test in line for test in ["Controller Detection", "Basic Read/Write", "Performance Test", "Stability Test"]):
                         test_items += 1
-                        if "失败" in line:
+                        if "Failed" in line:
                             failed_items += 1
                 
                 if test_items == 0:
-                    return "<br><span style='color: gray; font-weight: bold;'>测试结果: 无测试完成</span>"
+                    return "<br><span style='color: gray; font-weight: bold;'>Test result: No test completed</span>"
                 elif failed_items > 0:
-                    return f"<br><span style='color: red; font-weight: bold;'>测试结果: 测试出错 (失败项: {failed_items}/{test_items})</span>"
+                    return f"<br><span style='color: red; font-weight: bold;'>Test result: Test error (Failed items: {failed_items}/{test_items})</span>"
                 elif test_items == 4:
-                    return "<br><span style='color: green; font-weight: bold;'>测试结果: 测试通过</span>"
+                    return "<br><span style='color: green; font-weight: bold;'>Test result: Test passed</span>"
                 else:
-                    return "<br><span style='color: orange; font-weight: bold;'>测试结果: 测试未完成</span>"
+                    return "<br><span style='color: orange; font-weight: bold;'>Test result: Test not completed</span>"
             
         except Exception as e:
-            logger.error(f"生成测试汇总失败: {str(e)}", exc_info=True)
-            return "<br><span style='color: red; font-weight: bold;'>测试结果: 汇总失败</span>"
+            logger.error(f"Failed to generate test summary: {str(e)}", exc_info=True)
+            return "<br><span style='color: red; font-weight: bold;'>Test result: Summary failed</span>"
     
     def _update_progress(self, value):
-        """更新进度条"""
+        """Update progress bar"""
         self.progress_bar.setValue(value)
     
     def _update_status(self, message):
-        """更新状态栏"""
+        """Update status bar"""
         self.statusBar.showMessage(message)
     
     def _show_test_result(self, result):
-        """显示单个测试结果"""
+        """Display single test result"""
         for test_name, test_result in result.items():
-            # 创建简单的HTML格式文本
-            status = "通过" if test_result['passed'] else "失败"
+            # Create simple HTML format text
+            status = "Passed" if test_result['passed'] else "Failed"
             status_color = "green" if test_result['passed'] else "red"
             
-            # 处理详情文本，将换行符转换为HTML换行
+            # Process detail text, convert newline characters to HTML line breaks
             details = test_result['details'].replace('\n', '<br>')
             
-            # 使用简单的HTML格式
+            # Use simple HTML format
             result_html = f"""
             <div>
                 <span style='font-weight: bold;'>{test_name}: </span>
                 <span style='color: {status_color};'>{status}</span><br>
-                详情: {details}<br>
+                Details: {details}<br>
             </div>
             <br>
             """
             
-            # 将HTML文本添加到结果显示区
+            # Add HTML text to result display area
             self.result_text.insertHtml(result_html)
             
-            # 更新状态栏
-            status_msg = f"测试项目 {test_name}: {status}"
+            # Update status bar
+            status_msg = f"Test item {test_name}: {status}"
             self.statusBar.showMessage(status_msg)
             
-            # 滚动到底部
+            # Scroll to bottom
             self.result_text.verticalScrollBar().setValue(
                 self.result_text.verticalScrollBar().maximum()
             )
     
     def _open_config(self):
-        """打开配置文件"""
+        """Open configuration file"""
         try:
             config_path = config.get_config_path()
             if not config_path:
-                QMessageBox.warning(self, "错误", "未找到配置文件")
-                self.statusBar.showMessage("错误：未找到配置文件")
+                QMessageBox.warning(self, "Error", "Configuration file not found")
+                self.statusBar.showMessage("Error: Configuration file not found")
                 return
                 
-            # 记录文件的最后修改时间
+            # Record the last modification time of the file
             self._last_config_mtime = os.path.getmtime(config_path)
             
-            # 打开配置文件
+            # Open configuration file
             os.startfile(config_path)
-            self.statusBar.showMessage("已打开配置文件")
+            self.statusBar.showMessage("Configuration file opened")
             
-            # 启动配置文件监控
+            # Start configuration file monitoring
             self._start_config_monitor()
             
         except Exception as e:
-            logger.error(f"打开配置文件失败: {str(e)}")
-            QMessageBox.critical(self, "错误", f"打开配置文件失败: {str(e)}")
-            self.statusBar.showMessage("错误：打开配置文件失败")
+            logger.error(f"Failed to open configuration file: {str(e)}")
+            QMessageBox.critical(self, "Error", f"Failed to open configuration file: {str(e)}")
+            self.statusBar.showMessage("Error: Failed to open configuration file")
     
     def _start_config_monitor(self):
-        """开始监控配置文件变化"""
+        """Start monitoring configuration file changes"""
         if not hasattr(self, 'config_monitor_timer'):
             self.config_monitor_timer = QTimer()
             self.config_monitor_timer.timeout.connect(self._check_config_changes)
-            self.config_monitor_timer.start(1000)  # 每秒检查一次
+            self.config_monitor_timer.start(1000)  # Check every second
     
     def _check_config_changes(self):
-        """检查配置文件是否有变化"""
+        """Check if the configuration file has changed"""
         try:
             config_path = config.get_config_path()
             if not config_path:
@@ -554,11 +554,11 @@ class MainWindow(QMainWindow):
                 
             current_mtime = os.path.getmtime(config_path)
             if hasattr(self, '_last_config_mtime') and current_mtime > self._last_config_mtime:
-                logger.info("检测到配置文件变化，重新加载配置")
+                logger.info("Detected configuration file change, reload configuration")
                 config.reload()
                 self._last_config_mtime = current_mtime
                 
-                # 更新窗口置顶状态
+                # Update window always on top status
                 always_on_top = config.get('ui.always_on_top', False)
                 flags = self.windowFlags()
                 if always_on_top:
@@ -566,85 +566,85 @@ class MainWindow(QMainWindow):
                 else:
                     flags &= ~Qt.WindowStaysOnTopHint
                 self.setWindowFlags(flags)
-                self.show()  # 需要重新显示窗口
+                self.show()  # Need to redisplay the window
                 
-                self.statusBar.showMessage("配置文件已更新")
+                self.statusBar.showMessage("Configuration file updated")
                 
-                # 停止监控定时器
+                # Stop monitoring timer
                 if hasattr(self, 'config_monitor_timer'):
                     self.config_monitor_timer.stop()
                     delattr(self, 'config_monitor_timer')
                 
         except Exception as e:
-            logger.error(f"检查配置文件变化失败: {str(e)}")
+            logger.error(f"Failed to check configuration file changes: {str(e)}")
     
     def _open_log(self):
-        """打开日志文件目录"""
+        """Open log file directory"""
         try:
             log_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'logs')
             if not os.path.exists(log_dir):
-                # 尝试在可执行文件目录查找
+                # Try to find in executable directory
                 log_dir = os.path.join(os.path.dirname(sys.executable), 'logs')
             
             if os.path.exists(log_dir):
                 os.startfile(log_dir)
-                self.statusBar.showMessage("已打开日志目录")
+                self.statusBar.showMessage("Log directory opened")
             else:
-                QMessageBox.warning(self, "错误", "未找到日志目录")
-                self.statusBar.showMessage("错误：未找到日志目录")
+                QMessageBox.warning(self, "Error", "Log directory not found")
+                self.statusBar.showMessage("Error: Log directory not found")
         except Exception as e:
-            logger.error(f"打开日志目录失败: {str(e)}")
-            QMessageBox.critical(self, "错误", f"打开日志目录失败: {str(e)}")
-            self.statusBar.showMessage("错误：打开日志目录失败")
+            logger.error(f"Failed to open log directory: {str(e)}")
+            QMessageBox.critical(self, "Error", f"Failed to open log directory: {str(e)}")
+            self.statusBar.showMessage("Error: Failed to open log directory")
     
     def _show_about(self):
-        """显示关于对话框"""
+        """Display About dialog"""
         dialog = AboutDialog(self)
         dialog.exec_()
     
     def _generate_report(self, all_results, output_path):
-        """生成测试报告"""
+        """Generate test report"""
         with open(output_path, 'w', encoding='utf-8') as f:
-            # 写入报告头部
-            f.write("=== SD Express Tester 测试报告 ===\n")
-            f.write(f"测试时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+            # Write report header
+            f.write("=== SD Express Tester Test Report ===\n")
+            f.write(f"Test time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
             
-            # 写入配置信息
-            f.write("测试配置:\n")
-            f.write(f"- 循环测试: {'启用' if config.get('test.loop.enabled') else '禁用'}\n")
+            # Write configuration information
+            f.write("Test configuration:\n")
+            f.write(f"- Loop test: {'Enabled' if config.get('test.loop.enabled') else 'Disabled'}\n")
             if config.get('test.loop.enabled'):
-                f.write(f"- 循环次数: {config.get('test.loop.count')}\n")
-            f.write(f"- 性能测试总大小: {config.get('test.performance.total_size')}MB\n")
-            f.write(f"- 性能测试块大小: {config.get('test.performance.block_size')}MB\n")
-            f.write(f"- 性能测试迭代次数: {config.get('test.performance.iterations')}\n\n")
+                f.write(f"- Loop count: {config.get('test.loop.count')}\n")
+            f.write(f"- Total size of performance test: {config.get('test.performance.total_size')}MB\n")
+            f.write(f"- Performance test block size: {config.get('test.performance.block_size')}MB\n")
+            f.write(f"- Performance test iterations: {config.get('test.performance.iterations')}\n\n")
             
-            # 写入测试结果
-            if isinstance(all_results, list):  # 循环测试结果
+            # Write test results
+            if isinstance(all_results, list):  # Loop test results
                 total_rounds = len(all_results)
                 passed_rounds = sum(1 for results in all_results 
                                   if all(r.get('passed', False) for r in results.values()))
                 failed_rounds = total_rounds - passed_rounds
                 
-                f.write(f"测试结果汇总:\n")
-                f.write(f"- 完成测试轮数: {total_rounds}\n")
-                f.write(f"- 通过轮数: {passed_rounds}\n")
-                f.write(f"- 失败轮数: {failed_rounds}\n\n")
+                f.write(f"Test result summary:\n")
+                f.write(f"- Total number of test rounds: {total_rounds}\n")
+                f.write(f"- Passed rounds: {passed_rounds}\n")
+                f.write(f"- Failed rounds: {failed_rounds}\n\n")
                 
-                # 写入每轮测试的详细结果
+                # Write detailed results of each test round
                 for round_num, results in enumerate(all_results, 1):
-                    f.write(f"\n=== 第 {round_num}/{total_rounds} 轮测试 ===\n")
+                    f.write(f"\n=== Test round {round_num}/{total_rounds} ===\n")
                     self._write_test_details(f, results)
                     
-            else:  # 单次测试结果
-                f.write("测试结果:\n")
+            else:  # Single test result
+                f.write("Test results:\n")
                 self._write_test_details(f, all_results)
     
     def _write_test_details(self, f, results):
-        """写入测试详情"""
+        """Write test details"""
         for test_name, result in results.items():
-            status = "通过" if result['passed'] else "失败"
+            status = "Passed" if result['passed'] else "Failed"
             f.write(f"\n{test_name}: {status}\n")
-            # 处理多行详情
+            # Process multi-line details
             details = result['details'].split('\n')
             for detail in details:
                 if detail.strip():

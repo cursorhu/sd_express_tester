@@ -1,16 +1,15 @@
 import sys
-import os
 import ctypes
 from PyQt5.QtWidgets import QApplication
 from gui.main_window import MainWindow
 from cli.cli_runner import CLIRunner
 from utils.logger import get_logger
 
-# 获取主logger
+# Get main logger
 logger = get_logger()
 
 def hide_console():
-    """隐藏控制台窗口"""
+    """Hide console window"""
     kernel32 = ctypes.WinDLL('kernel32')
     user32 = ctypes.WinDLL('user32')
     get_win = kernel32.GetConsoleWindow
@@ -21,7 +20,7 @@ def hide_console():
         show_win(handle, 0)  # SW_HIDE = 0
 
 def show_console():
-    """显示控制台窗口"""
+    """Show console window"""
     kernel32 = ctypes.WinDLL('kernel32')
     user32 = ctypes.WinDLL('user32')
     get_win = kernel32.GetConsoleWindow
@@ -33,15 +32,15 @@ def show_console():
 
 def main():
     try:
-        logger.info("启动 SD Express 测试工具")
+        logger.info("Starting SD Express Tester")
         
-        # 检查是否有命令行参数
+        # Check for command line arguments
         is_cli = '--cli' in sys.argv
         
         if is_cli:
-            # CLI模式：显示控制台
+            # CLI mode: Show console
             show_console()
-            logger.info("以CLI模式运行")
+            logger.info("Running in CLI mode")
             cli = CLIRunner()
             cli.run()
         else:
@@ -53,7 +52,7 @@ def main():
             window.show()
             sys.exit(app.exec_())
     except Exception as e:
-        logger.error(f"程序运行出错: {str(e)}", exc_info=True)
+        logger.error(f"Program error: {str(e)}", exc_info=True)
         sys.exit(1)
 
 if __name__ == "__main__":

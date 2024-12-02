@@ -25,100 +25,100 @@ class TestSuite:
         self._setup_test_cases()
     
     def _setup_test_cases(self):
-        """设置测试用例"""
+        """Setup test cases"""
         self.test_cases = [
-            TestCase("控制器检测", self._test_controller),
-            TestCase("基本读写", self._test_basic_rw),
-            TestCase("性能测试", self._test_performance),
-            TestCase("稳定性测试", self._test_stability)
+            TestCase("Controller Detection", self._test_controller),
+            TestCase("Basic Read/Write", self._test_basic_rw),
+            TestCase("Performance Test", self._test_performance),
+            TestCase("Stability Test", self._test_stability)
         ]
     
     def _get_test_path(self):
-        """获取当前SD卡的测试路径"""
+        """Get test path on current SD card"""
         card_info = self.card_ops.check_card()
         if not card_info:
-            raise Exception("未检测到SD卡")
+            raise Exception("No SD card detected")
         return os.path.join(card_info.drive_letter, "test_files")
         
     def _show_test_details(self, test_name, details):
-        """格式化测试详情"""
-        if test_name == "控制器检测":
-            return f"检测控制器类型和工作模式: {details}"
+        """Format test details"""
+        if test_name == "Controller Detection":
+            return f"Detect controller type and working mode: {details}"
             
-        elif test_name == "基本读写":
-            return (f"执行基本读写测试:\n"
-                   f"- 写入1MB随机数据\n"
-                   f"- 读取并验证数据完整性\n"
-                   f"结果: {details}")
+        elif test_name == "Basic Read/Write":
+            return (f"Execute basic read/write test:\n"
+                   f"- Write 1MB random data\n"
+                   f"- Read and verify data integrity\n"
+                   f"Result: {details}")
             
-        elif test_name == "性能测试":
+        elif test_name == "Performance Test":
             lines = details.split('\n')
-            result = "执行性能测试:\n"
+            result = "Execute performance test:\n"
             for line in lines:
                 if line:
-                    size, speeds = line.split("测试", 1)
-                    result += f"- {size}MB数据测试:\n"
+                    size, speeds = line.split("test", 1)
+                    result += f"- {size}MB data test:\n"
                     result += f"  {speeds}\n"
             return result
             
-        elif test_name == "稳定性测试":
-            if "错误" in details:
-                return f"执行稳定性测试:\n- 随机大小(512KB-2MB)读写测试\n{details}"
+        elif test_name == "Stability Test":
+            if "error" in details.lower():
+                return f"Execute stability test:\n- Random size(512KB-2MB) read/write test\n{details}"
             else:
-                return f"执行稳定性测试:\n- 随机大小(512KB-2MB)读写测试\n- {details}"
+                return f"Execute stability test:\n- Random size(512KB-2MB) read/write test\n- {details}"
                 
         return details
 
     def run_tests(self, config):
-        """运行测试用例"""
+        """Run test cases"""
         self._running = True
         self._stop_event.clear()
         results = {}
         
-        # 更新状态
+        # Update status
         if 'status_callback' in config:
-            config['status_callback']("正在检查SD卡...")
+            config['status_callback']("Checking SD card...")
         
-        # 确保有SD卡
+        # Ensure SD card exists
         card_info = self.card_ops.check_card()
         if not card_info:
-            logger.error("未检测到SD卡，无法执行测试")
-            result = {"错误": {"passed": False, "details": "未检测到SD卡"}}
+            logger.error("No SD card detected, cannot execute tests")
+            result = {"Error": {"passed": False, "details": "No SD card detected"}}
             if 'result_callback' in config:
                 config['result_callback'](result)
             return result
             
-        logger.info(f"测试目标: {card_info}")
+        logger.info(f"Test target: {card_info}")
         
-        # 创建测试目录
+        # Create test directory
         test_dir = self._get_test_path()
         os.makedirs(test_dir, exist_ok=True)
         
         try:
-            # 执行单轮测试
+            # Execute single round of tests
             total_tests = len(self.test_cases)
             for i, test_case in enumerate(self.test_cases):
                 if self._stop_event.is_set():
-                    logger.info("测试被手动停止")
+                    logger.info("Test stopped manually")
                     break
                     
                 try:
-                    # 更新状态
+                    # Update status
                     if 'status_callback' in config:
-                        config['status_callback'](f"正在执行测试: {test_case.name}")
-                    # 处理界面事件循环，及时更新状态栏
+                        config['status_callback'](f"Executing test: {test_case.name}")
+                    # Handle UI event loop, update status bar in real time
                     if 'event_loop' in config:
                         config['event_loop'].processEvents()
 
-                    logger.info(f"执行测试用例: {test_case.name}")
+                    logger.info(f"Executing test case: {test_case.name}")
                     test_case.passed, test_case.details = test_case.func(config)
                     
-                    # 更新进度
+                    # Update progress
                     if 'progress_callback' in config:
                         progress = int((i + 1) * 100 / total_tests)
                         config['progress_callback'](progress)
                     
-                    # 记录结果并实时显示
+                    # Record results and display in real time
                     result = {
                         test_case.name: {
                             'passed': test_case.passed,
@@ -127,22 +127,22 @@ class TestSuite:
                     }
                     results.update(result)
                     
-                    # 调用结果回调
+                    # Call result callback
                     if 'result_callback' in config:
                         config['result_callback'](result)
 
-                    logger.info(f"测试用例 {test_case.name} 完成: {'通过' if test_case.passed else '失败'}")                    
+                    logger.info(f"Test case {test_case.name} completed: {'Passed' if test_case.passed else 'Failed'}")                    
                     
-                    # 处理界面事件循环，避免界面卡死
+                    # Handle UI event loop, avoid freezing the UI
                     if 'event_loop' in config:
                         config['event_loop'].processEvents()
 
                 except Exception as e:
-                    logger.error(f"测试用例 {test_case.name} 执行出错: {str(e)}", exc_info=True)
+                    logger.error(f"Test case {test_case.name} execution error: {str(e)}", exc_info=True)
                     result = {
                         test_case.name: {
                             'passed': False,
-                            'details': f"测试异常: {str(e)}"
+                            'details': f"Test exception: {str(e)}"
                         }
                     }
                     results.update(result)
@@ -150,63 +150,63 @@ class TestSuite:
                         config['result_callback'](result)
                         
         finally:
-            # 清理测试文件
+            # Clean up test files
             try:
                 if os.path.exists(test_dir):
                     for file in os.listdir(test_dir):
                         try:
                             os.remove(os.path.join(test_dir, file))
                         except Exception as e:
-                            logger.error(f"清理测试文件失败: {str(e)}")
+                            logger.error(f"Failed to clean up test files: {str(e)}")
                     os.rmdir(test_dir)
             except Exception as e:
-                logger.error(f"清理测试目录失败: {str(e)}")
+                logger.error(f"Failed to clean up test directory: {str(e)}")
         
         self._running = False
         return results
     
     def _test_performance(self, config):
-        """性能测试"""
+        """Performance test"""
         try:
-            # 从配置文件获参数
-            total_size = config.get('test.performance.total_size', 128) * 1024 * 1024  # 转换为字节
+            # Get parameters from configuration file
+            total_size = config.get('test.performance.total_size', 128) * 1024 * 1024  # Convert to bytes
             block_size = config.get('test.performance.block_size', 1) * 1024 * 1024
             iterations = config.get('test.performance.iterations', 3)
             
             results = []
             test_sizes = [total_size]
             
-            # 获取测试路径
+            # Get test path
             test_dir = self._get_test_path()
             test_file = os.path.join(test_dir, "perf_test.bin")
             
-            # 导入需要的Windows API
+            # Import needed Windows API
             import win32file
             
             for size in test_sizes:
                 if self._stop_event.is_set():
-                    return False, "测试被用户停止"
+                    return False, "Test stopped by user"
                     
                 total_write_speed = 0
                 total_read_speed = 0
                 
-                msg = f"开始 {size/1024/1024}MB 性能测试"
+                msg = f"Starting {size/1024/1024}MB performance test"
                 logger.info(msg)
                 
                 for i in range(iterations):
                     if self._stop_event.is_set():
-                        return False, "测试被用户停止"
+                        return False, "Test stopped by user"
                         
-                    # 生成随机数
+                    # Generate random data
                     data = os.urandom(size)
                     
-                    # 写速度测试
+                    # Write speed test
                     handle = None
                     try:
                         handle = win32file.CreateFile(
                             test_file,
                             win32file.GENERIC_WRITE,
-                            0,  # 不共享
+                            0,  # Not shared
                             None,
                             win32file.CREATE_ALWAYS,
                             win32file.FILE_FLAG_NO_BUFFERING | 
@@ -228,25 +228,25 @@ class TestSuite:
                         if handle:
                             handle.Close()
                     
-                    # 等待一段时间确保数据写入
+                    # Wait for a while to ensure data is written
                     time.sleep(1)
                     
-                    # 读速度测试
+                    # Read speed test
                     handle = None
                     try:
                         handle = win32file.CreateFile(
                             test_file,
                             win32file.GENERIC_READ,
-                            0,  # 不共享
+                            0,  # Not shared
                             None,
-                            win32file.OPEN_EXISTING,  # 使用OPEN_EXISTING而不是CREATE_ALWAYS
+                            win32file.OPEN_EXISTING,  # Use OPEN_EXISTING instead of CREATE_ALWAYS
                             win32file.FILE_FLAG_NO_BUFFERING | 
                             win32file.FILE_FLAG_SEQUENTIAL_SCAN |
-                            win32file.FILE_FLAG_OVERLAPPED,  # 启用异步I/O
+                            win32file.FILE_FLAG_OVERLAPPED,  # Enable asynchronous I/O
                             None
                         )
                         
-                        # 创建一个OVERLAPPED结构
+                        # Create an OVERLAPPED structure
                         overlapped = win32file.OVERLAPPED()
                         overlapped.Offset = 0
                         overlapped.OffsetHigh = 0
@@ -256,13 +256,13 @@ class TestSuite:
                         start_time = time.perf_counter()
                         
                         while bytes_read < size:
-                            # 使用异步读取
+                            # Use asynchronous read
                             result, _ = win32file.ReadFile(handle, buffer, overlapped)
                             if result == winerror.ERROR_IO_PENDING:
-                                # 等待异步操作完成
+                                # Wait for asynchronous operation to complete
                                 win32file.GetOverlappedResult(handle, overlapped, True)
                             
-                            overlapped.Offset += block_size  # 更新下一次读取的位置
+                            overlapped.Offset += block_size  # Update the next read position
                             bytes_read += block_size
                                 
                         read_time = time.perf_counter() - start_time
@@ -273,83 +273,83 @@ class TestSuite:
                         if handle:
                             handle.Close()
                     
-                    msg = f"第 {i+1} 次测试: 读取={read_speed:.2f}MB/s, 写入={write_speed:.2f}MB/s"
+                    msg = f"Test {i+1}: Read={read_speed:.2f}MB/s, Write={write_speed:.2f}MB/s"
                     logger.debug(msg)
-                    # 更新状态栏
+                    # Update status bar
                     if 'status_callback' in config:
                         config['status_callback'](msg)
                     if 'event_loop' in config:
                         config['event_loop'].processEvents()
                         
-                # 计算平均速度
+                # Calculate average speed
                 avg_write_speed = total_write_speed / iterations
                 avg_read_speed = total_read_speed / iterations
                 
-                results.append(f"{size/1024/1024}MB测试 (平均{iterations}次): "
-                             f"读取速度={avg_read_speed:.2f}MB/s, "
-                             f"写入速度={avg_write_speed:.2f}MB/s")
+                results.append(f"{size/1024/1024}MB test (Average {iterations} times): "
+                             f"Read speed={avg_read_speed:.2f}MB/s, "
+                             f"Write speed={avg_write_speed:.2f}MB/s")
                 
-                logger.info(f"性能测试 {size/1024/1024}MB: "
-                          f"读取={avg_read_speed:.2f}MB/s, "
-                          f"写入={avg_write_speed:.2f}MB/s")
+                logger.info(f"Performance test {size/1024/1024}MB: "
+                          f"Read={avg_read_speed:.2f}MB/s, "
+                          f"Write={avg_write_speed:.2f}MB/s")
             
             return True, "\n".join(results)
             
         except Exception as e:
-            logger.error(f"性能测试失败: {str(e)}", exc_info=True)
-            return False, f"性能测试失败: {str(e)}"
+            logger.error(f"Performance test failed: {str(e)}", exc_info=True)
+            return False, f"Performance test failed: {str(e)}"
         finally:
             if os.path.exists(test_file):
                 try:
                     os.remove(test_file)
                 except Exception as e:
-                    logger.error(f"清理测试文件失败: {str(e)}")
+                    logger.error(f"Failed to clean up test files: {str(e)}")
     
     def _test_controller(self, config):
-        """控制器测试"""
+        """Controller test"""
         try:
-            logger.info("开始控制器测试")
+            logger.info("Starting controller test")
             card_info = self.card_ops.check_card()
             if not card_info:
-                return False, "未检测到SD卡"
+                return False, "No SD card detected"
                 
-            # 检查控制器类型和模式
+            # Check controller type and mode
             if card_info.controller_type == ControllerType.NVME:
-                logger.info("检测到NVMe控制器")
-                return True, f"NVMe控制器工作正常，模式: {card_info.mode}"
+                logger.info("Detected NVMe controller")
+                return True, f"NVMe controller working normally, mode: {card_info.mode}"
             elif card_info.controller_type == ControllerType.SD_HOST:
-                logger.info("检测到SD Host控制器")
-                return True, f"SD Host控制器工作正常，模式: {card_info.mode}"
+                logger.info("Detected SD Host controller")
+                return True, f"SD Host controller working normally, mode: {card_info.mode}"
             else:
-                logger.warning("未知的控制器类型")
-                return False, "未知的控制器类型"
+                logger.warning("Unknown controller type")
+                return False, "Unknown controller type"
                 
         except Exception as e:
-            logger.error(f"控制器测试失败: {str(e)}", exc_info=True)
-            return False, f"控制器测试失败: {str(e)}"
+            logger.error(f"Controller test failed: {str(e)}", exc_info=True)
+            return False, f"Controller test failed: {str(e)}"
             
     def _test_basic_rw(self, config):
-        """基本读写测试"""
+        """Basic read/write test"""
         try:
             test_dir = self._get_test_path()
-            # 确保测试目录存在
+            # Ensure test directory exists
             os.makedirs(test_dir, exist_ok=True)
             
             test_file = os.path.join(test_dir, "basic_rw_test.bin")
             test_size = 1 * 1024 * 1024  # 1MB
             
-            logger.info(f"开始基本读写测试，文件大小: {test_size/1024/1024}MB")
+            logger.info(f"Starting basic read/write test, file size: {test_size/1024/1024}MB")
             
-            # 使用Windows API进行文件操作，以获得更好的控制
+            # Use Windows API for file operations to get better control
             try:
-                # 写测试
-                logger.debug("开始写入测试")
+                # Write test
+                logger.debug("Starting write test")
                 data = os.urandom(test_size)
                 
                 handle = win32file.CreateFile(
                     test_file,
                     win32file.GENERIC_WRITE,
-                    0,  # 不共享
+                    0,  # Not shared
                     None,
                     win32file.CREATE_ALWAYS,
                     win32file.FILE_FLAG_WRITE_THROUGH,
@@ -361,11 +361,11 @@ class TestSuite:
                 finally:
                     handle.Close()
                 
-                # 等待数据写入完成
+                # Wait for data to finish writing
                 time.sleep(0.1)
                 
-                # 读测试
-                logger.debug("开始读取测试")
+                # Read test
+                logger.debug("Starting read test")
                 handle = win32file.CreateFile(
                     test_file,
                     win32file.GENERIC_READ,
@@ -381,84 +381,84 @@ class TestSuite:
                 finally:
                     handle.Close()
                 
-                # 验证数据
+                # Verify data
                 if data == read_data:
-                    logger.info("基本读写测试通过")
-                    return True, "读写测试成功，数据验证通过"
+                    logger.info("Basic read/write test passed")
+                    return True, "Read/write test successful, data verification passed"
                 else:
-                    logger.error("数据验证失败")
-                    return False, "数据验证失败"
+                    logger.error("Data verification failed")
+                    return False, "Data verification failed"
                     
             except Exception as e:
-                logger.error(f"文件操作失败: {str(e)}")
-                return False, f"文件操作失败: {str(e)}"
+                logger.error(f"File operation failed: {str(e)}")
+                return False, f"File operation failed: {str(e)}"
                 
         except Exception as e:
-            logger.error(f"基本读写测试失败: {str(e)}", exc_info=True)
-            return False, f"读写测试失败: {str(e)}"
+            logger.error(f"Basic read/write test failed: {str(e)}", exc_info=True)
+            return False, f"Read/write test failed: {str(e)}"
             
         finally:
             if os.path.exists(test_file):
                 try:
                     os.remove(test_file)
                 except Exception as e:
-                    logger.error(f"清理测试文件失败: {str(e)}")
+                    logger.error(f"Failed to clean up test files: {str(e)}")
     
     def _test_stability(self, config):
-        """稳定性测试"""
+        """Stability test"""
         try:
             test_dir = self._get_test_path()
             iterations = 10 if config.get('type') == 'quick' else 100
             errors = 0
             
-            logger.info(f"开始稳定性测试，迭代次数: {iterations}")
+            logger.info(f"Starting stability test, iteration count: {iterations}")
             
             for i in range(iterations):
                 if self._stop_event.is_set():
-                    logger.info("测试被手动停止")
-                    return False, "测试被中断"
+                    logger.info("Test stopped manually")
+                    return False, "Test interrupted"
                     
                 try:
-                    # 随机读写测试
-                    size = random.randint(512*1024, 2*1024*1024)  # 512KB到2MB
+                    # Random read/write test
+                    size = random.randint(512*1024, 2*1024*1024)  # 512KB to 2MB
                     test_file = os.path.join(test_dir, f"stability_test_{i}.bin")
                     
-                    logger.debug(f"第 {i+1}/{iterations} 次测试，文件大小: {size/1024:.1f}KB")
+                    logger.debug(f"Test {i+1}/{iterations}, file size: {size/1024:.1f}KB")
                     
-                    # 写入测试
+                    # Write test
                     data = os.urandom(size)
                     with open(test_file, 'wb') as f:
                         f.write(data)
                         f.flush()
                         os.fsync(f.fileno())
                     
-                    # 读取验证
+                    # Read and verify
                     with open(test_file, 'rb') as f:
                         read_data = f.read()
                     
                     if data != read_data:
-                        logger.error(f"第 {i+1} 次测试数据验证失败")
+                        logger.error(f"Data verification failed for test {i+1}")
                         errors += 1
                     
-                    # 清理文件
+                    # Clean up file
                     os.remove(test_file)
                     
                 except Exception as e:
-                    logger.error(f"第 {i+1} 次测试失败: {str(e)}")
+                    logger.error(f"Test {i+1} failed: {str(e)}")
                     errors += 1
                 
-                # 更新进度
+                # Update progress
                 if 'progress_callback' in config:
                     progress = int((i + 1) * 100 / iterations)
                     config['progress_callback'](progress)
             
             if errors == 0:
-                logger.info("稳定性测试通过")
-                return True, f"完成{iterations}次随机读写测试，无错误"
+                logger.info("Stability test passed")
+                return True, f"Completed {iterations} random read/write tests, no errors"
             else:
-                logger.warning(f"稳定性测试完成，但有{errors}次错误")
-                return False, f"测试完成，但有{errors}次错误"
+                logger.warning(f"Stability test completed, but with {errors} errors")
+                return False, f"Test completed, but with {errors} errors"
                 
         except Exception as e:
-            logger.error(f"稳定性测试失败: {str(e)}", exc_info=True)
-            return False, f"稳定性测试失败: {str(e)}"
+            logger.error(f"Stability test failed: {str(e)}", exc_info=True)
+            return False, f"Stability test failed: {str(e)}"

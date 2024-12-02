@@ -1,232 +1,232 @@
-# SD Express 测试工具
+# SD Express Test Tool
 
-## 简介
-SD Express Tester是SD Express卡的测试软件，同时向下兼容SD 4.0, SD 3.0, SD2.0等传统SD模式。工具支持图形界面和命令行两种操作模式，可进行控制器检测、基本读写、性能测试和稳定性测试等功能。
+## Introduction
+SD Express Tester is a testing software for SD Express cards, with backward compatibility for SD 4.0, SD 3.0, SD2.0 and other traditional SD modes. The tool supports both graphical interface and command line operation modes, providing controller detection, basic read/write, performance testing and stability testing functions.
 
-## 用户指南
+## User Guide
 
-### 功能特点
-- 双模式操作：图形界面(GUI)和命令行(CLI)
-- 自动检测SD卡和控制器状态
-- 支持多种测试项目：
-  - 控制器兼容性检测
-  - 基本读写测试（读写数据比较）
-  - 性能测试（读写速度）
-  - 稳定性测试（随机读写）
-- 支持循环测试
-- 实时显示测试进度
-- 自动生成测试报告
-- 详细的日志记录
+### Features
+- Dual operation modes: Graphical Interface (GUI) and Command Line (CLI)
+- Automatic SD card and controller status detection
+- Support multiple test items:
+  - Controller compatibility detection
+  - Basic read/write test (data comparison)
+  - Performance test (read/write speed)
+  - Stability test (random read/write)
+- Support loop testing
+- Real-time test progress display
+- Automatic test report generation
+- Detailed logging
 
-### 系统要求
+### System Requirements
 - Windows 10/11
-- SD Express卡控制器（O2Micro/BayHub系列控制器）
+- SD Express card controller (O2Micro/BayHub series controllers)
 
-### GUI模式使用说明
+### GUI Mode Usage Instructions
 
 ![gui-image](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202411291721560.png)
 
-1. 运行`SDExpressTester.exe`
-2. 程序自动检测SD卡和SD/NVMe控制器
-3. 界面说明：
-   - 系统状态：
-     - 控制器：显示当前控制器型号
-     - 控制器能力：显示当前控制器支持的SD卡模式
-     - 卡名称：显示当前检测到的SD卡型号
-     - 卡能力：显示SD卡支持的速度模式
+1. Run `SDExpressTester.exe`
+2. The program automatically detects SD cards and SD/NVMe controllers
+3. Interface description:
+   - System status:
+     - Controller: Display the current controller model
+     - Controller capability: Display the current controller's supported SD card modes
+     - Card name: Display the current detected SD card model
+     - Card capability: Display the SD card's supported speed modes
 
-   - 控制按钮：
-     - 开始测试：开始执行测试套件
-     - 停止测试：中断当前测试过程
-     - 配置文件：打开配置文件进行编辑
-     - 日志文件：打开日志文件查看详细日志
-     - 关于：显示软件版本和作者信息
+   - Control buttons:
+     - Start test: Start executing the test suite
+     - Stop test: Interrupt the current test process
+     - Configuration file: Open the configuration file for editing
+     - Log file: Open the log file to view detailed logs
+     - About: Display software version and author information
 
-   - 进度显示：
-     - 进度条：显示当前测试项的完成进度
-     - 状态栏：显示当前测试项状态
+   - Progress display:
+     - Progress bar: Display the completion progress of the current test item
+     - Status bar: Display the status of the current test item
 
-   - 结果区域：
-     - 实时显示测试结果和详细信息
-     - 显示测试汇总信息
-4. 测试流程：
-   - 插入SD卡后自动检测
-   - 点击"开始测试"启动测试
-   - 测试过程中可随时停止
-   - 测试完成后自动生成报告
-5. 配置说明：
-   - 循环测试：
-     - 在config.yaml中设置enabled为true/false
-     - 可设置循环次数(count)
+   - Result area:
+     - Real-time display of test results and detailed information
+     - Display test summary information
+4. Test process:
+   - Automatically detected after inserting the SD card
+   - Click "Start test" to start the test
+   - You can stop the test at any time during the test
+   - The test report is automatically generated after the test is complete
+5. Configuration instructions:
+   - Loop test:
+     - Set enabled to true/false in config.yaml
+     - Set loop count (count)
    
-   - 性能测试参数：
-     - total_size：总测试数据大小(MB)
-     - block_size：单次读写块大小(MB)
-     - iterations：重复测试次数
+   - Performance test parameters:
+     - total_size: Total test data size (MB)
+     - block_size: Single read/write block size (MB)
+     - iterations: Repeat test times
    
-   - 界面设置：
-     - always_on_top：窗口是否置顶
+   - Interface settings:
+     - always_on_top: Whether the window is always on top
    
-   - 日志设置：
-     - level：日志级别
+   - Log settings:
+     - level: Log level
 
-### CLI模式使用说明
-1. 命令行运行：
+### CLI Mode Usage Instructions
+1. Command line operation:
 ```bash
-./SDExpressTester.exe --cli --run # 使用配置文件运行测试
-./SDExpressTester.exe --cli --help # 显示帮助信息
+./SDExpressTester.exe --cli --run # Run test using config.yaml
+./SDExpressTester.exe --cli --help # Display help information
 ```
-2. 测试过程：
-   - 自动检测SD卡
-   - 显示测试进度
-   - 输出测试结果
-   - 生成测试报告
+2. Test process:
+   - Automatically detected SD card
+   - Display test progress
+   - Output test results
+   - Generate test report
 
-### 配置文件说明
-配置文件`config.yaml`包含以下主要设置(默认值)，GUI模式和CLI模式都使用此配置文件
+### Configuration File Description
+The configuration file `config.yaml` contains the following main settings (default values), which are used by both GUI and CLI modes
 ```yaml
 test:
-  # 循环测试配置
+  # Loop test configuration
   loop:
-    enabled: false  # 是否启用循环测试
-    count: 1       # 循环次数
+    enabled: false  # Whether to enable loop test
+    count: 1       # Loop count
 
-  # 性能测试配置
+  # Performance test configuration
   performance:
-    total_size: 128  # 总数据大小(MB)
-    block_size: 1    # 块大小(MB)
-    iterations: 3    # 平均次数
+    total_size: 128  # Total data size (MB)
+    block_size: 1    # Block size (MB)
+    iterations: 3    # Average times
 
-# 界面配置
+# Interface configuration
 ui:
-  always_on_top: true  # 窗口是否始终置顶
+  always_on_top: true  # Whether the window is always on top
 
-# 日志配置
+# Log configuration
 logger:
-  level: INFO  # 日志级别: DEBUG, INFO, WARNING, ERROR, CRITICAL 
+  level: INFO  # Log level: DEBUG, INFO, WARNING, ERROR, CRITICAL 
 ```
 
-### 测试报告说明
-- 位置：程序运行目录下的`test_report_YYYYMMDD_HHMMSS.txt`
-- 内容：包含测试配置、测试结果汇总、详细测试数据
+### Test Report Description
+- Location: `test_report_YYYYMMDD_HHMMSS.txt` under the program running directory
+- Content: Includes test configuration, test result summary, and detailed test data
 
-## 开发者指南
+## Developer Guide
 
-### 环境要求
+### Environment Requirements
 - Python 3.8+
 - PyQt5
 
-### 从源码运行
-1. 克隆仓库：
+### Running from Source Code
+1. Clone the repository:
 ```bash
 git clone https://github.com/cursorhu/sd_express_tester.git
 cd sd_express_tester
 ```
-2. 安装依赖：
+2. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
-3. 运行程序：
+3. Run the program:
 ```bash
-GUI模式
+GUI mode
 python main.py
-CLI模式
+CLI mode
 python main.py --cli --run
 ```
-### 打包说明
-1. 安装PyInstaller：
+### Packaging Instructions
+1. Install PyInstaller:
 ```bash
 pip install pyinstaller
 ```
-2. 使用spec文件打包：
+2. Use spec file to package:
 ```bash
 pyinstaller main.spec --clean
 ```
-### 项目结构
-- `core/`: 核心测试模块
-- `gui/`: 图形界面实现
-- `cli/`: 命令行实现
-- `utils/`: 工具类
-- `main.py`：主程序入口
+### Project Structure
+- `core/`: Core test module
+- `gui/`: Graphical interface implementation
+- `cli/`: Command line implementation
+- `utils/`: Utility classes
+- `main.py`: Main program entry
 
-### 技术要点
+### Technical Points
 
-#### 技术栈
-- GUI框架：PyQt5实现跨平台图形界面
-- 系统接口：
-  - WMI(Windows Management Instrumentation)：检测控制器和SD卡信息
-  - Win32 API：底层文件读写操作
-- 配置管理：YAML格式配置文件
-- 日志系统：Python logging模块，支持多级别日志
+#### Technical Stack
+- GUI framework: PyQt5 for cross-platform graphical interface
+- System interface:
+  - WMI (Windows Management Instrumentation): Detect controller and SD card information
+  - Win32 API: Low-level file read/write operations
+- Configuration management: YAML format configuration file
+- Logging system: Python logging module, supporting multiple log levels
 
-#### 性能优化
-1. 文件读写优化：
-   - 使用Win32 API直接操作文件：
-     - CreateFile设置优化标志
-     - ReadFile/WriteFile直接操作
-     - 避免文件系统缓存造成误差
+#### Performance Optimization
+1. File read/write optimization:
+   - Use Win32 API directly to operate files:
+     - CreateFile setting optimization flags
+     - ReadFile/WriteFile direct operations
+     - Avoid errors caused by file system caching
    
-   - 异步IO提升性能：
-     - 使用FILE_FLAG_OVERLAPPED标志
-     - 重叠IO操作并行处理
-     - 使用完成端口(IOCP)处理异步结果
+   - Asynchronous IO to improve performance:
+     - Use FILE_FLAG_OVERLAPPED flag
+     - Overlapped IO operations are processed in parallel
+     - Use completion ports (IOCP) to handle asynchronous results
    
-   - 缓冲区优化：
-     - 无缓冲写入(FILE_FLAG_NO_BUFFERING)
-     - 直写模式(FILE_FLAG_WRITE_THROUGH)
-     - 顺序扫描提示(FILE_FLAG_SEQUENTIAL_SCAN)
+   - Buffer optimization:
+     - No buffer write (FILE_FLAG_NO_BUFFERING)
+     - Direct write mode (FILE_FLAG_WRITE_THROUGH)
+     - Sequential scan prompt (FILE_FLAG_SEQUENTIAL_SCAN)
 
-2. SD卡检测优化：
-   - 快速模式检测：
-     - 根据1MB小数据读写速度判断卡类型
-     - 仅当卡变化时才完整检测卡模式
-   - 轮询优化：
-     - 使用WMI事件订阅
-     - 异步处理设备变更通知
-     - 减少轮询间隔(1秒)
+2. SD card detection optimization:
+   - Fast mode detection:
+     - Determine card type based on 1MB small data read/write speed
+     - Only detect card mode completely when the card changes
+   - Polling optimization:
+     - Use WMI event subscription
+     - Asynchronous handling of device change notifications
+     - Reduce polling interval (1 second)
 
-2. 控制器检测优化：
-   - 缓存控制器信息，避免重复查询
-   - 异步检测，不阻塞UI
+2. Controller detection optimization:
+   - Cache controller information to avoid repeated queries
+   - Asynchronous detection, not blocking the UI
 
-3. 内存管理：
-   - 大文件分块读写，避免内存溢出
-   - 及时释放不用的资源
+3. Memory management:
+   - Large file read/write blocks to avoid memory overflow
+   - Release unused resources in a timely manner
 
-4. UI响应优化：
-   - 使用QTimer延迟初始化
-   - 测试过程中通过信号机制更新UI
+4. UI response optimization:
+   - Use QTimer to delay initialization
+   - Update UI through signal mechanisms during the test
 
-#### 可扩展设计
-1. 测试框架：
-   - 测试用例基类设计
-   - 支持动态添加测试项
+#### Extensible Design
+1. Test framework:
+   - Design of test case base class
+   - Support dynamic addition of test items
 
-2. 报告生成：
-   - 支持单次和循环测试报告
-   - 结构化的报告格式
-   - 详细的测试数据记录
+2. Report generation:
+   - Support single and loop test reports
+   - Structured report format
+   - Detailed test data recording
 
-3. 双模式支持：
-   - GUI和CLI共用核心逻辑
-   - 统一的配置管理
-   - 一致的测试流程
+3. Dual mode support:
+   - GUI and CLI share core logic
+   - Unified configuration management
+   - Consistent test process
 
-#### 稳定性保障
-1. 异常处理：
-   - 全局异常捕获
-   - 分级别的错误处理
-   - 详细的错误日志
+#### Stability Assurance
+1. Exception handling:
+   - Global exception capture
+   - Error handling at different levels
+   - Detailed error logs
 
-2. 状态管理：
-   - 严格的状态检查
-   - 测试过程可中断
-   - 资源自动释放
+2. State management:
+   - Strict state check
+   - Test process can be interrupted
+   - Resources are automatically released
 
-3. 兼容性处理：
-   - 支持多种SD卡规格
-   - 控制器兼容性检查
-   - 向下兼容传统SD模式
+3. Compatibility handling:
+   - Support multiple SD card specifications
+   - Controller compatibility check
+   - Backward compatibility with traditional SD modes
    
-## 许可证
+## License
 GPLv3
