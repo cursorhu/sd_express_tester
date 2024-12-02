@@ -175,22 +175,10 @@ class CardOperations:
                     card_info.drive_letter = drive_letter
                     card_info.device_path = device_path
 
-                    # Check if it's possible to be an SD Express card (NVMe mode)
-                    if any(keyword in disk.Model.upper() or 
-                           keyword in disk.Caption.upper() or
-                           keyword in disk.PNPDeviceID.upper() 
-                           for keyword in ["NVM", "NVME", "SD", "SDEX"]):
-                        # Check again if the NVMe device is an SD Express card, excluding SSD
-                        if self._is_sd_express(disk):
-                            card_info.controller_type = ControllerType.NVME
-                            card_info.is_sd_express = True
-                            return card_info
-                        else:
-                            # It's an NVMe SSD drive
-                            return None
+                    logger.debug(f"Disk media type: {disk.MediaType}")
 
                     # Check if it's a traditional SD card (excluding USB devices)
-                    if disk.MediaType and "Removable Media" in disk.MediaType:
+                    if "Removable Media" in disk.MediaType:
                         if ("USB" in disk.Model or 
                             "USB" in disk.Caption or 
                             "USB" in disk.Description):
@@ -204,6 +192,21 @@ class CardOperations:
                             "Card" in disk.Caption):
                             card_info.controller_type = ControllerType.SD_HOST
                             return card_info
+
+                    # Check if it's possible to be an SD Express card (NVMe mode)
+                    # SD express card is not removable media, same as NVMe SSD.
+                    if any(keyword in disk.Model.upper() or 
+                           keyword in disk.Caption.upper() or
+                           keyword in disk.PNPDeviceID.upper() 
+                           for keyword in ["NVM", "NVME", "SD", "SDEX"]):
+                        # Check again if the NVMe device is an SD Express card, excluding SSD
+                        if self._is_sd_express(disk):
+                            card_info.controller_type = ControllerType.NVME
+                            card_info.is_sd_express = True
+                            return card_info
+                        else:
+                            # It's an NVMe SSD drive
+                            return None
 
             return None
 
@@ -313,11 +316,11 @@ class CardOperations:
             logger.debug(f"Measured max speed: {max_speed:.2f}MB/s")
             
             # UHS-II speed range: FD156 is 156MB/s, HD312 is 312MB/s
-            if max_speed >= 130:  # UHS-II minimum speed threshold adjusted to 130MB/s
+            if max_speed >= 120:  # UHS-II minimum speed threshold
                 logger.info(f"Based on speed({max_speed:.2f}MB/s) determined as SD 4.0 (UHS-II) card")
                 return "4.0"
             # UHS-I speed range: SDR50 is 50MB/s, SDR104 is 104MB/s
-            elif max_speed >= 30:  # UHS-I minimum speed threshold adjusted to 30MB/s
+            elif max_speed >= 30:  # UHS-I minimum speed threshold
                 logger.info(f"Based on speed({max_speed:.2f}MB/s) determined as SD 3.0 (UHS-I) card")
                 return "3.0"
             else:
@@ -351,7 +354,7 @@ class CardOperations:
             
             # Create test file
             test_file = os.path.join(drive_letter, "speed_test.bin")
-            test_size = 1 * 1024 * 1024  # 4MB
+            test_size = 4 * 1024 * 1024  # 4MB
             block_size = 1024 * 1024  # 1MB
             
             try:
@@ -361,7 +364,7 @@ class CardOperations:
                 
                 # Perform read test
                 max_read_speed = 0
-                for _ in range(3):  # Test 3 times and take the maximum
+                for _ in range(2):  # Test 3 times and take the maximum
                     handle = win32file.CreateFile(
                         test_file,
                         win32file.GENERIC_READ,
