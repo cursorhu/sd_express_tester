@@ -120,7 +120,7 @@ class CardOperations:
             logger.debug(f"Description: {disk.Description}")
             logger.debug(f"PNPDeviceID: {disk.PNPDeviceID}")
 
-            # 首先检查是否包含SSD关键字，如果有则不是SD Express卡
+            # 检查是否包含SSD关键字，如果有则是SSD影片，而不是SD Express卡
             # 注意并不是所有厂商的SSD的Model Name都包含SSD关键字
             ssd_keywords = [
                 "SSD",
@@ -134,7 +134,7 @@ class CardOperations:
                             logger.debug(f"检测到SSD关键字: {keyword}")
                             return False
 
-            # SD Express卡特有标识(实际是无效的，SD Express卡通常不包含这些关键字)
+            # SD Express卡特有标识(实际是不太有效的，SD Express卡不一定包含这些关键字)
             sd_express_keywords = [
                 "SD EXPRESS",
                 "SDEX",
@@ -175,11 +175,12 @@ class CardOperations:
                     card_info.drive_letter = drive_letter
                     card_info.device_path = device_path
 
-                    # 检测是否为SD Express卡(NVMe模式)
-                    if ("NVM" in disk.Model or 
-                        "NVM" in disk.Caption or 
-                        "NVMe" in disk.PNPDeviceID):
-                        # 检查NVMe设备是否为SD Express卡
+                    # 检测是否可能为SD Express卡(NVMe模式)
+                    if any(keyword in disk.Model.upper() or 
+                           keyword in disk.Caption.upper() or
+                           keyword in disk.PNPDeviceID.upper() 
+                           for keyword in ["NVM", "NVME", "SD", "SDEX"]):
+                        # 再次检查NVMe设备是否为SD Express卡，排除SSD
                         if self._is_sd_express(disk):
                             card_info.controller_type = ControllerType.NVME
                             card_info.is_sd_express = True
