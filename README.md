@@ -24,7 +24,7 @@ SD Express Tester is a testing software for SD Express cards, with backward comp
 
 ### GUI Mode Usage Instructions
 
-![gui-image](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202411291721560.png)
+![image-20241203110648428](https://raw.githubusercontent.com/cursorhu/blog-images-on-picgo/master/images/202412031106485.png)
 
 1. Run `SDExpressTester.exe`
 2. The program automatically detects SD cards and SD/NVMe controllers
