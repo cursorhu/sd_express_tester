@@ -16,7 +16,11 @@ class Config:
     
     def _get_default_config_yaml(self):
         """Get default config YAML text with comments"""
-        return '''# Test Configuration
+        return '''# Card Configuration
+card:
+  sd_express_model: ""  # SD Express card model name, empty for automatic detection
+
+# Test Configuration
 test:
   # Loop test configuration
   loop:

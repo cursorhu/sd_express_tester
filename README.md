@@ -85,6 +85,11 @@ SD Express Tester is a testing software for SD Express cards, with backward comp
 ### Configuration File Description
 The configuration file `config.yaml` contains the following main settings (default values), which are used by both GUI and CLI modes
 ```yaml
+# Card Configuration
+card:
+  sd_express_model: ""  # SD Express card model name, empty for automatic detection
+
+# Test Configuration
 test:
   # Loop test configuration
   loop:

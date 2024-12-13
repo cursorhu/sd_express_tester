@@ -16,8 +16,8 @@ from pathlib import Path
 logger = get_logger(__name__)
 
 # Add version info constants
-VERSION = "1.0.3"
-BUILD_DATE = "2024-12-03"
+VERSION = "1.0.4"
+BUILD_DATE = "2024-12-13"
 AUTHOR = "Thomas.Hu"
 CONTACT = "thomas.hu@o2micro.com"
 
@@ -97,7 +97,16 @@ class MainWindow(QMainWindow):
         try:
             self.controller = SDController()
             # Pass controller object to CardOperations, otherwise cannot update controller info through CardOperations
-            self.card_ops = CardOperations(controller=self.controller)
+            # self.card_ops = CardOperations(controller=self.controller)
+            
+            sd_express_model = config.get('card.sd_express_model')
+            if sd_express_model:
+                self.card_ops = CardOperations(controller=self.controller, sd_express_model=sd_express_model)
+                logger.info(f"Using specified SD Express model: {sd_express_model}")
+            else:
+                self.card_ops = CardOperations(controller=self.controller)
+                logger.info("Using automatic logic to determine SD Express model")
+                
             self.test_suite = TestSuite(self.card_ops)
             logger.info("Core components initialized")
             

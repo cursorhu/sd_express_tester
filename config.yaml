@@ -1,3 +1,7 @@
+# Card Configuration
+card:
+  sd_express_model: ""  # SD Express card model name, empty for automatic detection
+
 # Test Configuration
 test:
   # Loop test configuration

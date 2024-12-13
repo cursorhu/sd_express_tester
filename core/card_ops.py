@@ -19,11 +19,11 @@ class CardInfo:
         self.name = None   # Add card name property
  
 class CardOperations:
-    def __init__(self, controller=None):
+    def __init__(self, controller=None, sd_express_model=None):
         self.controller = controller
         self.timeout = 30
         self._last_card_info = None
-    
+        self.sd_express_model = sd_express_model
     def check_card(self, quick_mode=True):
         """Unified card detection entry
         Args:
@@ -193,20 +193,33 @@ class CardOperations:
                             card_info.controller_type = ControllerType.SD_HOST
                             return card_info
 
-                    # Check if it's possible to be an SD Express card (NVMe mode)
+                    # Check SD Express card (NVMe mode) or NVMe SSD.
                     # SD express card is not removable media, same as NVMe SSD.
                     if any(keyword in disk.Model.upper() or 
                            keyword in disk.Caption.upper() or
                            keyword in disk.PNPDeviceID.upper() 
                            for keyword in ["NVM", "NVME", "SD", "SDEX"]):
-                        # Check again if the NVMe device is an SD Express card, excluding SSD
-                        if self._is_sd_express(disk):
-                            card_info.controller_type = ControllerType.NVME
-                            card_info.is_sd_express = True
-                            return card_info
+                        
+                        # If specified SD Express model, directly match
+                        if self.sd_express_model:
+                            if self.sd_express_model.upper() in disk.Model.upper():
+                                card_info.controller_type = ControllerType.NVME
+                                card_info.is_sd_express = True
+                                logger.info(f"Matched SD Express model: {disk.Model}")
+                                return card_info
+                            else:
+                                # not match specified model, consider it as NVMe SSD
+                                return None
+                        
+                        # If not specified SD Express model, use automatic logic to determine
                         else:
-                            # It's an NVMe SSD drive
-                            return None
+                            # check detailed info
+                            if self._is_sd_express(disk):
+                                card_info.controller_type = ControllerType.NVME
+                                card_info.is_sd_express = True
+                                return card_info
+                            else:
+                                return None
 
             return None
 
