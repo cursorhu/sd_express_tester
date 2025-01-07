@@ -16,8 +16,8 @@ from pathlib import Path
 logger = get_logger(__name__)
 
 # Add version info constants
-VERSION = "1.0.4"
-BUILD_DATE = "2024-12-13"
+VERSION = "1.0.5"
+BUILD_DATE = "2025-01-06"
 AUTHOR = "Thomas.Hu"
 CONTACT = "thomas.hu@o2micro.com"
 

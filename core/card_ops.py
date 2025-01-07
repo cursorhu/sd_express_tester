@@ -2,6 +2,7 @@ import time
 import win32file
 import win32api
 import win32com.client
+import winerror
 import os
 from .controller import ControllerType
 from core.controller import SDController
@@ -272,51 +273,178 @@ class CardOperations:
                 new_card_info.drive_letter != self._last_card_info.drive_letter or
                 new_card_info.name != self._last_card_info.name)
     
+    # NOTICE!! This method does not work, only for reference.
+    # def _determine_express_mode(self, device_path):
+    #     """Determine Express mode (7.0 or 8.0)"""
+    #     try:
+    #         # Use WMI to get detailed device info
+    #         wmi = win32com.client.GetObject("winmgmts:")
+    #         for disk in wmi.InstancesOf("Win32_DiskDrive"):
+    #             if disk.DeviceID == device_path:
+    #                 # Get device instance path
+    #                 pnp_id = disk.PNPDeviceID
+                    
+    #                 # Get more info from device manager
+    #                 for controller in wmi.InstancesOf("Win32_PnPEntity"):
+    #                     if pnp_id in controller.PNPDeviceID:
+    #                         # Check device properties and description
+    #                         desc = controller.Description.upper() if controller.Description else ""
+    #                         name = controller.Name.upper() if controller.Name else ""
+                            
+    #                         logger.debug(f"SD Express card device info: {desc} | {name}")
+                            
+    #                         # Check transfer rate to determine version
+    #                         if hasattr(controller, 'MaximumTransferRate'):
+    #                             rate = float(controller.MaximumTransferRate)
+    #                             if rate >= 2000:  # Above 2GB/s considered as 8.0
+    #                                 logger.info("Detected SD Express 8.0 card")
+    #                                 return "8.0"
+    #                             else:
+    #                                 logger.info("Detected SD Express 7.0 card")
+    #                                 return "7.0"
+                            
+    #                         # If unable to get rate, determine version from description
+    #                         if "PCIE GEN4" in desc or "GEN 4" in desc:
+    #                             logger.info("Detected SD Express 8.0 card based on PCIe version")
+    #                             return "8.0"
+    #                         elif "PCIE GEN3" in desc or "GEN 3" in desc:
+    #                             logger.info("Detected SD Express 7.0 card based on PCIe version")
+    #                             return "7.0"
+            
+    #         # If unable to determine specific version, return conservative estimate
+    #         logger.warning("Unable to determine specific SD Express version, defaulting to 7.0")
+    #         return "7.0"
+            
+    #     except Exception as e:
+    #         logger.error(f"SD Express mode detection failed: {str(e)}", exc_info=True)
+    #         return "7.0"  # Return conservative estimate on error
+    
+    # NOTICE!! This method is not accurate, use async I/O for NVMe disk get better performance.
+    # def _determine_express_mode(self, device_path):
+    #     """Determine Express mode (7.0 or 8.0) based on read speed"""
+    #     try:
+    #         # Get performance test data
+    #         perf_info = self._get_disk_performance(device_path)
+    #         if not perf_info:
+    #             logger.error("Failed to get performance data")
+    #             return "7.0"  # Conservative return 7.0
+            
+    #         max_speed = perf_info['read_speed']
+    #         logger.debug(f"Measured maximum read speed: {max_speed:.2f}MB/s")
+            
+    #         # Determine mode based on read speed
+    #         # SD Express 8.0 (PCIe Gen4) theoretical speed up to 2000MB/s
+    #         # SD Express 7.0 (PCIe Gen3) theoretical speed up to 1000MB/s
+    #         if max_speed >= 800:  # 8.0 mode minimum speed threshold
+    #             logger.info(f"Based on speed({max_speed:.2f}MB/s) determined as SD Express 8.0 card")
+    #             return "8.0"
+    #         else:
+    #             logger.info(f"Based on speed({max_speed:.2f}MB/s) determined as SD Express 7.0 card")
+    #             return "7.0"
+                
+    #     except Exception as e:
+    #         logger.error(f"SD Express mode detection failed: {str(e)}", exc_info=True)
+    #         return "7.0"  # Return conservative estimate on error
+
+    # Use asnyc I/O for NVMe disk to get better performance.    
     def _determine_express_mode(self, device_path):
-        """Determine Express mode (7.0 or 8.0)"""
+        """Determine Express mode (7.0 or 8.0) based on read speed"""
         try:
-            # Use WMI to get detailed device info
+            # Get drive letter
+            drive_letter = None
             wmi = win32com.client.GetObject("winmgmts:")
             for disk in wmi.InstancesOf("Win32_DiskDrive"):
                 if disk.DeviceID == device_path:
-                    # Get device instance path
-                    pnp_id = disk.PNPDeviceID
+                    for partition in disk.Associators_("Win32_DiskDriveToDiskPartition"):
+                        for logical_disk in partition.Associators_("Win32_LogicalDiskToPartition"):
+                            drive_letter = logical_disk.DeviceID + "\\"
+                            break
+                    break
+            
+            if not drive_letter:
+                logger.error("Unable to get drive letter")
+                return "error drive"  # Conservative return
+
+            # Create test file
+            test_file = os.path.join(drive_letter, "express_mode_test.bin")
+            test_size = 16 * 1024 * 1024  # 16MB is good for nvme disk performance check
+            block_size = 1024 * 1024  # 1MB block size
+            
+            try:
+                # First create and write test file
+                with open(test_file, 'wb') as f:
+                    f.write(os.urandom(test_size))
+                
+                # Wait for data to be written
+                time.sleep(1)
+                
+                # Perform read test with async IO
+                max_read_speed = 0
+                for _ in range(2):  # Test 2 times and take maximum
+                    handle = win32file.CreateFile(
+                        test_file,
+                        win32file.GENERIC_READ,
+                        0,  # Not shared
+                        None,
+                        win32file.OPEN_EXISTING,
+                        win32file.FILE_FLAG_NO_BUFFERING | 
+                        win32file.FILE_FLAG_SEQUENTIAL_SCAN |
+                        win32file.FILE_FLAG_OVERLAPPED,  # Enable async I/O
+                        None
+                    )
                     
-                    # Get more info from device manager
-                    for controller in wmi.InstancesOf("Win32_PnPEntity"):
-                        if pnp_id in controller.PNPDeviceID:
-                            # Check device properties and description
-                            desc = controller.Description.upper() if controller.Description else ""
-                            name = controller.Name.upper() if controller.Name else ""
+                    try:
+                        # Create OVERLAPPED structure
+                        overlapped = win32file.OVERLAPPED()
+                        overlapped.Offset = 0
+                        overlapped.OffsetHigh = 0
+                        
+                        buffer = win32file.AllocateReadBuffer(block_size)
+                        bytes_read = 0
+                        start_time = time.perf_counter()
+                        
+                        while bytes_read < test_size:
+                            # Use async read
+                            result, _ = win32file.ReadFile(handle, buffer, overlapped)
+                            if result == winerror.ERROR_IO_PENDING:
+                                # Wait for async operation to complete
+                                win32file.GetOverlappedResult(handle, overlapped, True)
                             
-                            logger.debug(f"SD Express card device info: {desc} | {name}")
+                            overlapped.Offset += block_size  # Update next read position
+                            bytes_read += block_size
                             
-                            # Check transfer rate to determine version
-                            if hasattr(controller, 'MaximumTransferRate'):
-                                rate = float(controller.MaximumTransferRate)
-                                if rate >= 2000:  # Above 2GB/s considered as 8.0
-                                    logger.info("Detected SD Express 8.0 card")
-                                    return "8.0"
-                                else:
-                                    logger.info("Detected SD Express 7.0 card")
-                                    return "7.0"
-                            
-                            # If unable to get rate, determine version from description
-                            if "PCIE GEN4" in desc or "GEN 4" in desc:
-                                logger.info("Detected SD Express 8.0 card based on PCIe version")
-                                return "8.0"
-                            elif "PCIE GEN3" in desc or "GEN 3" in desc:
-                                logger.info("Detected SD Express 7.0 card based on PCIe version")
-                                return "7.0"
-            
-            # If unable to determine specific version, return conservative estimate
-            logger.warning("Unable to determine specific SD Express version, defaulting to 7.0")
-            return "7.0"
-            
+                        read_time = time.perf_counter() - start_time
+                        read_speed = test_size / read_time / (1024 * 1024)  # MB/s
+                        max_read_speed = max(max_read_speed, read_speed)
+                        
+                    finally:
+                        handle.Close()
+                        time.sleep(0.1)  # Wait between tests
+                
+                logger.debug(f"Express mode test result: Read={max_read_speed:.1f}MB/s")
+                
+                # Determine mode based on read speed
+                # SD Express 8.0 (PCIe Gen4) theoretical speed up to 2000MB/s
+                # SD Express 7.0 (PCIe Gen3) theoretical speed up to 1000MB/s
+                if max_read_speed >= 800:  # 8.0 mode minimum speed threshold
+                    logger.info(f"Based on speed({max_read_speed:.2f}MB/s) determined as SD Express 8.0 card")
+                    return "8.0"
+                else:
+                    logger.info(f"Based on speed({max_read_speed:.2f}MB/s) determined as SD Express 7.0 card")
+                    return "7.0"
+                    
+            finally:
+                # Clean up test file
+                if os.path.exists(test_file):
+                    try:
+                        os.remove(test_file)
+                    except:
+                        pass
+                        
         except Exception as e:
             logger.error(f"SD Express mode detection failed: {str(e)}", exc_info=True)
-            return "7.0"  # Return conservative estimate on error
-    
+            return "unknown"  # Return conservative estimate on error
+        
     def _determine_sd_mode(self, device_path):
         """Determine SD card mode through performance test (4.0/3.0/2.0)"""
         try:
@@ -343,7 +471,8 @@ class CardOperations:
         except Exception as e:
             logger.error(f"SD card mode detection failed: {str(e)}", exc_info=True)
             return "unknown"  # Error
-
+        
+    # Use sync I/O for SD mode performance is OK.
     def _get_disk_performance(self, device_path):
         """Get disk performance characteristics"""
         try:
@@ -367,7 +496,7 @@ class CardOperations:
             
             # Create test file
             test_file = os.path.join(drive_letter, "speed_test.bin")
-            test_size = 4 * 1024 * 1024  # 4MB
+            test_size = 4 * 1024 * 1024  # 4MB is good for sd card performance check
             block_size = 1024 * 1024  # 1MB
             
             try:
@@ -377,7 +506,7 @@ class CardOperations:
                 
                 # Perform read test
                 max_read_speed = 0
-                for _ in range(2):  # Test 3 times and take the maximum
+                for _ in range(2):  # Test 2 times and take the maximum
                     handle = win32file.CreateFile(
                         test_file,
                         win32file.GENERIC_READ,
