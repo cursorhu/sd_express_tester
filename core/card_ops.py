@@ -151,12 +151,6 @@ class CardOperations:
                     for keyword in sd_express_keywords:
                         if keyword in desc:
                             return True
-                            
-            # Check physical features (if available)
-            if hasattr(disk, 'Size'):
-                size_gb = int(disk.Size) / (1024**3)
-                if size_gb <= 2048:  # SD Express card currently max 2TB
-                    return True
                     
             return False
         
