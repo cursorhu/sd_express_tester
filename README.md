@@ -93,6 +93,12 @@ card:
   registry_path: "SYSTEM\\CurrentControlSet\\Services\\bhtsddr\\GG8"  # Registry path for SD host controller
   registry_item: "sd_card_mode_dis"  # Registry item name for card configuration
 
+  # Speed thresholds for card mode detection (MB/s)
+  speed_threshold:
+    sd_express_8: 800    # SD Express 8.0 minimum speed threshold
+    sd_4: 120          # SD 4.0 (UHS-II) minimum speed threshold
+    sd_3: 30           # SD 3.0 (UHS-I) minimum speed threshold
+
 # Test Configuration
 test:
   # Loop test configuration
@@ -106,6 +112,9 @@ test:
     block_size: 1    # Block size (MB)
     iterations: 3    # Average times
 
+  # Test timeout configuration (seconds)
+  timeout: 600       # Single test loop timeout (10 minutes)
+
 # Interface configuration
 ui:
   always_on_top: false  # Whether the window is always on top
@@ -114,6 +123,12 @@ ui:
 logger:
   level: INFO  # Log level: DEBUG, INFO, WARNING, ERROR, CRITICAL 
 ```
+Notice for speed_threshold: 
+UHS-II speed range: FD156 is 156MB/s, HD312 is 312MB/s,
+UHS-I speed range: SDR50 is 50MB/s, SDR104 is 104MB/s 
+SD Express 8.0 (PCIe Gen4) theoretical speed up to 2000MB/s
+SD Express 7.0 (PCIe Gen3) theoretical speed up to 1000MB/s
+We leave some margin for minimum speed threshold.
 
 ### Configuration Guide
 

@@ -10,10 +10,8 @@ import win32con
 from .controller import ControllerType
 from core.controller import SDController
 from utils.logger import get_logger
-from utils.config import Config
 
 logger = get_logger(__name__)
-config = Config()
 
 class CardInfo:
     def __init__(self):
@@ -39,7 +37,12 @@ class CardOperations:
             'sd_express_model': self.config.get('card.sd_express_model', ''),
             'sd4_disable': self.config.get('card.sd4_disable', False),
             'registry_path': self.config.get('card.registry_path', ''),
-            'registry_item': self.config.get('card.registry_item', '')
+            'registry_item': self.config.get('card.registry_item', ''),
+            'speed_threshold': {
+                'sd_express_8': self.config.get('card.speed_threshold.sd_express_8', 800),
+                'sd_4': self.config.get('card.speed_threshold.sd_4', 120),
+                'sd_3': self.config.get('card.speed_threshold.sd_3', 30)
+            }
         }
         logger.debug(f"Loaded card configuration: {self.card_config}")
 
@@ -448,7 +451,9 @@ class CardOperations:
                 # Determine mode based on read speed
                 # SD Express 8.0 (PCIe Gen4) theoretical speed up to 2000MB/s
                 # SD Express 7.0 (PCIe Gen3) theoretical speed up to 1000MB/s
-                if max_read_speed >= 800:  # 8.0 mode minimum speed threshold
+                thresholds = self.card_config['speed_threshold']
+                #if max_read_speed >= 800:  # 8.0 mode minimum speed threshold
+                if max_read_speed >= thresholds['sd_express_8']:
                     logger.info(f"Based on speed({max_read_speed:.2f}MB/s) determined as SD Express 8.0 card")
                     return "8.0"
                 else:
@@ -478,12 +483,15 @@ class CardOperations:
             max_speed = perf_info['read_speed']
             logger.debug(f"Measured max speed: {max_speed:.2f}MB/s")
             
+            thresholds = self.card_config['speed_threshold']
             # UHS-II speed range: FD156 is 156MB/s, HD312 is 312MB/s
-            if max_speed >= 120:  # UHS-II minimum speed threshold
+            #if max_speed >= 120:  # UHS-II minimum speed threshold
+            if max_speed >= thresholds['sd_4']:
                 logger.info(f"Based on speed({max_speed:.2f}MB/s) determined as SD 4.0 (UHS-II) card")
                 return "4.0"
             # UHS-I speed range: SDR50 is 50MB/s, SDR104 is 104MB/s
-            elif max_speed >= 30:  # UHS-I minimum speed threshold
+            #elif max_speed >= 30:  # UHS-I minimum speed threshold
+            elif max_speed >= thresholds['sd_3']:
                 logger.info(f"Based on speed({max_speed:.2f}MB/s) determined as SD 3.0 (UHS-I) card")
                 return "3.0"
             else:

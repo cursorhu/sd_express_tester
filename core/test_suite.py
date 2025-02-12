@@ -6,6 +6,7 @@ from utils.logger import get_logger
 from core.controller import ControllerType
 import win32file
 import winerror
+from utils.config import config
 
 logger = get_logger(__name__)
 
@@ -22,6 +23,9 @@ class TestSuite:
         self._stop_event = Event()
         self.test_cases = []
         self.card_ops = card_ops
+        self.config = config #from utils.config import config
+        self.timeout = self.config.get('test.timeout', 600)  # 默认单轮10分钟超时
+        self.start_time = None
         self._setup_test_cases()
     
     def _setup_test_cases(self):
@@ -94,15 +98,20 @@ class TestSuite:
         test_dir = self._get_test_path()
         os.makedirs(test_dir, exist_ok=True)
         
+        
         try:
+            # 记录本轮测试开始时间
+            self.start_time = time.time()
             # Execute single round of tests
             total_tests = len(self.test_cases)
             for i, test_case in enumerate(self.test_cases):
                 if self._stop_event.is_set():
                     logger.info("Test stopped manually")
                     break
-                    
+
                 try:
+                    # 每个测试子项开始前都检查本轮测试是否已超时
+                    self._check_timeout()
                     # Update status
                     if 'status_callback' in config:
                         config['status_callback'](f"Executing test: {test_case.name}")
@@ -148,6 +157,10 @@ class TestSuite:
                     results.update(result)
                     if 'result_callback' in config:
                         config['result_callback'](result)
+
+                    # 如果是超时异常，终止测试
+                    if isinstance(e, TestTimeoutError):
+                        break
                         
         finally:
             # Clean up test files
@@ -462,3 +475,11 @@ class TestSuite:
         except Exception as e:
             logger.error(f"Stability test failed: {str(e)}", exc_info=True)
             return False, f"Stability test failed: {str(e)}"
+
+    def _check_timeout(self):
+        """检查是否超时"""
+        if self.start_time and time.time() - self.start_time > self.timeout:
+            raise TestTimeoutError("Test timeout")
+        
+class TestTimeoutError(Exception):
+    pass

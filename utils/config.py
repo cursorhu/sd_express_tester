@@ -24,6 +24,18 @@ card:
   sd4_disable: null     # SD4.0 mode control: (true/false/null). true to disable SD4.0, false to re-enable SD4.0, null for no control
   registry_path: "SYSTEM\\\\CurrentControlSet\\\\Services\\\\bhtsddr\\\\GG8"  # Registry path for SD host controller
   registry_item: "sd_card_mode_dis"  # Registry item name for card configuration
+  
+  # Speed thresholds for card mode detection (MB/s)
+  # Notice: 
+  # UHS-II speed range: FD156 is 156MB/s, HD312 is 312MB/s,
+  # UHS-I speed range: SDR50 is 50MB/s, SDR104 is 104MB/s 
+  # SD Express 8.0 (PCIe Gen4) theoretical speed up to 2000MB/s
+  # SD Express 7.0 (PCIe Gen3) theoretical speed up to 1000MB/s
+  # We leave some margin for minimum speed threshold.
+  speed_threshold:
+    sd_express_8: 800    # SD Express 8.0 minimum speed threshold (800 MB/s)
+    sd_4: 120          # SD 4.0 (UHS-II) minimum speed threshold (120 MB/s)
+    sd_3: 30           # SD 3.0 (UHS-I) minimum speed threshold (30 MB/s)
 
 # Test Configuration
 test:
@@ -37,6 +49,9 @@ test:
     total_size: 128  # Total data size(MB) (1-1024)
     block_size: 1    # Block size(MB) (1-64)
     iterations: 3    # Average count (1-10)
+
+  # Test timeout configuration (seconds)
+  timeout: 600       # Single test loop timeout (10 minutes)
 
 # UI Configuration
 ui:
