@@ -19,15 +19,10 @@ class CLIRunner:
         )
         self._setup_arguments()
         self.controller = SDController()
-
-        sd_express_model = config.get('card.sd_express_model')
-        if sd_express_model:
-            self.card_ops = CardOperations(controller=self.controller, sd_express_model=sd_express_model)
-            logger.info(f"Using specified SD Express model: {sd_express_model}")
-        else:
-            self.card_ops = CardOperations(controller=self.controller)
-            logger.info("Using automatic logic to determine SD Express model")
-            
+        self.card_ops = CardOperations(
+                    controller=self.controller,
+                    config=config   #from utils.config import
+        )
         self.test_suite = TestSuite(self.card_ops)
         logger.debug("CLI runner initialization complete")
     

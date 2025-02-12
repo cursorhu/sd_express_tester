@@ -21,6 +21,7 @@ SD Express Tester is a testing software for SD Express cards, with backward comp
 ### System Requirements
 - Windows 10/11
 - SD Express card controller (O2Micro/BayHub series controllers)
+- Administrator privileges (required for SD4.0 mode control)
 
 ### GUI Mode Usage Instructions
 
@@ -88,6 +89,9 @@ The configuration file `config.yaml` contains the following main settings (defau
 # Card Configuration
 card:
   sd_express_model: ""  # SD Express card model name, empty for automatic detection
+  sd4_disable: null     # SD4.0 mode control: true to disable, false to enable, null for no control
+  registry_path: "SYSTEM\\CurrentControlSet\\Services\\bhtsddr\\GG8"  # Registry path for SD host controller
+  registry_item: "sd_card_mode_dis"  # Registry item name for card configuration
 
 # Test Configuration
 test:
@@ -104,12 +108,91 @@ test:
 
 # Interface configuration
 ui:
-  always_on_top: true  # Whether the window is always on top
+  always_on_top: false  # Whether the window is always on top
 
 # Log configuration
 logger:
   level: INFO  # Log level: DEBUG, INFO, WARNING, ERROR, CRITICAL 
 ```
+
+### Configuration Guide
+
+#### SD Card Mode Control
+The tool provides two ways to control SD card behavior through `config.yaml`:
+
+1. SD Express Model Control (`card.sd_express_model`):
+   ```yaml
+   card:
+     sd_express_model: ""  # Empty for automatic detection
+   ```
+   - Empty string (default): Automatic detection
+   - Specific model name: Force recognition as specified model
+   - Use case: When automatic detection fails for certain SD Express cards
+
+2. SD4.0 Mode Control (`card.sd4_disable`):
+   ```yaml
+   card:
+     sd4_disable: null  # null/true/false
+   ```
+   - `null` (default): No control, keep current mode
+   - `true`: Force SD4.0 card to run in SD3.0 mode
+   - `false`: Try to enable SD4.0 mode if supported
+   
+   Important Notes:
+   - Requires administrator privileges
+   - Only works with BayHub controllers
+   - Changes take effect after card reinsertion
+   - If set to `true`, SD4.0 cards will be reinitialized as SD3.0
+   - If set to `false`, SD3.0 cards with SD4.0 capability will try to enable SD4.0 mode
+
+#### How to Modify Configuration
+1. Method 1: Direct Edit
+   - Open `config.yaml` in any text editor
+   - Modify the values
+   - Save and restart the program
+
+2. Method 2: Through GUI
+   - Click "Configuration" button in the main window
+   - Modify settings in the configuration dialog
+   - Save and restart the program
+
+#### Configuration Examples
+1. Force SD4.0 card to run in SD3.0 mode:
+```yaml
+card:
+  sd4_disable: true
+```
+
+2. Try to enable SD4.0 mode if supported:
+```yaml
+card:
+  sd4_disable: false
+```
+
+3. Specify SD Express card model:
+```yaml
+card:
+  sd_express_model: "SDEX-128G"  # Replace with your SD express card model
+```
+
+4. Default configuration (automatic mode):
+```yaml
+card:
+  sd_express_model: ""
+  sd4_disable: null
+```
+
+### Troubleshooting
+1. SD4.0 mode control not working:
+   - Verify tool running as administrator
+   - Check if using BayHub controller
+   - Ensure card supports SD4.0
+   - Try reinserting the card
+
+2. SD express card not detected properly:
+   - Try specifying SD express card model in configuration (card model name refer to device manager's disk drives) and restart tool
+   - Check controller compatibility
+   - Update controller drivers
 
 ### Test Report Description
 - Location: `test_report_YYYYMMDD_HHMMSS.txt` under the program running directory

@@ -4,11 +4,16 @@ import win32api
 import win32com.client
 import winerror
 import os
+import sys
+import winreg
+import win32con
 from .controller import ControllerType
 from core.controller import SDController
 from utils.logger import get_logger
+from utils.config import Config
 
 logger = get_logger(__name__)
+config = Config()
 
 class CardInfo:
     def __init__(self):
@@ -20,11 +25,24 @@ class CardInfo:
         self.name = None   # Add card name property
  
 class CardOperations:
-    def __init__(self, controller=None, sd_express_model=None):
+    def __init__(self, controller=None, config=None):
         self.controller = controller
         self.timeout = 30
         self._last_card_info = None
-        self.sd_express_model = sd_express_model
+        self.config = config
+        self._load_card_config()
+        self.devcon_path = self._get_devcon_path() # 获取devcon路径
+
+    def _load_card_config(self):
+        """加载所有卡相关配置"""
+        self.card_config = {
+            'sd_express_model': self.config.get('card.sd_express_model', ''),
+            'sd4_disable': self.config.get('card.sd4_disable', False),
+            'registry_path': self.config.get('card.registry_path', ''),
+            'registry_item': self.config.get('card.registry_item', '')
+        }
+        logger.debug(f"Loaded card configuration: {self.card_config}")
+
     def check_card(self, quick_mode=True):
         """Unified card detection entry
         Args:
@@ -93,6 +111,16 @@ class CardOperations:
             # If full check is needed, add detailed info
             if full_check:
                 self._enhance_card_info(card_info)
+                
+                # 检查是否需要禁用SD4.0模式
+                if (self.card_config['sd4_disable'] is not None and  # 不为空时才处理
+                    card_info.controller_type == ControllerType.SD_HOST):
+                    if (self.card_config['sd4_disable'] and card_info.mode == "4.0" or  # SD4.0且需要禁用
+                        not self.card_config['sd4_disable'] and card_info.mode == "3.0"):  # SD3.0且需要启用
+                        if self._disable_enable_sd4_mode():
+                            # 重新检测卡信息
+                            time.sleep(1)  # 等待重新初始化完成
+                            return self._analyze_drive(drive_letter, full_check=True)
             else:
                 # Only get capacity info, no performance test
                 card_info.capacity = self._get_drive_capacity(drive_letter)
@@ -196,8 +224,8 @@ class CardOperations:
                            for keyword in ["NVM", "NVME", "SD", "SDEX"]):
                         
                         # If specified SD Express model, directly match
-                        if self.sd_express_model:
-                            if self.sd_express_model.upper() in disk.Model.upper():
+                        if self.card_config['sd_express_model']:
+                            if self.card_config['sd_express_model'].upper() in disk.Model.upper():
                                 card_info.controller_type = ControllerType.NVME
                                 card_info.is_sd_express = True
                                 logger.info(f"Matched SD Express model: {disk.Model}")
@@ -622,3 +650,96 @@ class CardOperations:
         except Exception as e:
             logger.error(f"Error waiting for SD card: {str(e)}", exc_info=True)
             return None
+
+    def _disable_enable_sd4_mode(self):
+        """根据配置控制SD4.0模式"""
+        try:
+            # 打开注册表路径
+            key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, 
+                                 self.card_config['registry_path'], 
+                                 0, 
+                                 winreg.KEY_READ | winreg.KEY_WRITE)
+            
+            # 读取当前registry_item值
+            try:
+                value, _ = winreg.QueryValueEx(key, self.card_config['registry_item'])
+            except WindowsError:
+                value = 0
+                
+            # 根据sd4_disable设置或清除bit 1 (dis_sd40_card)
+            if self.card_config['sd4_disable']:
+                new_value = value | 0x02  # 设置bit 1为1
+                logger.debug(f"Setting dis_sd40_card bit to 1, value: 0x{value:02x} -> 0x{new_value:02x}")
+            else:
+                new_value = value & ~0x02  # 清除bit 1
+                logger.debug(f"Clearing dis_sd40_card bit to 0, value: 0x{value:02x} -> 0x{new_value:02x}")
+                
+            winreg.SetValueEx(key, self.card_config['registry_item'], 0, winreg.REG_DWORD, new_value)
+            winreg.CloseKey(key)
+            
+            # 获取Bayhub SD Host controller设备实例路径
+            wmi = win32com.client.GetObject("winmgmts:")
+            found = False
+            
+            # 遍历SCSI控制器
+            for controller in wmi.InstancesOf("Win32_SCSIController"):
+                logger.debug(f"Found SCSI controller: Name='{controller.Name}', DeviceID='{controller.DeviceID}'")
+                
+                if "BAYHUB" in controller.Name.upper() and "SD" in controller.Name.upper():
+                    found = True
+                    logger.info(f"Found Bayhub SD controller: {controller.Name}")
+                    
+                    try:
+                        # 使用PNPDeviceID而不是DeviceID, PNPDeviceID即device instance ID
+                        # 参考：https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/devcon-examples
+                        device_id = controller.PNPDeviceID  
+                        logger.debug(f"Using PNPDeviceID: {device_id}")
+                        
+                        # 禁用设备
+                        logger.debug(f"Disabling device: {device_id}")
+                        cmd_disable = f'{self.devcon_path} disable "@{device_id}"'  # 添加@符号
+                        logger.debug(f"Executing command: {cmd_disable}")
+                        result = os.system(cmd_disable)
+                        if result != 0:
+                            logger.error(f"Failed to disable device, error code: {result}")
+                            return False
+                            
+                        # 等待1s
+                        time.sleep(1)
+                        
+                        # 启用设备
+                        logger.debug(f"Enabling device: {device_id}")
+                        cmd_enable = f'{self.devcon_path} enable "@{device_id}"'  # 添加@符号
+                        logger.debug(f"Executing command: {cmd_enable}")
+                        result = os.system(cmd_enable)
+                        if result != 0:
+                            logger.error(f"Failed to enable device, error code: {result}")
+                            return False
+                        
+                        logger.info("SD4.0 mode disabled and reinitialized as SD3.0")
+                        return True
+                    
+                    except Exception as e:
+                        logger.error(f"Error while managing device: {str(e)}")
+                        return False
+                    
+        except Exception as e:
+            logger.error(f"Failed to disable SD4.0 mode: {str(e)}")
+            return False
+        
+    def _get_devcon_path(self):
+        """获取devcon.exe的完整路径"""
+        if getattr(sys, 'frozen', False):
+            # 如果是打包后的exe
+            base_path = os.path.dirname(sys.executable)
+        else:
+            # 如果是开发环境
+            base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            
+        devcon_path = os.path.join(base_path, 'devcon.exe')
+        if not os.path.exists(devcon_path):
+            logger.error(f"devcon.exe not found at: {devcon_path}")
+            raise FileNotFoundError(f"devcon.exe not found at: {devcon_path}")
+            
+        logger.debug(f"Found devcon.exe at: {devcon_path}")
+        return devcon_path

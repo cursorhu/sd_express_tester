@@ -1,6 +1,9 @@
 # Card Configuration
 card:
   sd_express_model: ""  # SD Express card model name, empty for automatic detection
+  sd4_disable: false    # Whether to disable SD 4.0 mode and reinitialize as SD 3.0
+  registry_path: "SYSTEM\\CurrentControlSet\\Services\\bhtsddr\\GG8"  # Registry path for SD host controller
+  registry_item: "sd_card_mode_dis"  # Registry item name for card configuration
 
 # Test Configuration
 test:

@@ -13,12 +13,17 @@ class Config:
             cls._instance = super(Config, cls).__new__(cls)
             cls._instance._load_config()
         return cls._instance
-    
+ 
+ # python会将单个反斜杠作为转义字符，即使是在字符串中要表示反斜杠本身也得用\\
+ # 此处生成config.yaml的registry_path的\\字符，应该用\\\\才能生成
     def _get_default_config_yaml(self):
         """Get default config YAML text with comments"""
         return '''# Card Configuration
 card:
   sd_express_model: ""  # SD Express card model name, empty for automatic detection
+  sd4_disable: null     # SD4.0 mode control: (true/false/null). true to disable SD4.0, false to re-enable SD4.0, null for no control
+  registry_path: "SYSTEM\\\\CurrentControlSet\\\\Services\\\\bhtsddr\\\\GG8"  # Registry path for SD host controller
+  registry_item: "sd_card_mode_dis"  # Registry item name for card configuration
 
 # Test Configuration
 test:
@@ -35,7 +40,7 @@ test:
 
 # UI Configuration
 ui:
-  always_on_top: true  # Keep window always on top (true/false)
+  always_on_top: false  # Keep window always on top (true/false)
 
 # Logger Configuration
 logger:

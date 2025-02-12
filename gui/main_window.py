@@ -96,17 +96,10 @@ class MainWindow(QMainWindow):
         """Delay initialize core components"""
         try:
             self.controller = SDController()
-            # Pass controller object to CardOperations, otherwise cannot update controller info through CardOperations
-            # self.card_ops = CardOperations(controller=self.controller)
-            
-            sd_express_model = config.get('card.sd_express_model')
-            if sd_express_model:
-                self.card_ops = CardOperations(controller=self.controller, sd_express_model=sd_express_model)
-                logger.info(f"Using specified SD Express model: {sd_express_model}")
-            else:
-                self.card_ops = CardOperations(controller=self.controller)
-                logger.info("Using automatic logic to determine SD Express model")
-                
+            self.card_ops = CardOperations(
+                        controller=self.controller,
+                        config=config   #from utils.config import
+            )
             self.test_suite = TestSuite(self.card_ops)
             logger.info("Core components initialized")
             
@@ -122,8 +115,8 @@ class MainWindow(QMainWindow):
             
         except Exception as e:
             logger.error(f"Failed to initialize core components: {str(e)}", exc_info=True)
-            self.controller_info.setText("Controller status: Initialization failed")
-            self.controller_info.setStyleSheet("color: red")
+            self.controller_name.setText("Controller status: Initialization failed")
+            self.controller_name.setStyleSheet("color: red")
             self.test_btn.setEnabled(False)
     
     def _setup_ui(self):
